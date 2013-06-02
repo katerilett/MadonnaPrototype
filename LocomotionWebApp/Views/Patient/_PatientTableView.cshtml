@@ -1,0 +1,59 @@
+﻿@model LocomotionWebApp.Models.ViewModels.PatientListViewModel
+@{
+	Layout = null;
+}
+
+@if(Model.Patients.Count > 0)
+{ 
+	<thead>
+		<tr>
+			<td>Patient Name</td>
+			<td>Therapist</td>
+			<td>Added to KOAALA</td> <!-- Currently displaying last edited -->
+			<td>New Uploads</td> <!-- Currently displaying revisions -->
+			<td></td>
+		</tr>
+	</thead>
+	foreach(var patient in Model.Patients)
+	{ 
+		<tr>
+			<td>@Html.DisplayFor(net => patient.Name)</td>
+			<td>@Html.DisplayFor(net => patient.Therapist.RealName)</td>
+			<td>@Html.DisplayFor(net => patient.LastUpdate)</td>
+			<td>x new uploads</td>
+			@*<td> @Html.DisplayFor(net => patient.Revision) Previous Versions </td>*@
+			
+
+			<td style="text-align: right;">
+				<a href="@Url.Action("TempEdit", "Patient", new { id = patient.ID, clickTab = 0 })"
+					class="btn btn-small btn-primary">Profile </a>
+				@*<a href="@Url.Action("View", "Patient", new { id= patient.ID })"
+					class="btn btn-small btn-primary">Profile</a>*@
+				<a href="@Url.Action("Index", "Result", new { id = patient.ID })"
+					class="btn btn-small">Report </a>
+				@*@if (Html.Action("Access", "Account").ToString().Equals("Administrator") == true
+					|| Html.Action("Access", "Account").ToString().Equals("Therapist") == true)
+				{
+				*@
+				<a href="@Url.Action("Delete", "Patient", new { id = patient.ID })"
+					class="btn btn-small btn-danger delete-net-btn"><i class="icon-trash"></i> </a>
+				@*}*@
+			</td>
+		</tr>
+	}
+
+	<script type="text/javascript">
+		$(".delete-net-btn").click(function(e) {
+			console.log("CLICKC");
+			var netName = $(e.target).closest("tr").find("td").first().text();
+			if(confirm('Are you sure you wish to delete ' + netName + '?')) {
+				return true;
+			}
+			e.preventDefault();
+		});
+	</script>
+}
+else
+{
+	<td>There are no patients in the system</td>
+}

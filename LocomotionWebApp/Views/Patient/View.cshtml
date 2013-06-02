@@ -1,0 +1,366 @@
+﻿@model LocomotionWebApp.Models.ViewModels.PatientViewModel
+
+
+@section Title
+{
+	Patient
+	
+}
+
+@section Scripts
+{ 
+	<script type="text/javascript">
+		function openTab() {
+			var tab;
+
+			var searchString = window.location.search.substring(1),
+				i, val, params = searchString.split("&");
+
+			for (i = 0; i < params.length; i++) {
+				val = params[i].split("=");
+				if (val[0] == "tab") {
+					tab = val[1];
+				}
+			}
+
+			if (tab == "1") {
+				openEditBar();
+			}
+			else if (tab == "2") {
+				openReport();
+			}
+		};
+	</script>
+
+	<script type="text/javascript">	
+
+	@*	function openReport() {
+			if(!$("#to-report-btn").hasClass("active")) {
+				$("#report-pullover .modal-body")
+					.html('<div style="text-align: center;"><img src="/Content/img/ajax-loader.gif" /></div>');
+				$("#report-pullover .modal-body")
+					.load("@Url.Action("View", "Report", new { id=Model.ID })");
+				hideSidebar();
+				showPullover();
+				$("#to-report-btn").addClass("active");
+			} else {
+				hidePullover();
+				$("#header .sidebar-group .btn").removeClass("active");
+			}
+		}*@
+
+		$(function() {
+			//$("#edit-sidebar-btn").click(openEditBar);
+			//$("#optimize-sidebar-btn").click(openOptimizationBar);
+			//$("#to-report-btn").click(openReport);
+
+			//$("#links-tab-btn").click(function () {
+			//	loadLinkNetwork();
+			//});
+
+			//$("#orders-tab-btn").click(openReport);
+
+			//$("#links-tab-btn").click(function () {
+			//loadLinkNetwork();
+			//});
+
+			//$("#orders-tab-btn").click(function () {
+			//loadOrderNetwork();
+			//});			
+
+			//$(".netview-modal-btn").click(function (e) {
+			//	var target = $(e.target).attr("data-name");
+			//	if($(e.target).hasClass("set-links") && currentMode != LINKS)
+			//		loadLinkNetwork();
+			//	if($(e.target).hasClass("set-orders") && currentMode != ORDERS)
+			//		loadOrderNetwork();
+			//	activateForm(target);
+			//	return false;
+			//});
+
+			$("#links-tab-btn").click(function () {
+				viewingOrders = false;
+			});
+
+			$("#orders-tab-btn").click(function () {
+				viewingOrders = true;
+			});
+			
+			resizePullover();
+			openTab();
+		});
+
+		function activateForm(target) {
+			var title = $("#"+target+" .modal-header h3").html();
+			var body = $("#"+target+" .modal-body").html();
+			var buttons = $("#"+target+" .modal-footer").html();
+
+			var formobj = $("#"+target).closest("form");
+			var action = formobj.attr("action");
+
+			var passByAjax = $("#"+target+" .modal-footer").attr("data-ajax");
+			if(passByAjax == undefined)
+				passByAjax = true;
+
+			$("#jsModal .CheckBox").val(true);
+
+			popupModalFullHtml(title, body, buttons);
+
+			$("#jsModalForm").attr("action", action);
+
+			$("#jsModalForm").unbind("submit");
+			if(passByAjax == true) {
+				$("#jsModalForm").submit(function (e) {
+
+					e.preventDefault();
+					var formdata = $("#jsModalForm").serializeArray();
+
+					$.post(action,
+						formdata,
+						function(data, status, jqXHR) {
+							if (data.success) {
+								infoWindow.close();
+								loadPatient();
+								loadOptimization();
+								if (addingAnother) {
+								} else {
+									$("#jsModal").modal("hide");
+								}
+								addingAnother = false;
+							}
+						}
+					);
+				});
+			}
+		}
+
+		function resizePullover() {
+			var headerHeight = $("#header").outerHeight();
+			var winHeight = $(window).height() - headerHeight;
+			$("#report-pullover").css("top", headerHeight);
+			$("#report-pullover").css("height", winHeight);
+		}
+		function showPullover() {
+			$("#report-pullover").slideDown();
+		}
+		function hidePullover() {
+			$("#report-pullover").slideUp();
+			$("#to-report-btn").removeClass("active");
+		
+		}
+		$(window).resize(resizePullover);
+
+
+	</script>
+
+}
+
+@*@section NextToLogo
+{
+	<p class="nav navbar-text" style="color: #000;">
+		<em>@Html.Raw(Model.Name)</em>
+		@if(Model.Revision != 0)
+		{
+			<td><a href="#" onclick="popupModalUrl(
+				'@Html.Raw(Model.Name) History',
+				'@Url.Action("NetworkHistory", "Network", new { id = Model.ID })' )" class="">
+				(@Html.DisplayFor(net => Model.Revision) Previous Versions)
+			</a></td>
+		}
+		else
+		{ 
+			<td> @Html.DisplayFor(net => Model.Revision) Previous Versions </td>
+		}
+	</p>
+}*@ 
+
+@section Header
+{
+	<div class="btn-group sidebar-group">
+	@*@if (Html.Action("Access", "Account").ToString().Equals("Administrator") == true || Html.Action("Access", "Account").ToString().Equals("Operations") == true) 
+	{
+		<a href="#" id="edit-sidebar-btn" class="btn">Edit</a>
+	}
+	 <a href="#" id="optimize-sidebar-btn" class="btn">
+		Optimize
+	</a>*@ 
+	@*<a href="#" id="to-report-btn" class="btn">Report</a>*@
+	
+	<a href="@Url.Action("Index", "Result", new { id=Model.ID })"
+					class="btn">Report</a>
+	</div>
+	
+	@*</div>
+	<i class="icon-search icon-white" style="margin-left: 12px; margin-top: 5px;"></i>
+	<div class="btn-group">
+		<a href="#" class="btn" id="show-links-btn">Profile</a>
+		<a href="@Url.Action("Index", "Result", new { id=Model.ID })"
+					class="btn">Report</a>
+	</div>*@
+
+	@*<div class="pull-right">
+		<a href="@Url.Action("SaveNetwork", "Network", new { ID = Model.ID })"
+			class="btn btn-primary">Save</a>
+		<a href="#" class="btn netview-modal-btn"
+			data-name="saveModal">Save As...</a>
+	</div>*@
+}
+
+<!-- Probably won't need this -->
+@*<div id="sidebararea">
+	<div id="sidebararea-int">
+		<div id="sidebar-contents">
+			<div id="edit-sidebar">
+				<h3>Node Tools</h3>
+			</div>
+			<div id="optimize-sidebar">
+				<div class="show-unoptimized">
+					<h3>Optimization</h3>
+					This network has not been optimized.
+					<br />
+					<button id="sidebar-optimize-btn" class="btn btn-primary">Optimize</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>*@
+
+@*<!-- The Report pullover -->
+<div id="report-pullover" style="
+	position:fixed;
+	top: 40px;
+	width: 100%;
+	background-color: #f5f5f5;
+	overflow-y: auto;
+	display: none;">
+
+	<div class="modal-header" style="background-color: #fff;">
+		Report
+		<button type="button" class="close" onclick="hidePullover()">×</button>
+	</div>
+	<div class="modal-body" style="background-color: #fff; max-height: none; overflow-y: auto;">
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Print</button>
+		<button class="btn btn-primary" onclick="hidePullover()">Close</button>
+	</div>
+	<div style="height: 250px;"></div>
+</div>*@
+
+@using(Html.BeginForm("SavePatientAs", "Patient", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{ 
+	{
+<!-- save network Modal -->
+@*<div id="saveModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	<h3 id="saveModalLabel">Save Network</h3>
+  </div>
+  <div class="modal-body">
+	<div class="control-group">				
+				<label class="control-label" for="name">Network Name</label>
+				<div class="controls">					
+						@Html.TextBoxFor(m => Model.Name, new { required ="true", placeholder = "Name" })
+					<span class="text-error">@Html.ValidationMessageFor(m => Model.Name)</span>	
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label" for="NetworkID"></label>
+				<div class="controls">
+						@Html.HiddenFor(m => Model.ID, new { placeholder = @Model.ID})
+				</div>
+			</div>
+
+
+  </div>
+
+  <div class="modal-footer" data-ajax="false">
+	<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	<button type="submit" class="btn btn-primary">Save changes</button>
+  </div>
+</div>*@
+}
+}
+
+
+@using(Html.BeginForm("editPatient", "Patient", FormMethod.Post, new { enctype = "multipart/form-data" , id = "editPatient"}))
+{ 
+	{
+<!-- Edit a Patient Modal -->
+<div id="editPatientModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	<h3 id="editPatientLabel">Edit Patient Information</h3>
+  </div>
+  <div class="modal-body">
+	<div class="control-group">
+				<label class="control-label" for="stationCode">Fuel Cost Per Mile</label>
+				@*<div class="controls">					
+						@Html.TextBoxFor(m => Model.FuelCostPerMile, new { required ="true", @class = "FuelCostPerMile" })
+					<span class="text-error">@Html.ValidationMessageFor(m => Model.FuelCostPerMile)</span>	
+					</div>*@
+		</div>
+	  
+	  <div class="control-group">
+			<label class="control-label" for="stationCode">Non Fuel Cost Per Mile</label>
+				@*<div class="controls">					
+						@Html.TextBoxFor(m => Model.NonFuelCostPerMile, new { required ="true", @class = "NonFuelCostPerMile" })
+					<span class="text-error">@Html.ValidationMessageFor(m => Model.NonFuelCostPerMile)</span>	
+					</div>*@
+
+	  </div>
+				
+		  <div class="control-group">
+			<label class="control-label" for="stationCode">Max Cars Per Train</label>
+				@*<div class="controls">					
+						@Html.TextBoxFor(m => Model.MaxCarsPerTrain, new { required ="true", @class = "MaxCarsPerTrain" })
+					<span class="text-error">@Html.ValidationMessageFor(m => Model.MaxCarsPerTrain)</span>	
+				</div>*@
+			  </div>
+			
+			<div class="control-group">
+			<label class="control-label" for="stationCode">Car Cost Per Mile</label>
+				@*<div class="controls">					
+						@Html.TextBoxFor(m => Model.CarCostPerMile, new { required ="true", @class = "CarCostPerMile" })
+					<span class="text-error">@Html.ValidationMessageFor(m => Model.CarCostPerMile)</span>	
+				</div>*@
+			</div>
+			
+				
+			<div class="control-group">
+				<label class="control-label" for="PatientID"></label>
+				<div class="controls">
+						@Html.HiddenFor(m => Model.ID, new { placeholder = @Model.ID})	
+				</div>
+			</div>
+		
+
+  </div>
+
+  <div class="modal-footer">
+	<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	<button type="submit" class="btn btn-primary">Save Changes</button>
+  </div>
+</div>
+	
+}
+}
+
+<div class="container">
+	<div class="row">
+		<div class="span12" style="padding-top: 10px;">
+			<h2 style="margin-bottom: 25px;">Profile</h2>
+			<p>Patient ID: @Html.DisplayFor(m => Model.ID, new { placeholder = @Model.ID}) </p>
+			<p>Patient Name: @Html.DisplayFor(m => Model.Name, new { placeholder = @Model.Name})</p>
+			<p>Therapist: @Html.DisplayFor(m => Model.Therapist, new { placeholder = @Model.Therapist})</p>
+		</div>
+	</div>
+	<div class="row" style="font-size: 9px; color: #999; text-align: center;">
+		<div class="span12"></div>
+			<br />
+			The KOAALAClinic is a prototype system; Madonna Rehabilitation Hospital takes no liability for use of this software
+			| <a href="email:katerilett@gmail.com">Contact Us</a>
+			| © 2013 
+	</div>
+</div>
