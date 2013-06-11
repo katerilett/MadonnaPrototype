@@ -29,6 +29,6 @@ namespace DataModel.Class
 
 		public DateTime LastLogin { get; set; }
 
-		public UserAccessGroup AccessGroup { get; set; }
+		//public UserAccessGroup AccessGroup { get; set; }
 	}
 }

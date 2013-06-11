@@ -51,7 +51,7 @@ namespace LocomotionWebApp.App_Start
 						PasswordSalt = new byte[]
 						{24, 10, 184, 91, 24, 196, 93, 99, 150, 30, 131, 109, 16, 28, 181, 193},
 
-						AccessGroup = DataModel.Enum.UserAccessGroup.Administrator,
+						//AccessGroup = DataModel.Enum.UserAccessGroup.Administrator,
 						LastLogin = DateTime.Now,
 						EmailAddress = "test@example.com",
 					};

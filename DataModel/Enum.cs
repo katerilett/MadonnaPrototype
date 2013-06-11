@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace DataModel.Enum
 {
-	public enum UserAccessGroup
-	{
-		Administrator, // All rights
-		Patient, //Limited viewing rights
-		Therapist, //Likely will be the same as the administrator
+	//public enum UserAccessGroup
+	//{
+	//	Administrator, // All rights
+	//	Patient, //Limited viewing rights
+	//	Therapist, //Likely will be the same as the administrator
 
-	}
+	//}
 
 }

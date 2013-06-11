@@ -6,8 +6,8 @@ using DataModel.Class;
 
 namespace LocomotionWebApp.Models.Account
 {
-	public class AccessModel
-	{
-		public DataModel.Enum.UserAccessGroup department { get; set; }
-	}
+	//public class AccessModel
+	//{
+	//	public DataModel.Enum.UserAccessGroup department { get; set; }
+	//}
 }

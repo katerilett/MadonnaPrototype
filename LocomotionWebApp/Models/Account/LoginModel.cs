@@ -13,6 +13,6 @@ namespace LocomotionWebApp.Models.Account
 		public string Password { get; set; }
 		public string PassConfirm { get; set; }
 		public string PermissionCode { get; set; }
-		public DataModel.Enum.UserAccessGroup department { get; set; }
+		//public DataModel.Enum.UserAccessGroup department { get; set; }
 	}
 }

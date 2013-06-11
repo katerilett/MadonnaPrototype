@@ -101,7 +101,7 @@ namespace LocomotionWebApp.Controllers
 								RealName = model.NewUser.RealName,
 								Username = model.NewUser.Username,
 								LastLogin = System.DateTime.Now,
-								AccessGroup = model.department,
+								//AccessGroup = model.department,
 								PasswordSalt = salt,
 								PasswordHash = hash,
 							});
@@ -139,13 +139,13 @@ namespace LocomotionWebApp.Controllers
 			return View(nm);
 		}
 
-		public String Access()
-		{
-			var ac = new AccessModel();
-			ac.department = UserDataEngine.getInstance().GetCurrentUser(HttpContext).AccessGroup;
-			return ac.department.ToString();
+		//public String Access()
+		//{
+		//	var ac = new AccessModel();
+		//	ac.department = UserDataEngine.getInstance().GetCurrentUser(HttpContext).AccessGroup;
+		//	return ac.department.ToString();
 		
-		}
+		//}
 
 		/// <summary>
 		/// Generates a length-byte random salt.
