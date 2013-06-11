@@ -20,8 +20,6 @@ namespace DataModel.Class
 
 		public DateTime LastUpdate { get; set; } //Currently being treated as LastEdit
 
-		public string TestVariable { get; set; }
-
 		/// <summary>
 		/// If a summary has been calculated, it is referenced here.
 		/// </summary>
