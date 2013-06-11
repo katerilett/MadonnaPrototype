@@ -60,25 +60,10 @@
 					@Html.Raw(ViewContext.Controller is LocomotionWebApp.Controllers.HomeController
 						? "active" : "")
 					"><a href="@Url.Action("Index", "Home")">Home</a></li>
-
-					@if (Html.Action("Access", "Account").ToString().Equals("Administrator") == true || Html.Action("Access", "Account").ToString().Equals("Therapist") == true) {
-							<li class="
-						@Html.Raw(ViewContext.Controller is LocomotionWebApp.Controllers.PatientController
-							? "active" : "")
-						"><a href="@Url.Action("Index", "Patient")">Patients</a></li>
-					}
-					@if (Html.Action("Access", "Account").ToString().Equals("Patient") == true) {
 						<li class="
-						@Html.Raw(ViewContext.Controller is LocomotionWebApp.Controllers.UploadController
-							? "active" : "")
-						"><a href="@Url.Action("Index", "Upload")">Upload</a></li>
-					}
-					@if (Html.Action("Access", "Account").ToString().Equals("Patient") == true) {
-						<li class="
-						@Html.Raw(ViewContext.Controller is LocomotionWebApp.Controllers.ModifiedResultController
-							? "active" : "")
-						"><a href="@Url.Action("Index", "ModifiedResult")">Report</a></li>
-					}		
+					@Html.Raw(ViewContext.Controller is LocomotionWebApp.Controllers.PatientController
+						? "active" : "")
+					"><a href="@Url.Action("Index", "Patient")">Patients</a></li>
 						<li class="
 					@Html.Raw(ViewContext.Controller is LocomotionWebApp.Controllers.HelpController
 						? "active" : "")
