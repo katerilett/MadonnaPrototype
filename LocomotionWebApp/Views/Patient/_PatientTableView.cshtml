@@ -8,9 +8,10 @@
 	<thead>
 		<tr>
 			<td>Patient Name</td>
-			<td>Therapist</td>
-			<td>Added to KOAALA</td> <!-- Currently displaying last edited -->
-			<td>New Uploads</td> <!-- Currently displaying revisions -->
+			<td>Date of Last Upload</td>
+			<td>Affected Extremity</td> <!-- Currently displaying last edited -->
+			<td>Type of Arthritis</td> <!-- Currently displaying revisions -->
+			<td>Deformity</td>
 			<td></td>
 		</tr>
 	</thead>
@@ -18,9 +19,11 @@
 	{ 
 		<tr>
 			<td>@Html.DisplayFor(net => patient.Name)</td>
-			<td>@Html.DisplayFor(net => patient.Therapist.RealName)</td>
 			<td>@Html.DisplayFor(net => patient.LastUpdate)</td>
-			<td>x new uploads</td>
+			<td>Left or Right</td>
+			<td>Unicompartmental</td>
+			@*<td>Valgus</td>*@
+			
 			@*<td> @Html.DisplayFor(net => patient.Revision) Previous Versions </td>*@
 			
 
@@ -31,13 +34,9 @@
 					class="btn btn-small btn-primary">Profile</a>*@
 				<a href="@Url.Action("Index", "Result", new { id = patient.ID })"
 					class="btn btn-small">Report </a>
-				@*@if (Html.Action("Access", "Account").ToString().Equals("Administrator") == true
-					|| Html.Action("Access", "Account").ToString().Equals("Therapist") == true)
-				{
-				*@
 				<a href="@Url.Action("Delete", "Patient", new { id = patient.ID })"
 					class="btn btn-small btn-danger delete-net-btn"><i class="icon-trash"></i> </a>
-				@*}*@
+				
 			</td>
 		</tr>
 	}
