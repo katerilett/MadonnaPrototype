@@ -1,0 +1,34 @@
+﻿@model LocomotionWebApp.Models.ViewModels.PatientViewModel
+
+
+@section Title
+{
+	Patient
+	
+}
+
+@section Header
+{
+	<div class="btn-group sidebar-group">
+	
+	<a href="@Url.Action("View", "Patient", new { id=Model.ID })"
+					class="btn">Profile</a>
+	@*<a href="@Url.Action("TempEdit", "Network", new { id = Model.ID, clickTab = 0 })"
+					class="btn btn-small btn-primary">Profile </a>*@
+	</div>
+}
+
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<h2 style="margin-bottom: 25px;">Report</h2>
+		</div>
+	</div>
+	<div class="row" style="font-size: 9px; color: #999; text-align: center;">
+		<div class="span12"></div>
+			<br />
+			The KOAALAClinic is a prototype; Madonna Rehabilitation Hospital takes no liability for use of this software
+			| <a href="email:katerilett@gmail.com">Contact Us</a>
+			| © 2013 
+	</div>
+</div>

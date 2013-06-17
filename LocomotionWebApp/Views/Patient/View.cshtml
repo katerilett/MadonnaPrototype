@@ -186,7 +186,7 @@
 	</a>*@ 
 	@*<a href="#" id="to-report-btn" class="btn">Report</a>*@
 	
-	<a href="@Url.Action("Index", "Result", new { id=Model.ID })"
+	<a href="@Url.Action("Report", "Patient", new { id=Model.ID })"
 					class="btn">Report</a>
 	</div>
 	
@@ -206,46 +206,7 @@
 	</div>*@
 }
 
-<!-- Probably won't need this -->
-@*<div id="sidebararea">
-	<div id="sidebararea-int">
-		<div id="sidebar-contents">
-			<div id="edit-sidebar">
-				<h3>Node Tools</h3>
-			</div>
-			<div id="optimize-sidebar">
-				<div class="show-unoptimized">
-					<h3>Optimization</h3>
-					This network has not been optimized.
-					<br />
-					<button id="sidebar-optimize-btn" class="btn btn-primary">Optimize</button>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>*@
 
-@*<!-- The Report pullover -->
-<div id="report-pullover" style="
-	position:fixed;
-	top: 40px;
-	width: 100%;
-	background-color: #f5f5f5;
-	overflow-y: auto;
-	display: none;">
-
-	<div class="modal-header" style="background-color: #fff;">
-		Report
-		<button type="button" class="close" onclick="hidePullover()">×</button>
-	</div>
-	<div class="modal-body" style="background-color: #fff; max-height: none; overflow-y: auto;">
-	</div>
-	<div class="modal-footer">
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Print</button>
-		<button class="btn btn-primary" onclick="hidePullover()">Close</button>
-	</div>
-	<div style="height: 250px;"></div>
-</div>*@
 
 @using(Html.BeginForm("SavePatientAs", "Patient", FormMethod.Post, new { enctype = "multipart/form-data" }))
 { 

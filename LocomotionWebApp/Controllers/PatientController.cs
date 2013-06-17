@@ -84,6 +84,30 @@ namespace LocomotionWebApp.Controllers
 		}
 
 		[Authorize]
+		public ActionResult Report(long id)
+		{
+			var pvm = new PatientViewModel();
+
+			using (var c = new DataModelContext())
+			{
+				User currentUser = UserDataEngine.getInstance().GetCurrentUser(c, HttpContext);
+				
+				var patient = c.Patients.Find(id);
+				if (patient == null)
+				{
+					TempData["Alert"] = "The selected patient does not exist.";
+					return RedirectToAction("Index");
+				}
+
+				pvm.ID = patient.ID;
+
+			}
+			return View(pvm);
+
+		}
+
+
+		[Authorize]
 		public ActionResult Delete(long id)
 		{
 			using(var c = new DataModelContext())
@@ -331,6 +355,7 @@ namespace LocomotionWebApp.Controllers
 				xmlpatient.Name = PatientName;
 				xmlpatient.Therapist = UserDataEngine.getInstance().GetCurrentUser(c, HttpContext);
 				xmlpatient.LastUpdate = DateTime.Now;
+				xmlpatient.Start = DateTime.Now;
 				c.Patients.Add(xmlpatient);
 
 				try

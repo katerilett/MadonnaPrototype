@@ -302,6 +302,7 @@
     <Content Include="Views\Account\Access.cshtml" />
     <Content Include="Views\Patient\PatientHistory.cshtml" />
     <Content Include="Views\Result\Index.cshtml" />
+    <Content Include="Views\Patient\Report.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

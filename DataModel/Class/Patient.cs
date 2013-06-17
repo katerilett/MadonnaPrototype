@@ -18,7 +18,21 @@ namespace DataModel.Class
 
 		public virtual User Therapist { get; set; }
 
-		public DateTime LastUpdate { get; set; } //Currently being treated as LastEdit
+		public DateTime LastUpdate { get; set; } //Currently being treated as LastEdit i.e. Start
+
+		public string ArthritisType { get; set; }
+
+		public string Deformity { get; set; }
+
+		public int Age { get; set; }
+
+		public char Gender { get; set; }
+
+		public int Weight { get; set; }
+
+		public DateTime Start { get; set; } //When Therapists adds the patient
+
+		public string Email { get; set; }
 
 		/// <summary>
 		/// If a summary has been calculated, it is referenced here.
