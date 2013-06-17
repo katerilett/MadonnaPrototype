@@ -48,19 +48,12 @@ namespace LocomotionWebApp.Controllers
 				{
 					TempData["Alert"] = "The selected patient does not exist.";
 					return RedirectToAction("Index");
-				}
-				
-				//List<Node> tempList = (from n in network.Nodes
-				//					   where n.StationCode != null
-				//					   select n).ToList();
-					
-								
+				}								
 
 				nvm.ID = patient.ID;
-				//nvm.Nodes = network.Nodes;
-				//nvm.Links = network.Links;
-				//nvm.sCodeList = tempList;
-				//nvm.Revision = network.Revision;
+				nvm.Name = patient.Name;
+				nvm.Therapist = patient.Therapist;
+				
 				
 
 				//var nameNet = network;

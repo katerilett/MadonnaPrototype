@@ -314,7 +314,7 @@
 			<h2 style="margin-bottom: 25px;">Profile</h2>
 			<p>Patient ID: @Html.DisplayFor(m => Model.ID, new { placeholder = @Model.ID}) </p>
 			<p>Patient Name: @Html.DisplayFor(m => Model.Name, new { placeholder = @Model.Name})</p>
-			<p>Therapist: @Html.DisplayFor(m => Model.Therapist, new { placeholder = @Model.Therapist})</p>
+			<p>Therapist: @Html.DisplayFor(m => Model.Therapist.RealName, new { placeholder = @Model.Therapist.RealName})</p>
 		</div>
 	</div>
 	<div class="row" style="font-size: 9px; color: #999; text-align: center;">
