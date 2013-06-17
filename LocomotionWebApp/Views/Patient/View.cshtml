@@ -336,16 +336,8 @@
 	<table class="table table-striped table-bordered table-condensed">
 		<tbody>
 			<tr>
-				<td>Patient ID:</td>
-				<td>@Html.DisplayFor(m => Model.ID, new { placeholder = @Model.ID})</td>
-			</tr>
-			<tr>
-				<td>Patient Last Name:</td>
-				<td>@Html.DisplayFor(m => Model.LastName, new { placeholder = @Model.LastName})</td>
-			</tr>
-			<tr>
-				<td>Patient First Name:</td>
-				<td>@Html.DisplayFor(m => Model.FirstName, new { placeholder = @Model.FirstName})</td>
+				<td>Patient Name:</td>
+				<td>@Html.DisplayFor(m => Model.LastName, new { placeholder = @Model.LastName}), @Html.DisplayFor(m => Model.FirstName, new { placeholder = @Model.FirstName})</td>
 			</tr>
 			<tr>
 				<td>Therapist:</td>
