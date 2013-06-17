@@ -53,7 +53,8 @@ namespace LocomotionWebApp.Controllers
 				nvm.ID = patient.ID;
 				nvm.Name = patient.Name;
 				nvm.Therapist = patient.Therapist;
-				
+				nvm.Age = patient.Age;
+				nvm.ArthritisType = patient.ArthritisType;
 				
 
 				//var nameNet = network;

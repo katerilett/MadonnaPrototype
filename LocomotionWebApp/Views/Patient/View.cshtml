@@ -311,12 +311,50 @@
 <div class="container">
 	<div class="row">
 		<div class="span12" style="padding-top: 10px;">
-			<h2 style="margin-bottom: 25px;">Profile</h2>
-			<p>Patient ID: @Html.DisplayFor(m => Model.ID, new { placeholder = @Model.ID}) </p>
+			<h2 style="margin-bottom: 25px;">Profile</h2>			
+
+			@*<p>Patient ID: @Html.DisplayFor(m => Model.ID, new { placeholder = @Model.ID}) </p>
 			<p>Patient Name: @Html.DisplayFor(m => Model.Name, new { placeholder = @Model.Name})</p>
 			<p>Therapist: @Html.DisplayFor(m => Model.Therapist.RealName, new { placeholder = @Model.Therapist.RealName})</p>
+			<p>Age: @Html.DisplayFor(m => Model.Age, new { placeholder = @Model.Age})</p>
+			<p>Arthritis Type: @Html.DisplayFor(m => Model.ArthritisType, new { placeholder = @Model.ArthritisType})</p>*@
+			
 		</div>
 	</div>
+
+
+<div class"row">
+<div class="span7">
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Patient Information</title>
+		<meta name="description" content="Patient Information">
+		<link href="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet">			
+	</head>
+	<body>
+	<table class="table table-striped">
+		<tbody>
+			<tr>
+				<td>Patient ID:</td>
+				<td>@Html.DisplayFor(m => Model.ID, new { placeholder = @Model.ID})</td>
+			</tr>
+			<tr>
+				<td>Patient Name:</td>
+				<td>@Html.DisplayFor(m => Model.Name, new { placeholder = @Model.Name})</td>
+			</tr>
+			<tr>
+				<td>Therapist:</td>
+				<td>@Html.DisplayFor(m => Model.Therapist.RealName, new { placeholder = @Model.Therapist.RealName})</td>
+			</tr>
+		</tbody>
+	</table>
+	</body>
+</html>
+</div>
+</div>
+
+
 	<div class="row" style="font-size: 9px; color: #999; text-align: center;">
 		<div class="span12"></div>
 			<br />
@@ -325,3 +363,8 @@
 			| © 2013 
 	</div>
 </div>
+
+
+
+
+	
