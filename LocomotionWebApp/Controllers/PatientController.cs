@@ -24,7 +24,7 @@ namespace LocomotionWebApp.Controllers
 
 			using(var c = new DataModelContext())
 			{
-				nvm.Patients = c.Patients.Include("Therapist").Where(n => n.Name != null).ToList();
+				nvm.Patients = c.Patients.Include("Therapist").Where(n => n.LastName != null).ToList();
 			}
 
 			object alertObject;
@@ -51,7 +51,8 @@ namespace LocomotionWebApp.Controllers
 				}								
 
 				nvm.ID = patient.ID;
-				nvm.Name = patient.Name;
+				nvm.FirstName = patient.FirstName;
+				nvm.LastName = patient.LastName;
 				nvm.Therapist = patient.Therapist;
 				nvm.Age = patient.Age;
 				nvm.ArthritisType = patient.ArthritisType;
@@ -107,7 +108,7 @@ namespace LocomotionWebApp.Controllers
 			using(var c = new DataModelContext())
 			{
 				var patient = c.Patients.Find(id);
-				patient.Name = null;
+				patient.LastName = null;
 				c.SaveChanges();
 			}
 			return RedirectToAction("Index");
@@ -327,17 +328,28 @@ namespace LocomotionWebApp.Controllers
 		
 
 		[Authorize]
-		public ActionResult CreateBlank(string PatientName)
+		public ActionResult CreateBlank(string PatientFirstName, string PatientLastName)
 		{
 			var nvm = new PatientListViewModel();
 
-			if(PatientName == "")
+			if(PatientFirstName == "")
 			{
-				ViewBag.UploadAlert = "Enter a patient name";
+				ViewBag.UploadAlert = "Enter the patient's first name";
 
 				using (var c = new DataModelContext())
 				{
-					nvm.Patients = c.Patients.Include("Therapist").Where(n => n.Name != null).ToList();
+					nvm.Patients = c.Patients.Include("Therapist").Where(n => n.LastName != null).ToList();
+				}
+				return View("Index", nvm);
+			}
+
+			if (PatientLastName == "")
+			{
+				ViewBag.UploadAlert = "Enter the patient's last name";
+
+				using (var c = new DataModelContext())
+				{
+					nvm.Patients = c.Patients.Include("Therapist").Where(n => n.LastName != null).ToList();
 				}
 				return View("Index", nvm);
 			}
@@ -346,7 +358,8 @@ namespace LocomotionWebApp.Controllers
 			{
 				var xmlpatient = new Patient();
 
-				xmlpatient.Name = PatientName;
+				xmlpatient.FirstName = PatientFirstName;
+				xmlpatient.LastName = PatientLastName;
 				xmlpatient.Therapist = UserDataEngine.getInstance().GetCurrentUser(c, HttpContext);
 				xmlpatient.LastUpdate = DateTime.Now;
 				xmlpatient.Start = DateTime.Now;
@@ -364,7 +377,7 @@ namespace LocomotionWebApp.Controllers
 					}
 					throw e;
 				}
-				nvm.Patients = c.Patients.Include("Therapist").Where(n => n.Name != null).ToList();
+				nvm.Patients = c.Patients.Include("Therapist").Where(n => n.LastName != null).ToList();
 
 				ViewBag.NewPatientID = xmlpatient.ID;
 			}
@@ -374,74 +387,74 @@ namespace LocomotionWebApp.Controllers
 			return View("Index", nvm);
 		}
 
-		[Authorize]
-		public ActionResult Upload(string PatientName, IEnumerable<HttpPostedFileBase> files)
-		{
-			var nvm = new PatientListViewModel();
+		//[Authorize]
+		//public ActionResult Upload(string PatientName, IEnumerable<HttpPostedFileBase> files)
+		//{
+		//	var nvm = new PatientListViewModel();
 
-			IEnumerable<HttpPostedFileBase> someFiles = files;
+		//	IEnumerable<HttpPostedFileBase> someFiles = files;
 
-			var patientDoc = new XDocument();
+		//	var patientDoc = new XDocument();
 
-			if (PatientName == "")
-			{
-				ViewBag.UploadAlert = "Enter a patient name";
+		//	if (PatientName == "")
+		//	{
+		//		ViewBag.UploadAlert = "Enter a patient name";
 
-				using (var c = new DataModelContext())
-				{
-					nvm.Patients = c.Patients.Include("Therapist").Where(n => n.Name != null).ToList();
-				}
-				return View("Index", nvm);
-			}
+		//		using (var c = new DataModelContext())
+		//		{
+		//			nvm.Patients = c.Patients.Include("Therapist").Where(n => n.Name != null).ToList();
+		//		}
+		//		return View("Index", nvm);
+		//	}
 
-			try
-			{
-				patientDoc = XDocument.Load(Request.Files["PatientFile"].InputStream);				
-			}
-			catch (XmlException e)
-			{
-				Console.WriteLine(e.Message);
-				ViewBag.UploadAlert = "You must select a valid xml file";
+		//	try
+		//	{
+		//		patientDoc = XDocument.Load(Request.Files["PatientFile"].InputStream);				
+		//	}
+		//	catch (XmlException e)
+		//	{
+		//		Console.WriteLine(e.Message);
+		//		ViewBag.UploadAlert = "You must select a valid xml file";
 
-				using (var c = new DataModelContext())
-				{
-					nvm.Patients = c.Patients.Include("Therapist").Where(n => n.Name != null).ToList();
-				}
-				return View("Index", nvm);
-			}
+		//		using (var c = new DataModelContext())
+		//		{
+		//			nvm.Patients = c.Patients.Include("Therapist").Where(n => n.Name != null).ToList();
+		//		}
+		//		return View("Index", nvm);
+		//	}
 
-			using(var c = new DataModelContext())
-			{
+		//	using(var c = new DataModelContext())
+		//	{
 
-				//var xmlE = new XmlEngine();
-				//var xmlnetwork = xmlE.XmlFileToNetwork(networkDoc);
+		//		//var xmlE = new XmlEngine();
+		//		//var xmlnetwork = xmlE.XmlFileToNetwork(networkDoc);
 
-				//xmlnetwork.Name = NetworkName;
-				//xmlnetwork.Author = UserDataEngine.getInstance().GetCurrentUser(c, HttpContext);
-				//xmlnetwork.LastEdit = DateTime.Now;
-				//c.Networks.Add(xmlnetwork);
+		//		//xmlnetwork.Name = NetworkName;
+		//		//xmlnetwork.Author = UserDataEngine.getInstance().GetCurrentUser(c, HttpContext);
+		//		//xmlnetwork.LastEdit = DateTime.Now;
+		//		//c.Networks.Add(xmlnetwork);
 
-				try
-				{
-					c.SaveChanges();
-				}
-				catch(DbEntityValidationException e)
-				{
-					foreach(var i in e.EntityValidationErrors)
-					{
-						Console.WriteLine(i.ValidationErrors);
-					}
-					throw e;
-				}
-				nvm.Patients = c.Patients.Include("Therapist").Where(n => n.Name != null).ToList();
+		//		try
+		//		{
+		//			c.SaveChanges();
+		//		}
+		//		catch(DbEntityValidationException e)
+		//		{
+		//			foreach(var i in e.EntityValidationErrors)
+		//			{
+		//				Console.WriteLine(i.ValidationErrors);
+		//			}
+		//			throw e;
+		//		}
+		//		nvm.Patients = c.Patients.Include("Therapist").Where(n => n.Name != null).ToList();
 
-				//ViewBag.NewNetworkID = xmlnetwork.ID;
-			}
+		//		//ViewBag.NewNetworkID = xmlnetwork.ID;
+		//	}
 
-			ViewBag.Alert = "Patient upload successful";
-			ViewBag.AlertClass = "alert-success";
-			return View("Index", nvm);
-		}
+		//	ViewBag.Alert = "Patient upload successful";
+		//	ViewBag.AlertClass = "alert-success";
+		//	return View("Index", nvm);
+		//}
 
 		#region URLUpload
 		//[Authorize]

@@ -324,7 +324,7 @@
 
 
 <div class="row">
-<div class="span4">
+<div class="span5">
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -340,16 +340,48 @@
 				<td>@Html.DisplayFor(m => Model.ID, new { placeholder = @Model.ID})</td>
 			</tr>
 			<tr>
-				<td>Patient Name:</td>
-				<td>@Html.DisplayFor(m => Model.Name, new { placeholder = @Model.Name})</td>
+				<td>Patient Last Name:</td>
+				<td>@Html.DisplayFor(m => Model.LastName, new { placeholder = @Model.LastName})</td>
+			</tr>
+			<tr>
+				<td>Patient First Name:</td>
+				<td>@Html.DisplayFor(m => Model.FirstName, new { placeholder = @Model.FirstName})</td>
 			</tr>
 			<tr>
 				<td>Therapist:</td>
 				<td>@Html.DisplayFor(m => Model.Therapist.RealName, new { placeholder = @Model.Therapist.RealName})</td>
 			</tr>
 			<tr>
+				<td>Started KOAALA:</td>
+				<td>@Html.DisplayFor(m => Model.Start, new { placeholder = @Model.Start})</td>
+			</tr>
+			<tr>
+				<td>Age:</td>
+				<td>@Html.DisplayFor(m => Model.Age, new { placeholder = @Model.Age})</td>
+			</tr>
+			<tr>
+				<td>Gender:</td>
+				<td>@Html.DisplayFor(m => Model.Gender, new { placeholder = @Model.Gender})</td>
+			</tr>
+			<tr>
+				<td>Height:</td>
+				<td>@Html.DisplayFor(m => Model.Height, new { placeholder = @Model.Height})</td>
+			</tr>
+			<tr>
+				<td>Weight:</td>
+				<td>@Html.DisplayFor(m => Model.Weight, new { placeholder = @Model.Weight})</td>
+			</tr>
+			<tr>
 				<td>Arthritis Type:</td>
-				<td>Unicompartmental</td>
+				<td>@Html.DisplayFor(m => Model.ArthritisType, new { placeholder = @Model.ArthritisType})</td>
+			</tr>
+			<tr>
+				<td>Deformity:</td>
+				<td>@Html.DisplayFor(m => Model.Deformity, new { placeholder = @Model.Deformity})</td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td>@Html.DisplayFor(m => Model.Email, new { placeholder = @Model.Email})</td>
 			</tr>
 		</tbody>
 	</table>

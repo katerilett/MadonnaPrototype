@@ -13,7 +13,9 @@ namespace LocomotionWebApp.Models.ViewModels
 		
 		//public int Revision { get; set; }
 		
-		public String Name { get; set; }
+		public String FirstName { get; set; }
+
+		public String LastName { get; set; }
 		
 		public bool OutOfDate { get; set; }
 
@@ -28,6 +30,8 @@ namespace LocomotionWebApp.Models.ViewModels
 		public int Age { get; set; }
 
 		public char Gender { get; set; }
+
+		public string Height { get; set; }
 
 		public int Weight { get; set; }
 

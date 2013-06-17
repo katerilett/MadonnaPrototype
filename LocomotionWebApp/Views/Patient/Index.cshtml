@@ -138,15 +138,27 @@
 			<div class="modal-body">
 
 				<div class="control-group">
-					<label class="control-label" for="BlankPatientName">
-						Patient Name
+					<label class="control-label" for="BlankPatientFirstName">
+						Patient's First Name
 						<a href="#" rel="tooltip" title="Tootlsef"><i class="icon-question-sign"></i></a>
 					</label>
 					<div class="controls">
-						<input type="text" id="BlankPatientName" name="PatientName"
-							placeholder="New patient name" required />
+						<input type="text" id="BlankPatientFirstName" name="PatientFirstName"
+							placeholder="New patient first name" required />
 					</div>
 				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="BlankPatientLastName">
+						Patient's Last Name
+						<a href="#" rel="tooltip" title="Tootlsef"><i class="icon-question-sign"></i></a>
+					</label>
+					<div class="controls">
+						<input type="text" id="BlankPatientLastName" name="PatientLastName"
+							placeholder="New patient last name" required />
+					</div>
+				</div>
+
 			</div>
 
 			@if(ViewBag.UploadAlert != null)

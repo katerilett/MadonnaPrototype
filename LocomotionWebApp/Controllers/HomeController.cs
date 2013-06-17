@@ -35,7 +35,7 @@ namespace LocomotionWebApp.Controllers
 				}
 
 				hvm.Patients = c.Patients.Include("Therapist").Where(n =>
-					n.Name != null &&
+					n.LastName != null &&
 					n.Therapist.Username == currentUser.Username
 					).ToList();
 			}

@@ -14,7 +14,9 @@ namespace DataModel.Class
 		public long ID { get; set; }
 
 		// Change tracking variables
-		public string Name { get; set; }
+		public string FirstName { get; set; }
+
+		public string LastName { get; set; }
 
 		public virtual User Therapist { get; set; }
 
@@ -27,6 +29,8 @@ namespace DataModel.Class
 		public int Age { get; set; }
 
 		public char Gender { get; set; }
+
+		public string Height { get; set; }
 
 		public int Weight { get; set; }
 

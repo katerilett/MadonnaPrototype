@@ -18,7 +18,7 @@
 	foreach(var patient in Model.Patients)
 	{ 
 		<tr>
-			<td>@Html.DisplayFor(net => patient.Name)</td>
+			<td>@Html.DisplayFor(net => patient.LastName) , @Html.DisplayFor(net => patient.FirstName)</td>
 			<td>@Html.DisplayFor(net => patient.LastUpdate)</td>
 			<td>Left or Right</td>
 			<td>Unicompartmental</td>
