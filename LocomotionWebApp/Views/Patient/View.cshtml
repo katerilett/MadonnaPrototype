@@ -255,48 +255,44 @@
 	<h3 id="editPatientLabel">Edit Patient Information</h3>
   </div>
   <div class="modal-body">
-	<div class="control-group">
+		<div class="control-group">
 				<label class="control-label" for="stationCode">Fuel Cost Per Mile</label>
-				@*<div class="controls">					
-						@Html.TextBoxFor(m => Model.FuelCostPerMile, new { required ="true", @class = "FuelCostPerMile" })
-					<span class="text-error">@Html.ValidationMessageFor(m => Model.FuelCostPerMile)</span>	
-					</div>*@
+				<div class="controls">					
+						@Html.TextBoxFor(m => Model.Age, new { required ="true", @class = "Age" })
+					<span class="text-error">@Html.ValidationMessageFor(m => Model.Age)</span>	
+				</div>
 		</div>
 	  
-	  <div class="control-group">
-			<label class="control-label" for="stationCode">Non Fuel Cost Per Mile</label>
-				@*<div class="controls">					
-						@Html.TextBoxFor(m => Model.NonFuelCostPerMile, new { required ="true", @class = "NonFuelCostPerMile" })
-					<span class="text-error">@Html.ValidationMessageFor(m => Model.NonFuelCostPerMile)</span>	
-					</div>*@
-
-	  </div>
+		<div class="control-group">
+			<label class="control-label" for="stationCode">Gender</label>
+				<div class="controls">					
+						@Html.TextBoxFor(m => Model.Gender, new { required ="true", @class = "Gender" })
+					<span class="text-error">@Html.ValidationMessageFor(m => Model.Gender)</span>	
+				</div>
+		</div>
 				
-		  <div class="control-group">
-			<label class="control-label" for="stationCode">Max Cars Per Train</label>
-				@*<div class="controls">					
-						@Html.TextBoxFor(m => Model.MaxCarsPerTrain, new { required ="true", @class = "MaxCarsPerTrain" })
-					<span class="text-error">@Html.ValidationMessageFor(m => Model.MaxCarsPerTrain)</span>	
-				</div>*@
-			  </div>
+		<div class="control-group">
+			<label class="control-label" for="stationCode">Height</label>
+				<div class="controls">					
+						@Html.TextBoxFor(m => Model.Height, new { required ="true", @class = "Height" })
+					<span class="text-error">@Html.ValidationMessageFor(m => Model.Height)</span>	
+				</div>
+		</div>
 			
-			<div class="control-group">
-			<label class="control-label" for="stationCode">Car Cost Per Mile</label>
-				@*<div class="controls">					
-						@Html.TextBoxFor(m => Model.CarCostPerMile, new { required ="true", @class = "CarCostPerMile" })
-					<span class="text-error">@Html.ValidationMessageFor(m => Model.CarCostPerMile)</span>	
-				</div>*@
-			</div>
-			
+		<div class="control-group">
+			<label class="control-label" for="stationCode">Weight</label>
+				<div class="controls">					
+						@Html.TextBoxFor(m => Model.Weight, new { required ="true", @class = "CarCostPerMile" })
+					<span class="text-error">@Html.ValidationMessageFor(m => Model.Weight)</span>	
+				</div>
+		</div>
 				
-			<div class="control-group">
+		<div class="control-group">
 				<label class="control-label" for="PatientID"></label>
 				<div class="controls">
 						@Html.HiddenFor(m => Model.ID, new { placeholder = @Model.ID})	
 				</div>
-			</div>
-		
-
+		</div>
   </div>
 
   <div class="modal-footer">
@@ -311,20 +307,12 @@
 <div class="container">
 	<div class="row">
 		<div class="span12" style="padding-top: 10px;">
-			<h2 style="margin-bottom: 25px;">Profile</h2>			
-
-			@*<p>Patient ID: @Html.DisplayFor(m => Model.ID, new { placeholder = @Model.ID}) </p>
-			<p>Patient Name: @Html.DisplayFor(m => Model.Name, new { placeholder = @Model.Name})</p>
-			<p>Therapist: @Html.DisplayFor(m => Model.Therapist.RealName, new { placeholder = @Model.Therapist.RealName})</p>
-			<p>Age: @Html.DisplayFor(m => Model.Age, new { placeholder = @Model.Age})</p>
-			<p>Arthritis Type: @Html.DisplayFor(m => Model.ArthritisType, new { placeholder = @Model.ArthritisType})</p>*@
-			
+			<h2 style="margin-bottom: 10px;">Profile</h2>						
 		</div>
 	</div>
 
-
 <div class="row">
-<div class="span5">
+<div class="span5" style="padding-top: 10px;">
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -382,6 +370,8 @@
 </div>
 </div>
 
+<a href="@Url.Action("editPatient", "Patient", new { id=Model.ID })"
+					class="btn btn-primary">Edit Profile</a>
 
 	<div class="row" style="font-size: 9px; color: #999; text-align: center;">
 		<div class="span12"></div>
