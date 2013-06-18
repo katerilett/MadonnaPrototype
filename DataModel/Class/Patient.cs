@@ -24,13 +24,15 @@ namespace DataModel.Class
 
 		public string ArthritisType { get; set; }
 
+		public string AffectedExtremity { get; set; }
+
 		public string Deformity { get; set; }
 
 		public int Age { get; set; }
 
-		public char Gender { get; set; }
+		public string Gender { get; set; }
 
-		public string Height { get; set; }
+		public int Height { get; set; }
 
 		public int Weight { get; set; }
 

@@ -260,6 +260,16 @@
 			<div class="modal-body">
 
 				<div class="control-group">
+					<label class="control-label" for="PatientAgeType">
+						Age
+					</label>
+					<div class="controls">
+						<input type="text" id="PatientAge" name="PatientAge"
+							placeholder="Patient age" required />
+					</div>
+				</div>
+
+				<div class="control-group">
 					<label class="control-label" for="PatientArthritisType">
 						Arthritis Type
 					</label>
@@ -421,6 +431,10 @@
 			<tr>
 				<td>Arthritis Type:</td>
 				<td>@Html.DisplayFor(m => Model.ArthritisType, new { placeholder = @Model.ArthritisType})</td>
+			</tr>
+			<tr>
+				<td>Affected Extremity:</td>
+				<td>@Html.DisplayFor(m => Model.AffectedExtremity, new { placeholder = @Model.AffectedExtremity})</td>
 			</tr>
 			<tr>
 				<td>Deformity:</td>

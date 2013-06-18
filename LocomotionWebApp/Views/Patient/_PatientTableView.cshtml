@@ -20,8 +20,8 @@
 		<tr>
 			<td>@Html.DisplayFor(net => patient.LastName) , @Html.DisplayFor(net => patient.FirstName)</td>
 			<td>@Html.DisplayFor(net => patient.LastUpdate)</td>
-			<td>Left or Right</td>
-			<td>Unicompartmental</td>
+			<td>@Html.DisplayFor(net => patient.AffectedExtremity)</td>
+			<td>@Html.DisplayFor(net => patient.ArthritisType)</td>
 			@*<td>Valgus</td>*@
 			
 			@*<td> @Html.DisplayFor(net => patient.Revision) Previous Versions </td>*@

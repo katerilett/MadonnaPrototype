@@ -55,8 +55,13 @@ namespace LocomotionWebApp.Controllers
 				nvm.LastName = patient.LastName;
 				nvm.Therapist = patient.Therapist;
 				nvm.Age = patient.Age;
+				nvm.Gender = patient.Gender;
+				nvm.Height = patient.Height;
+				nvm.Weight = patient.Weight;
 				nvm.ArthritisType = patient.ArthritisType;
-				
+				nvm.AffectedExtremity = patient.AffectedExtremity;
+				nvm.Deformity = patient.Deformity;
+				nvm.Email = patient.Email;
 
 				//var nameNet = network;
 				//while(nameNet.Parent != null && nameNet.Name == null)
@@ -326,7 +331,7 @@ namespace LocomotionWebApp.Controllers
 		//}
 
 		[Authorize]
-		public ActionResult EditPatient (string PatientArthritisType, string PatientDeformity, PatientViewModel model)
+		public ActionResult EditPatient (int PatientAge, string PatientArthritisType, string PatientDeformity, PatientViewModel model)
 		{
 			var pvm = model;
 
@@ -334,6 +339,7 @@ namespace LocomotionWebApp.Controllers
 			{
 				var patient = c.Patients.Find(model.ID);
 
+				patient.Age = PatientAge;
 				patient.ArthritisType = PatientArthritisType;
 				patient.Deformity = PatientDeformity;
 				
@@ -375,14 +381,23 @@ namespace LocomotionWebApp.Controllers
 
 			using(var c = new DataModelContext())
 			{
-				var xmlpatient = new Patient();
+				var patient = new Patient();
 
-				xmlpatient.FirstName = PatientFirstName;
-				xmlpatient.LastName = PatientLastName;
-				xmlpatient.Therapist = UserDataEngine.getInstance().GetCurrentUser(c, HttpContext);
-				xmlpatient.LastUpdate = DateTime.Now;
-				xmlpatient.Start = DateTime.Now;
-				c.Patients.Add(xmlpatient);
+				patient.FirstName = PatientFirstName;
+				patient.LastName = PatientLastName;
+				patient.Therapist = UserDataEngine.getInstance().GetCurrentUser(c, HttpContext);
+				patient.LastUpdate = DateTime.Now;
+				patient.Start = DateTime.Now;
+				patient.Age = 0;
+				patient.Gender = "Not entered";
+				patient.Height = 0;
+				patient.Weight = 0;
+				patient.ArthritisType = "Not entered";
+				patient.AffectedExtremity = "Not entered";
+				patient.Deformity = "Not entered";
+				patient.Email = "Not entered";
+
+				c.Patients.Add(patient);
 
 				try
 				{
@@ -398,7 +413,7 @@ namespace LocomotionWebApp.Controllers
 				}
 				nvm.Patients = c.Patients.Include("Therapist").Where(n => n.LastName != null).ToList();
 
-				ViewBag.NewPatientID = xmlpatient.ID;
+				ViewBag.NewPatientID = patient.ID;
 			}
 
 			ViewBag.Alert = "Patient upload successful";
