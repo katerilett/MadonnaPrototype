@@ -325,7 +325,26 @@ namespace LocomotionWebApp.Controllers
 		//	}
 		//}
 
-		
+		[Authorize]
+		public ActionResult EditPatient (string PatientArthritisType, string PatientDeformity, PatientViewModel model)
+		{
+			var pvm = model;
+
+			using (var c = new DataModelContext())
+			{
+				var patient = c.Patients.Find(model.ID);
+
+				patient.ArthritisType = PatientArthritisType;
+				patient.Deformity = PatientDeformity;
+				
+				c.SaveChanges();
+				
+			}
+
+			ViewBag.Alert = "Profile update successful";
+			ViewBag.AlertClass = "alert-success";
+			return View("View", pvm);
+		}
 
 		[Authorize]
 		public ActionResult CreateBlank(string PatientFirstName, string PatientLastName)
