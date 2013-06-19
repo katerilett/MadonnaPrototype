@@ -334,11 +334,13 @@ namespace LocomotionWebApp.Controllers
 		public ActionResult EditPatient (int PatientAge, string PatientGender, int PatientHeight, int PatientWeight, 
 			string PatientArthritisType, string PatientAffectedExtremity, string PatientDeformity, string PatientEmail, PatientViewModel model)
 		{
-			var pvm = model;
+			var pvm = new PatientViewModel();
+			long patientID = 0;
 
 			using (var c = new DataModelContext())
 			{
 				var patient = c.Patients.Find(model.ID);
+				patientID = patient.ID;
 
 				patient.Age = PatientAge;
 				patient.Gender = PatientGender;
@@ -355,7 +357,8 @@ namespace LocomotionWebApp.Controllers
 
 			ViewBag.Alert = "Profile update successful";
 			ViewBag.AlertClass = "alert-success";
-			return View("View", pvm);
+			//return View("View", pvm);
+			return RedirectToAction("View", new { id = patientID});
 		}
 
 		[Authorize]
