@@ -258,37 +258,78 @@
 		</div>
 		<form class="form-horizontal" method="post" enctype="multipart/form-data">
 			<div class="modal-body">
-
 				<div class="control-group">
-					<label class="control-label" for="PatientAgeType">
+					<label class="control-label" for="PatientAge">
 						Age
 					</label>
-					<div class="controls">
-						<input type="text" id="PatientAge" name="PatientAge"
-							placeholder="Patient age" required />
+					<div class="controls">	
+						<input type="text" id="PatientAge" name="PatientAge" 		
+							value="@Html.DisplayFor(m => Model.Age, new { required ="true", @class = "Age" })" required />							
 					</div>
 				</div>
-
+				<div class="control-group">
+					<label class="control-label" for="PatientGender">
+						Gender
+					</label>
+					<div class="controls">	
+						<input type="text" id="PatientGender" name="PatientGender" 		
+							value="@Html.DisplayFor(m => Model.Gender, new { required ="true", @class = "Gender" })" required />							
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="PatientHeight">
+						Height (inches)
+					</label>
+					<div class="controls">	
+						<input type="text" id="PatientHeight" name="PatientHeight" 		
+							value="@Html.DisplayFor(m => Model.Height, new { required ="true", @class = "Height" })" required />							
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="PatientWeight">
+						Weight (lbs)
+					</label>
+					<div class="controls">	
+						<input type="text" id="PatientWeight" name="PatientWeight" 		
+							value="@Html.DisplayFor(m => Model.Weight, new { required ="true", @class = "Weight" })" required />							
+					</div>
+				</div>
 				<div class="control-group">
 					<label class="control-label" for="PatientArthritisType">
 						Arthritis Type
 					</label>
 					<div class="controls">
 						<input type="text" id="PatientArthritisType" name="PatientArthritisType"
-							placeholder="Patient arthritis type" required />
+							value="@Html.DisplayFor(m => Model.ArthritisType, new { required ="true", @class = "ArthritisType" })" required />
 					</div>
 				</div>
-
+				<div class="control-group">
+					<label class="control-label" for="PatientAffectedExtremity">
+						Affected Extremity
+					</label>
+					<div class="controls">	
+						<input type="text" id="PatientAffectedExtremity" name="PatientAffectedExtremity" 		
+							value="@Html.DisplayFor(m => Model.AffectedExtremity, new { required ="true", @class = "AffectedExtremity" })" required />							
+					</div>
+				</div>
 				<div class="control-group">
 					<label class="control-label" for="PatientDeformity">
 						Deformity
 					</label>
 					<div class="controls">
 						<input type="text" id="PatientDeformity" name="PatientDeformity"
-							placeholder="Patient deformity" required />
+							value="@Html.DisplayFor(m => Model.Deformity, new { required ="true", @class = "Deformity" })" required />
 					</div>
 				</div>
-
+				<div class="control-group">
+					<label class="control-label" for="PatientEmail">
+						Email
+					</label>
+					<div class="controls">	
+						<input type="text" id="PatientEmail" name="PatientEmail" 		
+							value="@Html.DisplayFor(m => Model.Email, new { required ="true", @class = "Email" })" required />							
+					</div>
+				</div>
 				<div class="control-group">
 					<label class="control-label" for="PatientID"></label>
 					<div class="controls">
@@ -404,13 +445,8 @@
 				<td>@Html.DisplayFor(m => Model.LastName, new { placeholder = @Model.LastName}), @Html.DisplayFor(m => Model.FirstName, new { placeholder = @Model.FirstName})</td>
 			</tr>
 			<tr>
-				<td>Therapist:</td>
-				<td>Placeholder</td>
-				@*<td>@Html.DisplayFor(m => Model.Therapist.RealName, new { placeholder = @Model.Therapist.RealName})</td>*@
-			</tr>
-			<tr>
 				<td>Started KOAALA:</td>
-				<td>@Html.DisplayFor(m => Model.Start, new { placeholder = @Model.Start})</td>
+				<td>@Html.DisplayFor(m => Model.LastUpdate, new { placeholder = @Model.LastUpdate})</td>
 			</tr>
 			<tr>
 				<td>Age:</td>

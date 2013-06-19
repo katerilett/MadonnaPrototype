@@ -331,7 +331,8 @@ namespace LocomotionWebApp.Controllers
 		//}
 
 		[Authorize]
-		public ActionResult EditPatient (int PatientAge, string PatientArthritisType, string PatientDeformity, PatientViewModel model)
+		public ActionResult EditPatient (int PatientAge, string PatientGender, int PatientHeight, int PatientWeight, 
+			string PatientArthritisType, string PatientAffectedExtremity, string PatientDeformity, string PatientEmail, PatientViewModel model)
 		{
 			var pvm = model;
 
@@ -340,8 +341,13 @@ namespace LocomotionWebApp.Controllers
 				var patient = c.Patients.Find(model.ID);
 
 				patient.Age = PatientAge;
+				patient.Gender = PatientGender;
+				patient.Height = PatientHeight;
+				patient.Weight = PatientWeight;
 				patient.ArthritisType = PatientArthritisType;
+				patient.AffectedExtremity = PatientAffectedExtremity;
 				patient.Deformity = PatientDeformity;
+				patient.Email = PatientEmail;
 				
 				c.SaveChanges();
 				
