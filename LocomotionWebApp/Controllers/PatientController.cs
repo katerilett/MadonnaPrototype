@@ -54,6 +54,8 @@ namespace LocomotionWebApp.Controllers
 				nvm.FirstName = patient.FirstName;
 				nvm.LastName = patient.LastName;
 				nvm.Therapist = patient.Therapist;
+				nvm.LastUpdate = patient.LastUpdate;
+				nvm.Start = patient.Start;
 				nvm.Age = patient.Age;
 				nvm.Gender = patient.Gender;
 				nvm.Height = patient.Height;
