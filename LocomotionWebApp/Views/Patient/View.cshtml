@@ -273,7 +273,7 @@
 					</label>
 					<div class="controls">	
 						<input type="text" id="PatientGender" name="PatientGender" 		
-							value="@Html.DisplayFor(m => Model.Gender, new { required ="true", @class = "Gender" })" required />							
+							value="@Html.DisplayFor(m => Model.Gender, new { required ="true", @class = "Gender" })"  required />							
 					</div>
 				</div>
 				<div class="control-group">
@@ -302,10 +302,14 @@
 						<input type="text" id="PatientArthritisType" name="PatientArthritisType"
 							value="@Html.DisplayFor(m => Model.ArthritisType, new { required ="true", @class = "ArthritisType" })" required />
 					</div>
+					<div style="text-align: center">
+						<p>(unicompartmental, bicompartmental, or patellofemoral)</p>
+					</div>
 				</div>
+				
 				<div class="control-group">
 					<label class="control-label" for="PatientAffectedExtremity">
-						Affected Extremity
+						Affected Extremity <br />(left, right, or both)
 					</label>
 					<div class="controls">	
 						<input type="text" id="PatientAffectedExtremity" name="PatientAffectedExtremity" 		
@@ -314,7 +318,7 @@
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="PatientDeformity">
-						Deformity
+						Deformity (valgus or varus)
 					</label>
 					<div class="controls">
 						<input type="text" id="PatientDeformity" name="PatientDeformity"
@@ -328,6 +332,15 @@
 					<div class="controls">	
 						<input type="text" id="PatientEmail" name="PatientEmail" 		
 							value="@Html.DisplayFor(m => Model.Email, new { required ="true", @class = "Email" })" required />							
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="PatientPhoneNumber">
+						Phone Number
+					</label>
+					<div class="controls">	
+						<input type="text" id="PatientPhoneNumber" name="PatientPhoneNumber" 		
+							value="@Html.DisplayFor(m => Model.PhoneNumber, new { required ="true", @class = "PhoneNumber" })" required />							
 					</div>
 				</div>
 				<div class="control-group">
@@ -475,6 +488,10 @@
 			<tr>
 				<td>Deformity:</td>
 				<td>@Html.DisplayFor(m => Model.Deformity, new { placeholder = @Model.Deformity})</td>
+			</tr>
+			<tr>
+				<td>Phone Number:</td>
+				<td>@Html.DisplayFor(m => Model.PhoneNumber, new { placeholder = @Model.PhoneNumber})</td>
 			</tr>
 			<tr>
 				<td>Email:</td>

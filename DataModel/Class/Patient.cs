@@ -40,6 +40,8 @@ namespace DataModel.Class
 
 		public string Email { get; set; }
 
+		public string PhoneNumber { get; set; }
+
 		/// <summary>
 		/// If a summary has been calculated, it is referenced here.
 		/// </summary>

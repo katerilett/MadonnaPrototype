@@ -62,6 +62,7 @@ namespace LocomotionWebApp.Controllers
 				nvm.AffectedExtremity = patient.AffectedExtremity;
 				nvm.Deformity = patient.Deformity;
 				nvm.Email = patient.Email;
+				nvm.PhoneNumber = patient.PhoneNumber;
 
 				//var nameNet = network;
 				//while(nameNet.Parent != null && nameNet.Name == null)
@@ -332,7 +333,8 @@ namespace LocomotionWebApp.Controllers
 
 		[Authorize]
 		public ActionResult EditPatient (int PatientAge, string PatientGender, int PatientHeight, int PatientWeight, 
-			string PatientArthritisType, string PatientAffectedExtremity, string PatientDeformity, string PatientEmail, PatientViewModel model)
+			string PatientArthritisType, string PatientAffectedExtremity, string PatientDeformity, string PatientEmail, 
+			string PatientPhoneNumber, PatientViewModel model)
 		{
 			var pvm = new PatientViewModel();
 			long patientID = 0;
@@ -350,6 +352,7 @@ namespace LocomotionWebApp.Controllers
 				patient.AffectedExtremity = PatientAffectedExtremity;
 				patient.Deformity = PatientDeformity;
 				patient.Email = PatientEmail;
+				patient.PhoneNumber = PatientPhoneNumber;
 				
 				c.SaveChanges();
 				
@@ -404,6 +407,7 @@ namespace LocomotionWebApp.Controllers
 				patient.ArthritisType = "Not entered";
 				patient.AffectedExtremity = "Not entered";
 				patient.Deformity = "Not entered";
+				patient.PhoneNumber = "Not entered";
 				patient.Email = "Not entered";
 
 				c.Patients.Add(patient);

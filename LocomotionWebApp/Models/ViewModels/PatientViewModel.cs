@@ -39,6 +39,8 @@ namespace LocomotionWebApp.Models.ViewModels
 
 		public DateTime Start { get; set; } //When Therapists adds the patient
 
+		public string PhoneNumber { get; set; }
+
 		public string Email { get; set; }
 
 	}
