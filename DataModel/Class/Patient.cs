@@ -28,6 +28,10 @@ namespace DataModel.Class
 
 		public string Deformity { get; set; }
 
+		public int ShankLength { get; set; }
+
+		public int ThighLength { get; set; }
+
 		public int Age { get; set; }
 
 		public string Gender { get; set; }

@@ -10,9 +10,9 @@
 		<tr>
 			<th>Patient Name</th>
 			<th>Date of Last Upload</th>
-			<th>Affected Extremity</th> <!-- Currently displaying last edited -->
-			<th>Type of Arthritis</th> <!-- Currently displaying revisions -->
+			<th>Type of Arthritis</th> 
 			<th>Deformity</th>
+			<th>Affected Extremity</th> 
 			<th></th>
 		</tr>
 	</thead>
@@ -21,16 +21,11 @@
 		<tr>
 			<td>@Html.DisplayFor(net => patient.LastName) , @Html.DisplayFor(net => patient.FirstName)</td>
 			<td>@Html.DisplayFor(net => patient.LastUpdate)</td>
-			<td>@Html.DisplayFor(net => patient.AffectedExtremity)</td>
 			<td>@Html.DisplayFor(net => patient.ArthritisType)</td>
 			<td>@Html.DisplayFor(net => patient.Deformity)</td>
-			
-			@*<td> @Html.DisplayFor(net => patient.Revision) Previous Versions </td>*@
-			
+			<td>@Html.DisplayFor(net => patient.AffectedExtremity)</td>
 
 			<td style="text-align: right;">
-				@*<a href="@Url.Action("TempEdit", "Patient", new { id = patient.ID, clickTab = 0 })"
-					class="btn btn-small btn-primary">Profile </a>*@
 				<a href="@Url.Action("View", "Patient", new { id= patient.ID })"
 					class="btn btn-small btn-primary">Profile</a>
 				<a href="@Url.Action("Report", "Patient", new { id = patient.ID })"

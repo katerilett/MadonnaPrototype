@@ -63,6 +63,8 @@ namespace LocomotionWebApp.Controllers
 				nvm.ArthritisType = patient.ArthritisType;
 				nvm.AffectedExtremity = patient.AffectedExtremity;
 				nvm.Deformity = patient.Deformity;
+				nvm.ShankLength = patient.ShankLength;
+				nvm.ThighLength = patient.ThighLength;
 				nvm.Email = patient.Email;
 				nvm.PhoneNumber = patient.PhoneNumber;
 
@@ -409,6 +411,8 @@ namespace LocomotionWebApp.Controllers
 				patient.ArthritisType = "Not entered";
 				patient.AffectedExtremity = "Not entered";
 				patient.Deformity = "Not entered";
+				patient.ShankLength = 0;
+				patient.ThighLength = 0;
 				patient.PhoneNumber = "Not entered";
 				patient.Email = "Not entered";
 
