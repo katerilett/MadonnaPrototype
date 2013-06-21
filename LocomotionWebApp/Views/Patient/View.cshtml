@@ -32,31 +32,11 @@
 		};
 	</script>
 
-@*	<script>
-		document.getElementById("show-profile-btn").disabled = true;
-	</script>*@
 
 	<script type="text/javascript">	
 
-		@*	function openReport() {
-			if(!$("#to-report-btn").hasClass("active")) {
-				$("#report-pullover .modal-body")
-					.html('<div style="text-align: center;"><img src="/Content/img/ajax-loader.gif" /></div>');
-				$("#report-pullover .modal-body")
-					.load("@Url.Action("View", "Report", new { id=Model.ID })");
-				hideSidebar();
-				showPullover();
-				$("#to-report-btn").addClass("active");
-			} else {
-				hidePullover();
-				$("#header .sidebar-group .btn").removeClass("active");
-			}
-		}*@
-
 		$(function() {
-			//$("#edit-sidebar-btn").click(openEditBar);
-			//$("#optimize-sidebar-btn").click(openOptimizationBar);
-			//$("#to-report-btn").click(openReport);
+
 
 			$("#report-tab-btn").click(function () {
 				//loadLinkNetwork();

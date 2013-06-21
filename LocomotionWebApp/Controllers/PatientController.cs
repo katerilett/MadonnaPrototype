@@ -506,74 +506,82 @@ namespace LocomotionWebApp.Controllers
 			return View("Index", nvm);
 		}
 
-		//[Authorize]
-		//public ActionResult Upload(string PatientName, IEnumerable<HttpPostedFileBase> files)
-		//{
-		//	var nvm = new PatientListViewModel();
+		[Authorize]
+		public ActionResult Upload(IEnumerable<HttpPostedFileBase> files, PatientViewModel model)
+		{
+			var nvm = new PatientViewModel();
+			long patientID = 0;
 
-		//	IEnumerable<HttpPostedFileBase> someFiles = files;
+			IEnumerable<HttpPostedFileBase> someFiles = files;
 
-		//	var patientDoc = new XDocument();
+			var patientDoc = new XDocument();
 
-		//	if (PatientName == "")
-		//	{
-		//		ViewBag.UploadAlert = "Enter a patient name";
+			//if (PatientName == "")
+			//{
+			//	ViewBag.UploadAlert = "Enter a patient name";
+				
+			//	using (var c = new DataModelContext())
+			//	{
+			//		nvm.Patients = c.Patients.Include("Therapist").Where(n => n.Name != null).ToList();
+			//	}
+			//	return View("Index", nvm);
+			//}
 
-		//		using (var c = new DataModelContext())
-		//		{
-		//			nvm.Patients = c.Patients.Include("Therapist").Where(n => n.Name != null).ToList();
-		//		}
-		//		return View("Index", nvm);
-		//	}
+			try
+			{
+				patientDoc = XDocument.Load(Request.Files["PatientFile"].InputStream);				
+			}
+			catch (XmlException e)
+			{
+				Console.WriteLine(e.Message);
+				ViewBag.UploadAlert = "You must select a valid xml file";
 
-		//	try
-		//	{
-		//		patientDoc = XDocument.Load(Request.Files["PatientFile"].InputStream);				
-		//	}
-		//	catch (XmlException e)
-		//	{
-		//		Console.WriteLine(e.Message);
-		//		ViewBag.UploadAlert = "You must select a valid xml file";
+				using (var c = new DataModelContext())
+				{
+					var patient = c.Patients.Find(model.ID);
+					patientID = patient.ID;
+					
+					//nvm.Patients = c.Patients.Include("Therapist").Where(n => n.Name != null).ToList();
+				}
+				//return View("Report", nvm);
+				return RedirectToAction("Report", new { id = patientID });
+			}
 
-		//		using (var c = new DataModelContext())
-		//		{
-		//			nvm.Patients = c.Patients.Include("Therapist").Where(n => n.Name != null).ToList();
-		//		}
-		//		return View("Index", nvm);
-		//	}
+			using(var c = new DataModelContext())
+			{
+				var patient = c.Patients.Find(model.ID);
+				patientID = patient.ID;
+				
+				//var xmlE = new XmlEngine();
+				//var xmlnetwork = xmlE.XmlFileToNetwork(networkDoc);
 
-		//	using(var c = new DataModelContext())
-		//	{
+				//xmlnetwork.Name = NetworkName;
+				//xmlnetwork.Author = UserDataEngine.getInstance().GetCurrentUser(c, HttpContext);
+				//xmlnetwork.LastEdit = DateTime.Now;
+				//c.Networks.Add(xmlnetwork);
 
-		//		//var xmlE = new XmlEngine();
-		//		//var xmlnetwork = xmlE.XmlFileToNetwork(networkDoc);
+				//try
+				//{
+				//	c.SaveChanges();
+				//}
+				//catch(DbEntityValidationException e)
+				//{
+				//	foreach(var i in e.EntityValidationErrors)
+				//	{
+				//		Console.WriteLine(i.ValidationErrors);
+				//	}
+				//	throw e;
+				//}
+				//nvm.Patients = c.Patients.Include("Therapist").Where(n => n.Name != null).ToList();
 
-		//		//xmlnetwork.Name = NetworkName;
-		//		//xmlnetwork.Author = UserDataEngine.getInstance().GetCurrentUser(c, HttpContext);
-		//		//xmlnetwork.LastEdit = DateTime.Now;
-		//		//c.Networks.Add(xmlnetwork);
+				//ViewBag.NewNetworkID = xmlnetwork.ID;
+			}
 
-		//		try
-		//		{
-		//			c.SaveChanges();
-		//		}
-		//		catch(DbEntityValidationException e)
-		//		{
-		//			foreach(var i in e.EntityValidationErrors)
-		//			{
-		//				Console.WriteLine(i.ValidationErrors);
-		//			}
-		//			throw e;
-		//		}
-		//		nvm.Patients = c.Patients.Include("Therapist").Where(n => n.Name != null).ToList();
-
-		//		//ViewBag.NewNetworkID = xmlnetwork.ID;
-		//	}
-
-		//	ViewBag.Alert = "Patient upload successful";
-		//	ViewBag.AlertClass = "alert-success";
-		//	return View("Index", nvm);
-		//}
+			ViewBag.Alert = "Upload successful";
+			ViewBag.AlertClass = "alert-success";
+			//return View("Report", nvm);
+			return RedirectToAction("View", new { id = patientID });
+		}
 
 		#region URLUpload
 		//[Authorize]

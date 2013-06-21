@@ -17,15 +17,62 @@
 					class="btn btn-small btn-primary">Profile </a>
 	</div> *@
 }
+@using (Html.BeginForm("Upload", "Patient", FormMethod.Post, new
+{
+	enctype = "multipart/form-data", @class = "form-horizontal"
+}))
+{ 
+	<div id="addReport"
+		class="modal hide @Html.Raw(ViewBag.UploadAlert == null ? "fade" : "")"
+		tabindex="-1" role="dialog"
+		aria-labelledby="newPatientLabel" aria-hidden="true" >
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="newPatientLabel">Upload File</h3>
+		</div>
+		<form class="form-horizontal" method="post" enctype="multipart/form-data">
+			<div class="modal-body">
 
+				<div class="control-group">
+					<label class="control-label" for="PatientFile">
+						<b>Patient File</b>
+					</label>
+					<div class="controls">
+						<input type="file" id="PatientFile" name="PatientFile" /><br />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="PatientID"></label>
+					<div class="controls">
+						@Html.HiddenFor(m => Model.ID, new { placeholder = @Model.ID})	
+					</div>
+				</div>
+			</div>
+
+			@if(ViewBag.UploadAlert != null)
+			{ 
+				<div class="alert fade in">
+					<button type="button" class="close" data-dismiss="alert">x</button>
+					@Html.Raw(ViewBag.UploadAlert)
+				</div>
+			}
+			<div class="modal-footer">
+				<span class="spinner" style="display: none;"><img src="/Content/img/ajax-loader.gif" /></span>
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				<button type="submit" id="uploadButton" class="btn btn-primary">Submit</button>
+			</div>
+		</form>
+	</div>
+}
 <div class="container">
 	<div class="row">
 		<div class="span12" style="padding-top: 20px;">
 			<h2> Report: @Html.DisplayFor(m => Model.LastName, new { placeholder = @Model.LastName}), @Html.DisplayFor(m => Model.FirstName, new { placeholder = @Model.FirstName})
 				<a class="btn btn-primary btn-small"
-				href="#addPatientBlank" data-toggle="modal" style="margin-top: 20px; float:right;">
+				href="#addReport" data-toggle="modal" style="margin-top: 20px; float:right;">
 				<i class="icon-plus-sign"></i>
 				Upload File
+				<i class="icon-file"></i>
 				</a> 
 			</h2>
 			<h2><a href="@Url.Action("View", "Patient", new { id=Model.ID })"
