@@ -12,17 +12,17 @@
 	@*<div class="btn-group sidebar-group">
 	
 	<a href="@Url.Action("View", "Patient", new { id=Model.ID })"
-					class="btn">Profile</a>*@
-	@*<a href="@Url.Action("TempEdit", "Network", new { id = Model.ID, clickTab = 0 })"
-					class="btn btn-small btn-primary">Profile </a>*@
-	</div>
+					class="btn">Profile</a>
+	<a href="@Url.Action("TempEdit", "Network", new { id = Model.ID, clickTab = 0 })"
+					class="btn btn-small btn-primary">Profile </a>
+	</div> *@
 }
 
 <div class="container">
 	<div class="row">
 		<div class="span12" style="padding-top: 20px;">
 			<h2> Report: @Html.DisplayFor(m => Model.LastName, new { placeholder = @Model.LastName}), @Html.DisplayFor(m => Model.FirstName, new { placeholder = @Model.FirstName})
-				<a class="btn btn-primary"
+				<a class="btn btn-primary btn-small"
 				href="#addPatientBlank" data-toggle="modal" style="margin-top: 20px; float:right;">
 				<i class="icon-plus-sign"></i>
 				Upload File
@@ -31,6 +31,43 @@
 			<h2><a href="@Url.Action("View", "Patient", new { id=Model.ID })"
 					class="btn btn-primary">Profile</a></h2>
 		</div>
+	</div>
+	<div class="row">
+	<div class="span4" style="padding-bottom: 5px;">
+		<h4>Gait Data</h4> 
+		<table class="table table-striped table-bordered table-condensed" border="1">
+			<tbody>
+				<tr>
+					<td>Average Gait Speed (meters/min)</td>
+					<td>value</td>
+				</tr>
+				<tr>
+					<td>Left Stride Length (cm)</td>
+					<td>value</td>
+				</tr>
+				<tr>
+					<td>Right Stride Length (cm)</td>
+					<td>value</td>
+				</tr>
+				<tr>
+					<td>Stance (% of gait cycle)</td>
+					<td>value</td>
+				</tr>
+				<tr>
+					<td>Swing (% of gait cycle)</td>
+					<td>value</td>
+				</tr>
+				<tr>
+					<td>Single Limb Stance (% of gait cycle)</td>
+					<td>value</td>
+				</tr>
+				<tr>
+					<td>Candence (steps/min)</td>
+					<td>value</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 	</div>
 	<div class="row" style="font-size: 9px; color: #999; text-align: center;">
 		<div class="span12"></div>
