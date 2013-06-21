@@ -32,9 +32,13 @@
 		};
 	</script>
 
+@*	<script>
+		document.getElementById("show-profile-btn").disabled = true;
+	</script>*@
+
 	<script type="text/javascript">	
 
-	@*	function openReport() {
+		@*	function openReport() {
 			if(!$("#to-report-btn").hasClass("active")) {
 				$("#report-pullover .modal-body")
 					.html('<div style="text-align: center;"><img src="/Content/img/ajax-loader.gif" /></div>');
@@ -54,9 +58,9 @@
 			//$("#optimize-sidebar-btn").click(openOptimizationBar);
 			//$("#to-report-btn").click(openReport);
 
-			//$("#links-tab-btn").click(function () {
-			//	loadLinkNetwork();
-			//});
+			$("#report-tab-btn").click(function () {
+				//loadLinkNetwork();
+			});
 
 			//$("#orders-tab-btn").click(openReport);
 
@@ -64,26 +68,26 @@
 			//loadLinkNetwork();
 			//});
 
-			//$("#orders-tab-btn").click(function () {
-			//loadOrderNetwork();
-			//});			
+			$("#profile-tab-btn").click(function () {
+				//loadOrderNetwork();
+			});			
 
-			//$(".netview-modal-btn").click(function (e) {
-			//	var target = $(e.target).attr("data-name");
-			//	if($(e.target).hasClass("set-links") && currentMode != LINKS)
-			//		loadLinkNetwork();
-			//	if($(e.target).hasClass("set-orders") && currentMode != ORDERS)
-			//		loadOrderNetwork();
-			//	activateForm(target);
-			//	return false;
-			//});
-
-			$("#links-tab-btn").click(function () {
-				viewingOrders = false;
+			$(".netview-modal-btn").click(function (e) {
+				var target = $(e.target).attr("data-name");
+				if($(e.target).hasClass("set-links") && currentMode != LINKS)
+					//loadLinkNetwork();
+				if($(e.target).hasClass("set-orders") && currentMode != ORDERS)
+					//loadOrderNetwork();
+				activateForm(target);
+				return false;
 			});
 
-			$("#orders-tab-btn").click(function () {
-				viewingOrders = true;
+			$("#profile-tab-btn").click(function () {
+				viewingReport = false;
+			});
+
+			$("#report-tab-btn").click(function () {
+				viewingReport = true;
 			});
 			
 			resizePullover();
@@ -176,26 +180,17 @@
 
 @section Header
 {
-	<div class="btn-group sidebar-group">
-	@*@if (Html.Action("Access", "Account").ToString().Equals("Administrator") == true || Html.Action("Access", "Account").ToString().Equals("Operations") == true) 
-	{
-		<a href="#" id="edit-sidebar-btn" class="btn">Edit</a>
-	}
-	 <a href="#" id="optimize-sidebar-btn" class="btn">
-		Optimize
-	</a>*@ 
-	@*<a href="#" id="to-report-btn" class="btn">Report</a>*@
+@*	<div class="btn-group sidebar-group">
 	
 	<a href="@Url.Action("Report", "Patient", new { id=Model.ID })"
 					class="btn">Report</a>
-	</div>
+	</div>*@
 	
-	@*</div>
-	<i class="icon-search icon-white" style="margin-left: 12px; margin-top: 5px;"></i>
+@*	<i class="icon-search icon-white" style="margin-left: 12px; margin-top: 5px;"></i>
 	<div class="btn-group">
-		<a href="#" class="btn" id="show-links-btn">Profile</a>
-		<a href="@Url.Action("Index", "Result", new { id=Model.ID })"
-					class="btn">Report</a>
+		<a href="#" class="btn" id="show-profile-btn" >Profile</a>
+		<a href="@Url.Action("Report", "Patient", new { id=Model.ID })" 
+					class="btn" aria-disabled="true">Report</a>
 	</div>*@
 
 	@*<div class="pull-right">
@@ -295,6 +290,63 @@
 					</div>
 				</div>
 				<div class="control-group">
+					<label class="control-label" for="PatientEmail">
+						Email
+					</label>
+					<div class="controls">	
+						<input type="text" id="PatientEmail" name="PatientEmail" 		
+							value="@Html.DisplayFor(m => Model.Email, new { required ="true", @class = "Email" })" required />							
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="PatientPhoneNumber">
+						Phone Number
+					</label>
+					<div class="controls">	
+						<input type="text" id="PatientPhoneNumber" name="PatientPhoneNumber" 		
+							value="@Html.DisplayFor(m => Model.PhoneNumber, new { required ="true", @class = "PhoneNumber" })" required />							
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="PatientID"></label>
+					<div class="controls">
+						@Html.HiddenFor(m => Model.ID, new { placeholder = @Model.ID})	
+					</div>
+				</div>
+
+			</div>
+
+			@if(ViewBag.UploadAlert != null)
+			{ 
+				<div class="alert fade in">
+					<button type="button" class="close" data-dismiss="alert">x</button>
+					@Html.Raw(ViewBag.UploadAlert)
+				</div>
+			}
+			<div class="modal-footer">
+				<span class="spinner" style="display: none;"><img src="/Content/img/ajax-loader.gif" /></span>
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				<button type="submit" class="btn btn-primary">Save Changes</button>
+			</div>
+		</form>
+	</div>
+}
+
+@using(Html.BeginForm("EditMedical", "Patient", FormMethod.Post, new {
+	enctype = "multipart/form-data", @class = "form-horizontal"
+}))
+{ 
+	<div id="editMedicalModal"
+		class="modal hide @Html.Raw(ViewBag.UploadAlert == null ? "fade" : "")"
+		tabindex="-1" role="dialog"
+		aria-labelledby="newPatientLabel" aria-hidden="true" >
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="editMedicalLabel">Edit Medical Profile</h3>
+		</div>
+		<form class="form-horizontal" method="post" enctype="multipart/form-data">
+			<div class="modal-body">
+				<div class="control-group">
 					<label class="control-label" for="PatientArthritisType">
 						Arthritis Type
 					</label>
@@ -306,7 +358,6 @@
 						<p>(unicompartmental, bicompartmental, or patellofemoral)</p>
 					</div>
 				</div>
-				
 				<div class="control-group">
 					<label class="control-label" for="PatientAffectedExtremity">
 						Affected Extremity <br />(left, right, or both)
@@ -326,21 +377,78 @@
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="PatientEmail">
-						Email
+					<label class="control-label" for="PatientID"></label>
+					<div class="controls">
+						@Html.HiddenFor(m => Model.ID, new { placeholder = @Model.ID})	
+					</div>
+				</div>
+
+			</div>
+
+			@if(ViewBag.UploadAlert != null)
+			{ 
+				<div class="alert fade in">
+					<button type="button" class="close" data-dismiss="alert">x</button>
+					@Html.Raw(ViewBag.UploadAlert)
+				</div>
+			}
+			<div class="modal-footer">
+				<span class="spinner" style="display: none;"><img src="/Content/img/ajax-loader.gif" /></span>
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				<button type="submit" class="btn btn-primary">Save Changes</button>
+			</div>
+		</form>
+	</div>
+}
+
+@using(Html.BeginForm("EditContact", "Patient", FormMethod.Post, new {
+	enctype = "multipart/form-data", @class = "form-horizontal"
+}))
+{ 
+	<div id="editContactModal"
+		class="modal hide @Html.Raw(ViewBag.UploadAlert == null ? "fade" : "")"
+		tabindex="-1" role="dialog"
+		aria-labelledby="newPatientLabel" aria-hidden="true" >
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="editContactLabel">Edit Emergency Contact</h3>
+		</div>
+		<form class="form-horizontal" method="post" enctype="multipart/form-data">
+			<div class="modal-body">
+				<div class="control-group">
+					<label class="control-label" for="PatientContactName">
+						Contact Name
 					</label>
-					<div class="controls">	
-						<input type="text" id="PatientEmail" name="PatientEmail" 		
-							value="@Html.DisplayFor(m => Model.Email, new { required ="true", @class = "Email" })" required />							
+					<div class="controls">
+						<input type="text" id="PatientContactName" name="PatientContactName"
+							value="@Html.DisplayFor(m => Model.ContactName, new { required ="true", @class = "ContactName" })" required />
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="PatientPhoneNumber">
-						Phone Number
+					<label class="control-label" for="PatientContactRelation">
+						Relationship to Patient
 					</label>
 					<div class="controls">	
-						<input type="text" id="PatientPhoneNumber" name="PatientPhoneNumber" 		
-							value="@Html.DisplayFor(m => Model.PhoneNumber, new { required ="true", @class = "PhoneNumber" })" required />							
+						<input type="text" id="PatientContactRelation" name="PatientContactRelation" 		
+							value="@Html.DisplayFor(m => Model.ContactRelation, new { required ="true", @class = "ContactRelation" })" required />							
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="PatientContactPhoneNumber">
+						Phone Number
+					</label>
+					<div class="controls">
+						<input type="text" id="PatientContactPhoneNumber" name="PatientContactPhoneNumber"
+							value="@Html.DisplayFor(m => Model.ContactPhoneNumber, new { required ="true", @class = "ContactPhoneNumber" })" required />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="PatientContactEmail">
+						Email
+					</label>
+					<div class="controls">
+						<input type="text" id="PatientContactEmail" name="PatientContactEmail"
+							value="@Html.DisplayFor(m => Model.ContactEmail, new { required ="true", @class = "ContactEmail" })" required />
 					</div>
 				</div>
 				<div class="control-group">
@@ -432,22 +540,17 @@
 <div class="container">
 	<div class="row">
 		<div class="span12" @*style="padding-top: 10px;"*@>
-			<h2 style="margin-bottom: 10px;">@Html.DisplayFor(m => Model.LastName, new { placeholder = @Model.LastName}), @Html.DisplayFor(m => Model.FirstName, new { placeholder = @Model.FirstName})
-			</h2>						
+			<h2>Profile: @Html.DisplayFor(m => Model.LastName, new { placeholder = @Model.LastName}), @Html.DisplayFor(m => Model.FirstName, new { placeholder = @Model.FirstName})
+			</h2>
+			<h2><a href="@Url.Action("Report", "Patient", new { id=Model.ID })"
+					class="btn btn-primary">Report</a>
+			</h2>					
 		</div>
 	</div>
 
 <div class="row">
-<div class="span5" style="padding-top: 10px; padding-bottom: 5px;">
-	
-@*<html lang="en">*@
-	@*<head>
-		<meta charset="utf-8">
-		<title>Patient Information</title>
-		<meta name="description" content="Patient Information">
-		<link href="/twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet">			
-	</head>*@
-	@*<body>*@
+<div class="span5" style="padding-bottom: 5px;">
+
 	<h4>General Information <a class="btn btn-primary btn-small"
 				href="#editPatientModal" data-toggle="modal" style="float:right;">
 				Edit
@@ -467,6 +570,10 @@
 				<td>@Html.DisplayFor(m => Model.Age, new { placeholder = @Model.Age})</td>
 			</tr>
 			<tr>
+				<td>Birthday:</td>
+				<td>@Html.DisplayFor(m => Model.Birthday, new { placeholder = @Model.Birthday })</td>
+			</tr>
+			<tr>
 				<td>Gender:</td>
 				<td>@Html.DisplayFor(m => Model.Gender, new { placeholder = @Model.Gender})</td>
 			</tr>
@@ -479,6 +586,29 @@
 				<td>@Html.DisplayFor(m => Model.Weight, new { placeholder = @Model.Weight})</td>
 			</tr>
 			<tr>
+				<td>Phone Number:</td>
+				<td>@Html.DisplayFor(m => Model.PhoneNumber, new { placeholder = @Model.PhoneNumber})</td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td>@Html.DisplayFor(m => Model.Email, new { placeholder = @Model.Email})</td>
+			</tr>
+		</tbody>
+
+	</table>
+</div>
+
+<div class="span1"></div>
+
+<div class="span5" style="padding-top: 10px; padding-bottom: 5px;">
+	<h4>Medical Profile 
+		<a class="btn btn-primary btn-small"
+				href="#editMedicalModal" data-toggle="modal" style="float:right;">
+				Edit </a>
+	</h4>
+	<table class="table table-striped table-bordered table-condensed" border="1">
+		<tbody>
+			<tr>
 				<td>Arthritis Type:</td>
 				<td>@Html.DisplayFor(m => Model.ArthritisType, new { placeholder = @Model.ArthritisType})</td>
 			</tr>
@@ -490,23 +620,42 @@
 				<td>Deformity:</td>
 				<td>@Html.DisplayFor(m => Model.Deformity, new { placeholder = @Model.Deformity})</td>
 			</tr>
-			<tr>
-				<td>Phone Number:</td>
-				<td>@Html.DisplayFor(m => Model.PhoneNumber, new { placeholder = @Model.PhoneNumber})</td>
-			</tr>
-			<tr>
-				<td>Email:</td>
-				<td>@Html.DisplayFor(m => Model.Email, new { placeholder = @Model.Email})</td>
-			</tr>
 		</tbody>
 	</table>
-	@*</body>*@
-@*</html>*@
 </div>
 </div>
 
-	<div class="row" style="font-size: 9px; color: #999; text-align: center;">
-		<div class="span12"></div>
+<div class="row">
+<div class="span5">
+		<h4>Emergency Contact <a class="btn btn-primary btn-small"
+				href="#editContactModal" data-toggle="modal" style="float:right;">
+				Edit
+		</a></h4> 
+	<table class="table table-striped table-bordered table-condensed" border="1">
+		<tbody>
+			<tr>
+				<td>Contact Name:</td>
+				<td>@Html.DisplayFor(m => Model.ContactName, new { placeholder = @Model.ContactName})</td>
+			</tr>
+			<tr>
+				<td>Relationship:</td>
+				<td>@Html.DisplayFor(m => Model.ContactRelation, new { placeholder = @Model.ContactRelation})</td>
+			</tr>
+			<tr>
+				<td>Phone Number:</td>
+				<td>@Html.DisplayFor(m => Model.ContactPhoneNumber, new { placeholder = @Model.ContactPhoneNumber})</td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td>@Html.DisplayFor(m => Model.ContactEmail, new { placeholder = @Model.ContactEmail})</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</div>
+
+<div class="row" style="font-size: 9px; color: #999; text-align: center;">
+	<div class="span12"></div>
 			<br />
 			The KOAALAClinic is a prototype system; Madonna Rehabilitation Hospital takes no liability for use of this software
 			| <a href="email:katerilett@gmail.com">Contact Us</a>

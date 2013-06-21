@@ -35,6 +35,8 @@ namespace LocomotionWebApp.Models.ViewModels
 
 		public int Age { get; set; }
 
+		public DateTime Birthday { get; set; }
+
 		public string Gender { get; set; }
 
 		public int Height { get; set; }
@@ -46,6 +48,14 @@ namespace LocomotionWebApp.Models.ViewModels
 		public string PhoneNumber { get; set; }
 
 		public string Email { get; set; }
+
+		public string ContactName { get; set; }
+
+		public string ContactRelation { get; set; }
+
+		public string ContactPhoneNumber { get; set; }
+
+		public string ContactEmail { get; set; }
 
 	}
 }

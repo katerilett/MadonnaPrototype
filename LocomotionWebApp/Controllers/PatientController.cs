@@ -57,6 +57,7 @@ namespace LocomotionWebApp.Controllers
 				nvm.LastUpdate = patient.LastUpdate;
 				nvm.Start = patient.Start;
 				nvm.Age = patient.Age;
+				nvm.Birthday = patient.Birthday;
 				nvm.Gender = patient.Gender;
 				nvm.Height = patient.Height;
 				nvm.Weight = patient.Weight;
@@ -67,6 +68,10 @@ namespace LocomotionWebApp.Controllers
 				nvm.ThighLength = patient.ThighLength;
 				nvm.Email = patient.Email;
 				nvm.PhoneNumber = patient.PhoneNumber;
+				nvm.ContactName = patient.ContactName;
+				nvm.ContactRelation = patient.ContactRelation;
+				nvm.ContactPhoneNumber = patient.ContactPhoneNumber;
+				nvm.ContactEmail = patient.ContactEmail;
 
 				//var nameNet = network;
 				//while(nameNet.Parent != null && nameNet.Name == null)
@@ -91,7 +96,7 @@ namespace LocomotionWebApp.Controllers
 		[Authorize]
 		public ActionResult Report(long id)
 		{
-			var pvm = new PatientViewModel();
+			var nvm = new PatientViewModel();
 
 			using (var c = new DataModelContext())
 			{
@@ -104,10 +109,19 @@ namespace LocomotionWebApp.Controllers
 					return RedirectToAction("Index");
 				}
 
-				pvm.ID = patient.ID;
+				nvm.ID = patient.ID;
+				nvm.FirstName = patient.FirstName;
+				nvm.LastName = patient.LastName;
+				nvm.Therapist = patient.Therapist;
+				nvm.LastUpdate = patient.LastUpdate;
+				nvm.ArthritisType = patient.ArthritisType;
+				nvm.AffectedExtremity = patient.AffectedExtremity;
+				nvm.Deformity = patient.Deformity;
+				nvm.ShankLength = patient.ShankLength;
+				nvm.ThighLength = patient.ThighLength;
 
 			}
-			return View(pvm);
+			return View(nvm);
 
 		}
 
@@ -337,8 +351,7 @@ namespace LocomotionWebApp.Controllers
 
 		[Authorize]
 		public ActionResult EditPatient (int PatientAge, string PatientGender, int PatientHeight, int PatientWeight, 
-			string PatientArthritisType, string PatientAffectedExtremity, string PatientDeformity, string PatientEmail, 
-			string PatientPhoneNumber, PatientViewModel model)
+			string PatientEmail, string PatientPhoneNumber, PatientViewModel model)
 		{
 			var pvm = new PatientViewModel();
 			long patientID = 0;
@@ -352,9 +365,6 @@ namespace LocomotionWebApp.Controllers
 				patient.Gender = PatientGender;
 				patient.Height = PatientHeight;
 				patient.Weight = PatientWeight;
-				patient.ArthritisType = PatientArthritisType;
-				patient.AffectedExtremity = PatientAffectedExtremity;
-				patient.Deformity = PatientDeformity;
 				patient.Email = PatientEmail;
 				patient.PhoneNumber = PatientPhoneNumber;
 				
@@ -366,6 +376,57 @@ namespace LocomotionWebApp.Controllers
 			ViewBag.AlertClass = "alert-success";
 			//return View("View", pvm);
 			return RedirectToAction("View", new { id = patientID});
+		}
+
+		[Authorize]
+		public ActionResult EditContact(string PatientContactName, string PatientContactRelation, 
+			string PatientContactPhoneNumber, string PatientContactEmail, PatientViewModel model)
+		{
+			var pvm = new PatientViewModel();
+			long patientID = 0;
+
+			using (var c = new DataModelContext())
+			{
+				var patient = c.Patients.Find(model.ID);
+				patientID = patient.ID;
+				patient.ContactName = PatientContactName;
+				patient.ContactRelation = PatientContactRelation;
+				patient.ContactPhoneNumber = PatientContactPhoneNumber;
+				patient.ContactEmail = PatientContactEmail;
+
+				c.SaveChanges();
+
+			}
+
+			ViewBag.Alert = "Profile update successful";
+			ViewBag.AlertClass = "alert-success";
+			//return View("View", pvm);
+			return RedirectToAction("View", new { id = patientID });
+		}
+
+		[Authorize]
+		public ActionResult EditMedical(string PatientArthritisType, string PatientAffectedExtremity,
+			string PatientDeformity, PatientViewModel model)
+		{
+			var pvm = new PatientViewModel();
+			long patientID = 0;
+
+			using (var c = new DataModelContext())
+			{
+				var patient = c.Patients.Find(model.ID);
+				patientID = patient.ID;
+				patient.ArthritisType = PatientArthritisType;
+				patient.AffectedExtremity = PatientAffectedExtremity;
+				patient.Deformity = PatientDeformity;
+
+				c.SaveChanges();
+
+			}
+
+			ViewBag.Alert = "Profile update successful";
+			ViewBag.AlertClass = "alert-success";
+			//return View("View", pvm);
+			return RedirectToAction("View", new { id = patientID });
 		}
 
 		[Authorize]
@@ -404,6 +465,7 @@ namespace LocomotionWebApp.Controllers
 				patient.Therapist = UserDataEngine.getInstance().GetCurrentUser(c, HttpContext);
 				patient.LastUpdate = DateTime.Now;
 				patient.Start = DateTime.Now;
+				patient.Birthday = DateTime.Now;
 				patient.Age = 0;
 				patient.Gender = "Not entered";
 				patient.Height = 0;
@@ -415,6 +477,10 @@ namespace LocomotionWebApp.Controllers
 				patient.ThighLength = 0;
 				patient.PhoneNumber = "Not entered";
 				patient.Email = "Not entered";
+				patient.ContactName = "Not entered";
+				patient.ContactRelation = "Not entered";
+				patient.ContactPhoneNumber = "Not entered";
+				patient.ContactEmail = "Not entered";
 
 				c.Patients.Add(patient);
 

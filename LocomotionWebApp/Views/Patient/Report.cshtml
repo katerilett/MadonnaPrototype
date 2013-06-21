@@ -9,10 +9,10 @@
 
 @section Header
 {
-	<div class="btn-group sidebar-group">
+	@*<div class="btn-group sidebar-group">
 	
 	<a href="@Url.Action("View", "Patient", new { id=Model.ID })"
-					class="btn">Profile</a>
+					class="btn">Profile</a>*@
 	@*<a href="@Url.Action("TempEdit", "Network", new { id = Model.ID, clickTab = 0 })"
 					class="btn btn-small btn-primary">Profile </a>*@
 	</div>
@@ -20,8 +20,16 @@
 
 <div class="container">
 	<div class="row">
-		<div class="span12" style="padding-top: 10px;">
-			<h2 style="margin-bottom: 25px;">Report</h2>
+		<div class="span12" style="padding-top: 20px;">
+			<h2> Report: @Html.DisplayFor(m => Model.LastName, new { placeholder = @Model.LastName}), @Html.DisplayFor(m => Model.FirstName, new { placeholder = @Model.FirstName})
+				<a class="btn btn-primary"
+				href="#addPatientBlank" data-toggle="modal" style="margin-top: 20px; float:right;">
+				<i class="icon-plus-sign"></i>
+				Upload File
+				</a> 
+			</h2>
+			<h2><a href="@Url.Action("View", "Patient", new { id=Model.ID })"
+					class="btn btn-primary">Profile</a></h2>
 		</div>
 	</div>
 	<div class="row" style="font-size: 9px; color: #999; text-align: center;">

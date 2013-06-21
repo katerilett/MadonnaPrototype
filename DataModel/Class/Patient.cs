@@ -34,6 +34,8 @@ namespace DataModel.Class
 
 		public int Age { get; set; }
 
+		public DateTime Birthday { get; set; }
+
 		public string Gender { get; set; }
 
 		public int Height { get; set; }
@@ -45,6 +47,14 @@ namespace DataModel.Class
 		public string Email { get; set; }
 
 		public string PhoneNumber { get; set; }
+
+		public string ContactName { get; set; }
+
+		public string ContactRelation { get; set; }
+
+		public string ContactPhoneNumber { get; set; }
+
+		public string ContactEmail { get; set; }
 
 		/// <summary>
 		/// If a summary has been calculated, it is referenced here.
