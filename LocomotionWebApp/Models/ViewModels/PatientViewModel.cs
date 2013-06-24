@@ -57,5 +57,18 @@ namespace LocomotionWebApp.Models.ViewModels
 
 		public string ContactEmail { get; set; }
 
+		public Report Report { get; set; }
+
+		//Report Variables
+
+		//public double AverageGaitSpeed { get; set; }
+		//public double LeftStrideLength { get; set; }
+		//public double RightStrideLength { get; set; }
+		//public double StancePercent { get; set; }
+		//public double SwingPercent { get; set; }
+		//public double SingleLimbStancePercent { get; set; }
+		//public double Candence { get; set; }
+
+
 	}
 }

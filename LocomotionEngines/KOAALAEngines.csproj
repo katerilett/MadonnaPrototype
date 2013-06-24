@@ -57,8 +57,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ReportEngine.cs" />
     <Compile Include="UserDataEngine.cs" />
+    <Compile Include="ReportEngine.cs" />
     <Compile Include="DataModelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

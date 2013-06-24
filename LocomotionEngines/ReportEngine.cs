@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataModel.Class;
+using System.IO;
 
 namespace LocomotionEngines
 {
+	//Previously public sealed class
 	public sealed class ReportEngine
 	{
-		// Implement as a singleton. (Should refactor other engines like this.)
+		//Implement as a singleton. (Should refactor other engines like this.)
 		private static ReportEngine instance;
 		public static ReportEngine getInstance()
 		{
@@ -21,9 +23,30 @@ namespace LocomotionEngines
 
 		public Report GenerateReport(Patient net)
 		{
+			Report report = new Report();
+
+			return report;
+		}
+
+
+		public Report GenerateReport(Patient net, string path)
+		{
 			//Report optimal = net.ReportResult;
 
 			Report report = new Report();
+			ExcelAnalyzer doc = new ExcelAnalyzer();
+
+			doc.excel_init(path);
+			string A1 = doc.excel_getValue("A1");
+			if (A1 != "")
+			{
+				report.AverageGaitSpeed = Convert.ToDouble(A1);
+			}
+			else
+			{
+				report.AverageGaitSpeed = 0;
+			}
+			
 			//report.ReportedNetwork = net;
 			//report.UnoptimizedReport = new UnoptimizedSection();
 

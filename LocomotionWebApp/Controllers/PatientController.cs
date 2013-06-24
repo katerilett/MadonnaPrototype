@@ -73,6 +73,8 @@ namespace LocomotionWebApp.Controllers
 				nvm.ContactPhoneNumber = patient.ContactPhoneNumber;
 				nvm.ContactEmail = patient.ContactEmail;
 
+				nvm.Report = patient.ReportResult;
+
 				//var nameNet = network;
 				//while(nameNet.Parent != null && nameNet.Name == null)
 				//	nameNet = nameNet.Parent;
@@ -119,6 +121,15 @@ namespace LocomotionWebApp.Controllers
 				nvm.Deformity = patient.Deformity;
 				nvm.ShankLength = patient.ShankLength;
 				nvm.ThighLength = patient.ThighLength;
+				nvm.Report = patient.ReportResult;
+
+				//nvm.ReportResult.AverageGaitSpeed = patient.ReportResult.AverageGaitSpeed;
+				//nvm.ReportResult.LeftStrideLength = patient.ReportResult.LeftStrideLength;
+				//nvm.ReportResult.RightStrideLength = patient.ReportResult.RightStrideLength;
+				//nvm.ReportResult.StancePercent = patient.ReportResult.StancePercent;
+				//nvm.ReportResult.SwingPercent = patient.ReportResult.SwingPercent;
+				//nvm.ReportResult.SingleLimbStancePercent = patient.ReportResult.SingleLimbStancePercent;
+				//nvm.ReportResult.Candence = patient.ReportResult.Candence;
 
 			}
 			return View(nvm);
@@ -482,6 +493,7 @@ namespace LocomotionWebApp.Controllers
 			using(var c = new DataModelContext())
 			{
 				var patient = new Patient();
+				patient.ReportResult = ReportEngine.getInstance().GenerateReport(patient);
 
 				patient.FirstName = PatientFirstName;
 				patient.LastName = PatientLastName;
@@ -504,6 +516,14 @@ namespace LocomotionWebApp.Controllers
 				patient.ContactRelation = "Not entered";
 				patient.ContactPhoneNumber = "Not entered";
 				patient.ContactEmail = "Not entered";
+
+				//patient.ReportResult.AverageGaitSpeed = 0;
+				//patient.ReportResult.LeftStrideLength = 0;
+				//patient.ReportResult.RightStrideLength = 0;
+				//patient.ReportResult.StancePercent = 0;
+				//patient.ReportResult.SwingPercent = 0;
+				//patient.ReportResult.SingleLimbStancePercent = 0;
+				//patient.ReportResult.Candence = 0;
 
 				c.Patients.Add(patient);
 
@@ -530,71 +550,50 @@ namespace LocomotionWebApp.Controllers
 		}
 
 		[Authorize]
-		public ActionResult Upload(IEnumerable<HttpPostedFileBase> files, PatientViewModel model)
-		{
-			var nvm = new PatientViewModel();
+		public ActionResult Upload(IEnumerable<HttpFileCollection> files, PatientViewModel model)
+		{			
+			var pvm = new PatientViewModel();
 			long patientID = 0;
 
-			IEnumerable<HttpPostedFileBase> someFiles = files;
-
-			var patientDoc = new XDocument();
-
-			//if (PatientName == "")
-			//{
-			//	ViewBag.UploadAlert = "Enter a patient name";
-				
-			//	using (var c = new DataModelContext())
-			//	{
-			//		nvm.Patients = c.Patients.Include("Therapist").Where(n => n.Name != null).ToList();
-			//	}
-			//	return View("Index", nvm);
-			//}
+			//HttpFileCollection someFiles = files;
+			//IEnumerable<HttpPostedFileBase> someFiles = files;			
 
 			try
 			{
-				patientDoc = XDocument.Load(Request.Files["PatientFile"].InputStream);				
+				//patientDoc = XDocument.Load(Request.Files["PatientFile"].InputStream);
 			}
-			catch (XmlException e)
+			catch (Exception e)
 			{
 				Console.WriteLine(e.Message);
-				ViewBag.UploadAlert = "You must select a valid xml file";
-
-				using (var c = new DataModelContext())
-				{
-					var patient = c.Patients.Find(model.ID);
-					patientID = patient.ID;
-					
-					//nvm.Patients = c.Patients.Include("Therapist").Where(n => n.Name != null).ToList();
-				}
-				//return View("Report", nvm);
-				return RedirectToAction("Report", new { id = patientID });
+				ViewBag.UploadAlert = "You must select a valid file";
 			}
 
 			using(var c = new DataModelContext())
 			{
 				var patient = c.Patients.Find(model.ID);
 				patientID = patient.ID;
-				
-				//var xmlE = new XmlEngine();
-				//var xmlnetwork = xmlE.XmlFileToNetwork(networkDoc);
+				HttpPostedFileBase patientDoc;
+				patientDoc = Request.Files["PatientFile"];
 
-				//xmlnetwork.Name = NetworkName;
-				//xmlnetwork.Author = UserDataEngine.getInstance().GetCurrentUser(c, HttpContext);
-				//xmlnetwork.LastEdit = DateTime.Now;
-				//c.Networks.Add(xmlnetwork);
+				string fileNameExtension = System.IO.Path.GetFullPath(patientDoc.FileName);
 
-				//try
-				//{
-				//	c.SaveChanges();
-				//}
-				//catch(DbEntityValidationException e)
-				//{
-				//	foreach(var i in e.EntityValidationErrors)
-				//	{
-				//		Console.WriteLine(i.ValidationErrors);
-				//	}
-				//	throw e;
-				//}
+				//var reportE = new ReportEngine();
+				pvm.Report = ReportEngine.getInstance().GenerateReport(patient, fileNameExtension);
+
+				//reportE.GenerateReport(patient, fileNameExtension);
+
+				try
+				{
+					c.SaveChanges();
+				}
+				catch(DbEntityValidationException e)
+				{
+					foreach(var i in e.EntityValidationErrors)
+					{
+						Console.WriteLine(i.ValidationErrors);
+					}
+					throw e;
+				}
 				//nvm.Patients = c.Patients.Include("Therapist").Where(n => n.Name != null).ToList();
 
 				//ViewBag.NewNetworkID = xmlnetwork.ID;
@@ -603,7 +602,7 @@ namespace LocomotionWebApp.Controllers
 			ViewBag.Alert = "Upload successful";
 			ViewBag.AlertClass = "alert-success";
 			//return View("Report", nvm);
-			return RedirectToAction("View", new { id = patientID });
+			return RedirectToAction("Report", new { id = patientID });
 		}
 
 		#region URLUpload

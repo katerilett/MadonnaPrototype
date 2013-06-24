@@ -3,8 +3,7 @@
 
 @section Title
 {
-	Patient
-	
+	Report	
 }
 
 @section Header
@@ -13,8 +12,6 @@
 	
 	<a href="@Url.Action("View", "Patient", new { id=Model.ID })"
 					class="btn">Profile</a>
-	<a href="@Url.Action("TempEdit", "Network", new { id = Model.ID, clickTab = 0 })"
-					class="btn btn-small btn-primary">Profile </a>
 	</div> *@
 }
 @using (Html.BeginForm("Upload", "Patient", FormMethod.Post, new
@@ -143,7 +140,7 @@
 			<tbody>
 				<tr>
 					<td>Average Gait Speed (meters/min)</td>
-					<td>value</td>
+					<td>@Html.DisplayFor(m => Model.Report.AverageGaitSpeed, new { placeholder = @Model.Report.AverageGaitSpeed})</td>
 				</tr>
 				<tr>
 					<td>Left Stride Length (cm)</td>

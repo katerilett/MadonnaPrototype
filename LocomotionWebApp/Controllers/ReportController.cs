@@ -26,7 +26,7 @@ namespace LocomotionWebApp.Controllers
 				//	net.Optimize();
 				//	c.SaveChanges();
 				//}
-				rvm.Report = ReportEngine.getInstance().GenerateReport(net);
+				//rvm.Report = ReportEngine.getInstance().GenerateReport(net);
 			}
 
 			return View(rvm);
