@@ -56,6 +56,9 @@ namespace DataModel.Class
 
 		public string ContactEmail { get; set; }
 
+
+		public Patient() { }
+
 		/// <summary>
 		/// If a summary has been calculated, it is referenced here.
 		/// </summary>
