@@ -430,6 +430,29 @@ namespace LocomotionWebApp.Controllers
 		}
 
 		[Authorize]
+		public ActionResult EditRequired(int PatientShankLength, int PatientThighLength, PatientViewModel model)
+		{
+			var pvm = new PatientViewModel();
+			long patientID = 0;
+
+			using (var c = new DataModelContext())
+			{
+				var patient = c.Patients.Find(model.ID);
+				patientID = patient.ID;
+				patient.ShankLength = PatientShankLength;
+				patient.ThighLength = PatientThighLength;				
+
+				c.SaveChanges();
+
+			}
+
+			ViewBag.Alert = "Profile update successful";
+			ViewBag.AlertClass = "alert-success";
+			//return View("View", pvm);
+			return RedirectToAction("Report", new { id = patientID });
+		}
+
+		[Authorize]
 		public ActionResult CreateBlank(string PatientFirstName, string PatientLastName)
 		{
 			var nvm = new PatientListViewModel();
