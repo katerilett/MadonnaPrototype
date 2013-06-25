@@ -44,7 +44,7 @@ namespace LocomotionEngines
 			}
 			else
 			{
-				report.AverageGaitSpeed = 0;
+				report.AverageGaitSpeed = 999999;
 			}
 			
 			//report.ReportedNetwork = net;

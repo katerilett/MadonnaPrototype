@@ -552,58 +552,59 @@ namespace LocomotionWebApp.Controllers
 		[Authorize]
 		public ActionResult Upload(IEnumerable<HttpPostedFileBase> files, PatientViewModel model)
 		{			
-			var pvm = model;
+			var pvm = new PatientViewModel();
 			long patientID = 0;
 
 			//HttpFileCollection someFiles = files;
 			//IEnumerable<HttpPostedFileBase> someFiles = files;			
 
-			try
-			{
-				//patientDoc = XDocument.Load(Request.Files["PatientFile"].InputStream);
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e.Message);
-				ViewBag.UploadAlert = "You must select a valid file";
-			}
+			//try
+			//{
+			//	patientDoc = XDocument.Load(Request.Files["PatientFile"].InputStream);
+			//}
+			//catch (Exception e)
+			//{
+			//	Console.WriteLine(e.Message);
+			//	ViewBag.UploadAlert = "You must select a valid file";
+			//}
 
 			using(var c = new DataModelContext())
 			{
 				var patient = c.Patients.Find(model.ID);
-				//patientID = patient.ID;
+				patientID = patient.ID;
 
-				pvm.ID = patient.ID;
-				pvm.FirstName = patient.FirstName;
-				pvm.LastName = patient.LastName;
-				pvm.Therapist = patient.Therapist;
-				pvm.LastUpdate = patient.LastUpdate;
-				pvm.ArthritisType = patient.ArthritisType;
-				pvm.AffectedExtremity = patient.AffectedExtremity;
-				pvm.Deformity = patient.Deformity;
-				pvm.ShankLength = patient.ShankLength;
-				pvm.ThighLength = patient.ThighLength;
-				pvm.Age = patient.Age;
-				pvm.Birthday = patient.Birthday;
-				pvm.Gender = patient.Gender;
-				pvm.Height = patient.Height;
-				pvm.Weight = patient.Weight;
-				pvm.Start = patient.Start;
-				pvm.PhoneNumber = patient.PhoneNumber;
-				pvm.Email = patient.Email;
-				pvm.ContactName = patient.ContactName;
-				pvm.ContactRelation = patient.ContactRelation;
-				pvm.ContactEmail = patient.ContactEmail;
-				pvm.Report = patient.ReportResult;
+				//pvm.ID = patient.ID;
+				//pvm.FirstName = patient.FirstName;
+				//pvm.LastName = patient.LastName;
+				//pvm.Therapist = patient.Therapist;
+				//pvm.LastUpdate = patient.LastUpdate;
+				//pvm.ArthritisType = patient.ArthritisType;
+				//pvm.AffectedExtremity = patient.AffectedExtremity;
+				//pvm.Deformity = patient.Deformity;
+				//pvm.ShankLength = patient.ShankLength;
+				//pvm.ThighLength = patient.ThighLength;
+				//pvm.Age = patient.Age;
+				//pvm.Birthday = patient.Birthday;
+				//pvm.Gender = patient.Gender;
+				//pvm.Height = patient.Height;
+				//pvm.Weight = patient.Weight;
+				//pvm.Start = patient.Start;
+				//pvm.PhoneNumber = patient.PhoneNumber;
+				//pvm.Email = patient.Email;
+				//pvm.ContactName = patient.ContactName;
+				//pvm.ContactRelation = patient.ContactRelation;
+				//pvm.ContactEmail = patient.ContactEmail;
+				//pvm.Report = patient.ReportResult;
 
 				HttpPostedFileBase patientDoc = Request.Files["PatientFile"];
-
 				var fileName = Path.GetFileName(patientDoc.FileName);
 				var path = Path.Combine(Server.MapPath("~/Content/excelfiles"), fileName);
 				patientDoc.SaveAs(path);
-				pvm.Report = ReportEngine.getInstance().GenerateReport(patient, path);
 
-				//reportE.GenerateReport(patient, fileNameExtension);
+				var ReportE = ReportEngine.getInstance();
+				pvm.Report = ReportE.GenerateReport(patient, path);
+				patient.ReportResult = pvm.Report;
+
 				try
 				{
 					c.SaveChanges();
@@ -625,8 +626,8 @@ namespace LocomotionWebApp.Controllers
 			ViewBag.Alert = "Upload successful";
 			ViewBag.AlertClass = "alert-success";
 
-			//return RedirectToAction("Report", new { id = patientID });
-			return View("Report", pvm);
+			return RedirectToAction("Report", new { id = patientID });
+			//return View("Report", pvm);
 		}
 
 		#region URLUpload

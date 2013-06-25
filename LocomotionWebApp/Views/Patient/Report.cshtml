@@ -8,11 +8,11 @@
 
 @section Header
 {
-	@*<div class="btn-group sidebar-group">
+	<div class="btn-group sidebar-group">
 	
-	<a href="@Url.Action("View", "Patient", new { id=Model.ID })"
-					class="btn">Profile</a>
-	</div> *@
+	@*<a href="@Url.Action("View", "Patient", new { id=Model.ID })"
+					class="btn">Profile</a>*@
+	</div> 
 }
 
 @section Scripts
@@ -187,27 +187,27 @@
 				</tr>
 				<tr>
 					<td>Left Stride Length (cm)</td>
-					<td>value</td>
+					<td>@Html.DisplayFor(m => Model.Report.LeftStrideLength, new { placeholder = @Model.Report.LeftStrideLength})</td>
 				</tr>
 				<tr>
 					<td>Right Stride Length (cm)</td>
-					<td>value</td>
+					<td>@Html.DisplayFor(m => Model.Report.RightStrideLength, new { placeholder = @Model.Report.RightStrideLength})</td>
 				</tr>
 				<tr>
 					<td>Stance (% of gait cycle)</td>
-					<td>value</td>
+					<td>@Html.DisplayFor(m => Model.Report.StancePercent, new { placeholder = @Model.Report.StancePercent })</td>
 				</tr>
 				<tr>
 					<td>Swing (% of gait cycle)</td>
-					<td>value</td>
+					<td>@Html.DisplayFor(m => Model.Report.SwingPercent, new { placeholder = @Model.Report.SwingPercent})</td>
 				</tr>
 				<tr>
 					<td>Single Limb Stance (% of gait cycle)</td>
-					<td>value</td>
+					<td>@Html.DisplayFor(m => Model.Report.SingleLimbStancePercent, new { placeholder = @Model.Report.SingleLimbStancePercent})</td>
 				</tr>
 				<tr>
 					<td>Candence (steps/min)</td>
-					<td>value</td>
+					<td>@Html.DisplayFor(m => Model.Report.Candence, new { placeholder = @Model.Report.Candence})</td>
 				</tr>
 			</tbody>
 		</table>
