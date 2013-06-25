@@ -365,10 +365,10 @@
 						Deformity 
 					</label>
 					<div class="controls">	
-								<select id="PatientDeformity" name="PatientDeformity" required>
-									<option>Valgus</option>
-									<option>Varus</option>
-								</select>				
+							<select id="PatientDeformity" name="PatientDeformity" required>
+								<option>Valgus</option>
+								<option>Varus</option>
+							</select>				
 					</div>
 				</div>
 				<div class="control-group">
@@ -559,35 +559,35 @@
 		<tbody>
 			<tr>
 				<td><strong>Started KOAALA:</strong></td>
-				<td>@Html.DisplayFor(m => Model.StartString, new { placeholder = @Model.StartString})</td>
+				<td><strong>@Html.DisplayFor(m => Model.StartString, new { placeholder = @Model.StartString})</strong></td>
 			</tr>
 			<tr>
-				<td>Age:</td>
-				<td>@Html.DisplayFor(m => Model.Age, new { placeholder = @Model.Age})</td>
+				<td><strong>Age:</strong></td>
+				<td><strong>@Html.DisplayFor(m => Model.Age, new { placeholder = @Model.Age})</strong></td>
 			</tr>
 			<tr>
-				<td>Birthday:</td>
-				<td>@Html.DisplayFor(m => Model.BirthdayString, new { placeholder = @Model.BirthdayString })</td>
+				<td><strong>Birthday:</strong></td>
+				<td><strong>@Html.DisplayFor(m => Model.BirthdayString, new { placeholder = @Model.BirthdayString })</strong></td>
 			</tr>
 			<tr>
-				<td>Gender:</td>
-				<td>@Html.DisplayFor(m => Model.Gender, new { placeholder = @Model.Gender})</td>
+				<td><strong>Sex:</strong></td>
+				<td><strong>@Html.DisplayFor(m => Model.Gender, new { placeholder = @Model.Gender})</strong></td>
 			</tr>
 			<tr>
-				<td>Height (inches):</td>
-				<td>@Html.DisplayFor(m => Model.Height, new { placeholder = @Model.Height})</td>
+				<td><strong>Height (inches):</strong></td>
+				<td><strong>@Html.DisplayFor(m => Model.Height, new { placeholder = @Model.Height})</strong></td>
 			</tr>
 			<tr>
-				<td>Weight (lbs):</td>
-				<td>@Html.DisplayFor(m => Model.Weight, new { placeholder = @Model.Weight})</td>
+				<td><strong>Weight (lbs):</strong></td>
+				<td><strong>@Html.DisplayFor(m => Model.Weight, new { placeholder = @Model.Weight})</strong></td>
 			</tr>
 			<tr>
-				<td>Phone Number:</td>
-				<td>@Html.DisplayFor(m => Model.PhoneNumber, new { placeholder = @Model.PhoneNumber})</td>
+				<td><strong>Phone Number:</strong></td>
+				<td><strong>@Html.DisplayFor(m => Model.PhoneNumber, new { placeholder = @Model.PhoneNumber})</strong></td>
 			</tr>
 			<tr>
-				<td>Email:</td>
-				<td>@Html.DisplayFor(m => Model.Email, new { placeholder = @Model.Email})</td>
+				<td><strong>Email:</strong></td>
+				<td><strong>@Html.DisplayFor(m => Model.Email, new { placeholder = @Model.Email})</strong></td>
 			</tr>
 		</tbody>
 
@@ -605,15 +605,15 @@
 	<table class="table table-striped table-bordered table-condensed" border="1">
 		<tbody>
 			<tr>
-				<td>Arthritis Type:</td>
+				<td><strong>Arthritis Type:</strong></td>
 				<td>@Html.DisplayFor(m => Model.ArthritisType, new { placeholder = @Model.ArthritisType})</td>
 			</tr>
 			<tr>
-				<td>Affected Extremity:</td>
+				<td><strong>Affected Extremity:</strong></td>
 				<td>@Html.DisplayFor(m => Model.AffectedExtremity, new { placeholder = @Model.AffectedExtremity})</td>
 			</tr>
 			<tr>
-				<td>Deformity:</td>
+				<td><strong>Deformity:</strong></td>
 				<td>@Html.DisplayFor(m => Model.Deformity, new { placeholder = @Model.Deformity})</td>
 			</tr>
 		</tbody>

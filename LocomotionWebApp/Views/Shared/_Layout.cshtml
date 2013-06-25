@@ -59,15 +59,15 @@
 						<li class="
 					@Html.Raw(ViewContext.Controller is LocomotionWebApp.Controllers.HomeController
 						? "active" : "")
-					"><a href="@Url.Action("Index", "Home")">Home</a></li>
+					"><a href="@Url.Action("Index", "Home")">Home   <i class="icon-home icon-white"></i></a></li>
 						<li class="
 					@Html.Raw(ViewContext.Controller is LocomotionWebApp.Controllers.PatientController
 						? "active" : "")
-					"><a href="@Url.Action("Index", "Patient")">Patients</a></li>
+					"><a href="@Url.Action("Index", "Patient")">Patients    <i class="icon-th-list icon-white"></i></a></li>
 						<li class="
 					@Html.Raw(ViewContext.Controller is LocomotionWebApp.Controllers.HelpController
 						? "active" : "")
-					"><a href="@Url.Action("Index", "Help")">Help</a></li>
+					"><a href="@Url.Action("Index", "Help")">Help     <i class="icon-question-sign icon-white"></i></a></li>
 
 					</ul>
 				}
