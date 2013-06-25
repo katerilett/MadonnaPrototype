@@ -14,6 +14,49 @@
 					class="btn">Profile</a>
 	</div> *@
 }
+
+@section Scripts
+{
+	@if(ViewBag.UploadAlert != null)
+	{
+	<script type="text/javascript">
+		//var isFormValid = ;
+		$(function() {
+			$('#addReport').modal('show');
+		});
+	</script>
+	}
+
+	@if(ViewBag.UrlUploadAlert != null)
+	{
+	<script type="text/javascript">
+		//var isFormValid = ;
+		$(function() {
+			$('#editRequiredModal').modal('show');
+		});
+	</script>
+	}
+
+	<script type="text/javascript">
+		$(function() {
+			$("#uploadButton").add("#createNetUrlBtn")
+				.click(function(e)
+				{
+					$(this).closest(".modal-footer").find(".spinner").show();
+					$(this).parent().find("button").addClass("disabled");
+					$(this).attr("type", "button");
+					$(this).unbind("click");
+					$(this).closest("form").submit();
+				}
+			);
+		});
+	</script>
+
+}
+
+
+
+
 @using (Html.BeginForm("Upload", "Patient", FormMethod.Post, new
 {
 	enctype = "multipart/form-data", @class = "form-horizontal"
