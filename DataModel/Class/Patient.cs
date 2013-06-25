@@ -28,9 +28,9 @@ namespace DataModel.Class
 
 		public string Deformity { get; set; }
 
-		public int ShankLength { get; set; }
+		public double ShankLength { get; set; }
 
-		public int ThighLength { get; set; }
+		public double ThighLength { get; set; }
 
 		public int Age { get; set; }
 
@@ -38,9 +38,9 @@ namespace DataModel.Class
 
 		public string Gender { get; set; }
 
-		public int Height { get; set; }
+		public double Height { get; set; }
 
-		public int Weight { get; set; }
+		public double Weight { get; set; }
 
 		public DateTime Start { get; set; } //When Therapists adds the patient
 

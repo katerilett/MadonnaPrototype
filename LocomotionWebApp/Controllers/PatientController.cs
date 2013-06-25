@@ -517,14 +517,6 @@ namespace LocomotionWebApp.Controllers
 				patient.ContactPhoneNumber = "Not entered";
 				patient.ContactEmail = "Not entered";
 
-				//patient.ReportResult.AverageGaitSpeed = 0;
-				//patient.ReportResult.LeftStrideLength = 0;
-				//patient.ReportResult.RightStrideLength = 0;
-				//patient.ReportResult.StancePercent = 0;
-				//patient.ReportResult.SwingPercent = 0;
-				//patient.ReportResult.SingleLimbStancePercent = 0;
-				//patient.ReportResult.Candence = 0;
-
 				c.Patients.Add(patient);
 
 				try
@@ -572,29 +564,6 @@ namespace LocomotionWebApp.Controllers
 			{
 				var patient = c.Patients.Find(model.ID);
 				patientID = patient.ID;
-
-				//pvm.ID = patient.ID;
-				//pvm.FirstName = patient.FirstName;
-				//pvm.LastName = patient.LastName;
-				//pvm.Therapist = patient.Therapist;
-				//pvm.LastUpdate = patient.LastUpdate;
-				//pvm.ArthritisType = patient.ArthritisType;
-				//pvm.AffectedExtremity = patient.AffectedExtremity;
-				//pvm.Deformity = patient.Deformity;
-				//pvm.ShankLength = patient.ShankLength;
-				//pvm.ThighLength = patient.ThighLength;
-				//pvm.Age = patient.Age;
-				//pvm.Birthday = patient.Birthday;
-				//pvm.Gender = patient.Gender;
-				//pvm.Height = patient.Height;
-				//pvm.Weight = patient.Weight;
-				//pvm.Start = patient.Start;
-				//pvm.PhoneNumber = patient.PhoneNumber;
-				//pvm.Email = patient.Email;
-				//pvm.ContactName = patient.ContactName;
-				//pvm.ContactRelation = patient.ContactRelation;
-				//pvm.ContactEmail = patient.ContactEmail;
-				//pvm.Report = patient.ReportResult;
 
 				HttpPostedFileBase patientDoc = Request.Files["PatientFile"];
 				var fileName = Path.GetFileName(patientDoc.FileName);

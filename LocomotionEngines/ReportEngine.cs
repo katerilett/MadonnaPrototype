@@ -8,7 +8,7 @@ using System.IO;
 
 namespace LocomotionEngines
 {
-	//Previously public sealed class
+	
 	public sealed class ReportEngine
 	{
 		//Implement as a singleton. (Should refactor other engines like this.)
@@ -21,15 +21,23 @@ namespace LocomotionEngines
 		}
 		private ReportEngine() {}
 
-		public Report GenerateReport(Patient net)
+		public Report GenerateReport(Patient pat)
 		{
 			Report report = new Report();
+
+			report.AverageGaitSpeed = 0;
+			report.LeftStrideLength = 0;
+			report.RightStrideLength = 0;
+			report.StancePercent = 0;
+			report.SwingPercent = 0;
+			report.SingleLimbStancePercent = 0;
+			report.Candence = 0;
 
 			return report;
 		}
 
 
-		public Report GenerateReport(Patient net, string path)
+		public Report GenerateReport(Patient pat, string path)
 		{
 			//Report optimal = net.ReportResult;
 
@@ -44,36 +52,8 @@ namespace LocomotionEngines
 			}
 			else
 			{
-				report.AverageGaitSpeed = 999999;
+				report.AverageGaitSpeed = 0;
 			}
-			
-			//report.ReportedNetwork = net;
-			//report.UnoptimizedReport = new UnoptimizedSection();
-
-			//if(optimal != null)
-			//{
-				//var optimizedReport = new OptimizedSection()
-				//{
-					//TotalCost = optimal.TotalCost,
-					//LinkCosts = new Dictionary<Link, LinkCost>(),
-					//RawOptimization = optimal
-				//};
-
-				//foreach(var olink in optimal.Links)
-				//{
-				//	var link = olink.Link;
-				//	LinkCost lcost = new LinkCost();
-
-				//	lcost.CarFlowCost = olink.Flow * link.Distance * net.CarCostPerMile;
-
-				//	lcost.LocomotiveCost = olink.CurrentTrains * link.Distance
-				//		* (net.FuelCostPerMile + net.NonFuelCostPerMile);
-
-				//	optimizedReport.LinkCosts.Add(link, lcost);
-				//}
-
-				//report.OptimizedReport = optimizedReport;
-			//}
 
 			return report;
 		}
