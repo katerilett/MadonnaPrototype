@@ -75,6 +75,15 @@ namespace LocomotionWebApp.Controllers
 
 				nvm.Report = patient.ReportResult;
 
+				DateTime dateOnly = nvm.Birthday.Date;
+				nvm.BirthdayString = dateOnly.ToString("d");
+
+				DateTime dateOnly2 = nvm.Start.Date;
+				nvm.StartString = dateOnly2.ToString("d");
+
+				DateTime dateOnly3 = nvm.Birthday.Date;
+				nvm.BirthdayHtml = dateOnly3.ToString("yyyy-MM-dd");
+
 				//var nameNet = network;
 				//while(nameNet.Parent != null && nameNet.Name == null)
 				//	nameNet = nameNet.Parent;
@@ -123,7 +132,7 @@ namespace LocomotionWebApp.Controllers
 				nvm.ThighLength = patient.ThighLength;
 				nvm.Report = patient.ReportResult;
 
-				nvm.Report.AverageGaitSpeed = patient.ReportResult.AverageGaitSpeed;
+				//nvm.Report.AverageGaitSpeed = patient.ReportResult.AverageGaitSpeed;
 				//nvm.ReportResult.LeftStrideLength = patient.ReportResult.LeftStrideLength;
 				//nvm.ReportResult.RightStrideLength = patient.ReportResult.RightStrideLength;
 				//nvm.ReportResult.StancePercent = patient.ReportResult.StancePercent;
@@ -361,7 +370,7 @@ namespace LocomotionWebApp.Controllers
 		//}
 
 		[Authorize]
-		public ActionResult EditPatient (int PatientAge, string PatientGender, int PatientHeight, int PatientWeight, 
+		public ActionResult EditPatient (int PatientAge, DateTime PatientBirthday, string PatientGender, double PatientHeight, double PatientWeight, 
 			string PatientEmail, string PatientPhoneNumber, PatientViewModel model)
 		{
 			var pvm = new PatientViewModel();
@@ -373,6 +382,7 @@ namespace LocomotionWebApp.Controllers
 				patientID = patient.ID;
 
 				patient.Age = PatientAge;
+				patient.Birthday = PatientBirthday;
 				patient.Gender = PatientGender;
 				patient.Height = PatientHeight;
 				patient.Weight = PatientWeight;
@@ -441,7 +451,7 @@ namespace LocomotionWebApp.Controllers
 		}
 
 		[Authorize]
-		public ActionResult EditRequired(int PatientShankLength, int PatientThighLength, PatientViewModel model)
+		public ActionResult EditRequired(double PatientShankLength, double PatientThighLength, PatientViewModel model)
 		{
 			var pvm = new PatientViewModel();
 			long patientID = 0;
@@ -500,7 +510,7 @@ namespace LocomotionWebApp.Controllers
 				patient.Therapist = UserDataEngine.getInstance().GetCurrentUser(c, HttpContext);
 				patient.LastUpdate = DateTime.Now;
 				patient.Start = DateTime.Now;
-				patient.Birthday = DateTime.Now;
+				patient.Birthday = new DateTime(1900, 01, 01);
 				patient.Age = 0;
 				patient.Gender = "Not entered";
 				patient.Height = 0;

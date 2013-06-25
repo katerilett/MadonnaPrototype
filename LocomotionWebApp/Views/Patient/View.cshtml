@@ -139,6 +139,7 @@
 
 }
 
+
 @*@section NextToLogo
 {
 	<p class="nav navbar-text" style="color: #000;">
@@ -239,7 +240,16 @@
 					</label>
 					<div class="controls">	
 						<input type="text" id="PatientAge" name="PatientAge" 		
-							value="@Html.DisplayFor(m => Model.Age, new { required ="true", @class = "Age" })" required />							
+							value="@Html.DisplayFor(m => Model.Age, new { required ="true", @class = "Age" })" required />					
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="PatientBirthday">
+						Birthday
+					</label>
+					<div class="controls">	
+						<input type="date" id="PatientBirthday" name="PatientBirthday" 		
+							value="@Html.DisplayFor(m => Model.BirthdayHtml, new { required ="true", @class = "BirthdayHtml" })" required />	
 					</div>
 				</div>
 				<div class="control-group">
@@ -347,15 +357,39 @@
 							value="@Html.DisplayFor(m => Model.AffectedExtremity, new { required ="true", @class = "AffectedExtremity" })" required />							
 					</div>
 				</div>
-				<div class="control-group">
+					<div class="control-group">
+					<label class="control-label" for="PatientDeformity">
+						Deformity <br />(valgus or varus)
+					</label>
+					<div class="controls" id="PatientDeformity">	
+								<select>
+									<option>Valgus</option>
+									<option>Varus</option>
+								</select>				
+					</div>
+					@*<div class="controls">	
+						<input type="text" id="PatientDeformity" name="PatientDeformity" 		
+							value="@Html.DisplayFor(m => Model.Deformity, new { required ="true", @class = "Deformity" })" required />							
+					</div>*@
+				</div>
+				@*<div class="control-group">
 					<label class="control-label" for="PatientDeformity">
 						Deformity <br /> (valgus or varus)
 					</label>
 					<div class="controls">
-						<input type="text" id="PatientDeformity" name="PatientDeformity"
-							value="@Html.DisplayFor(m => Model.Deformity, new { required ="true", @class = "Deformity" })" required />
+						@Html.DropDownListFor(
+								m => Model.Deformity, new SelectList(
+									new List<Object>{
+										new { value = 0 , text = "Valgus" },
+										new { value = 1 , text = "Varus" }
+									},
+									"value",
+									"text" ,
+									Model.Deformity
+									)
+							)						
 					</div>
-				</div>
+				</div>*@
 				<div class="control-group">
 					<label class="control-label" for="PatientID"></label>
 					<div class="controls">
@@ -520,10 +554,13 @@
 <div class="container">
 	<div class="row">
 		<div class="span12" @*style="padding-top: 10px;"*@>
-			<h2>Profile: @Html.DisplayFor(m => Model.LastName, new { placeholder = @Model.LastName}), @Html.DisplayFor(m => Model.FirstName, new { placeholder = @Model.FirstName})
-			</h2>
-			<h2><a href="@Url.Action("Report", "Patient", new { id=Model.ID })"
+			<h2>@Html.DisplayFor(m => Model.LastName, new { placeholder = @Model.LastName}), @Html.DisplayFor(m => Model.FirstName, new { placeholder = @Model.FirstName}) </h2>
+			<h2>	
+				<div class="btn-group">
+					<a href="#" class="btn btn-primary disabled" id="show-profile-btn" >Profile</a>
+					<a href="@Url.Action("Report", "Patient", new { id=Model.ID })"
 					class="btn btn-primary">Report</a>
+				</div>
 			</h2>					
 		</div>
 	</div>
@@ -531,15 +568,17 @@
 <div class="row">
 <div class="span5" style="padding-bottom: 5px;">
 
-	<h4>General Information <a class="btn btn-primary btn-small"
-				href="#editPatientModal" data-toggle="modal" style="float:right;">
-				Edit
-		</a></h4> 
+	<h4>General Information 
+		<a class="btn btn-primary btn-small"
+			href="#editPatientModal" data-toggle="modal" style="float:right;">
+			Edit
+		</a>
+	</h4> 
 	<table class="table table-striped table-bordered table-condensed" border="1">
 		<tbody>
 			<tr>
-				<td>Started KOAALA:</td>
-				<td>@Html.DisplayFor(m => Model.Start, new { placeholder = @Model.Start})</td>
+				<td><strong>Started KOAALA:</strong></td>
+				<td>@Html.DisplayFor(m => Model.StartString, new { placeholder = @Model.StartString})</td>
 			</tr>
 			<tr>
 				<td>Age:</td>
@@ -547,7 +586,7 @@
 			</tr>
 			<tr>
 				<td>Birthday:</td>
-				<td>@Html.DisplayFor(m => Model.Birthday, new { placeholder = @Model.Birthday })</td>
+				<td>@Html.DisplayFor(m => Model.BirthdayString, new { placeholder = @Model.BirthdayString })</td>
 			</tr>
 			<tr>
 				<td>Gender:</td>

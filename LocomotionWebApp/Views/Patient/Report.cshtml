@@ -163,8 +163,8 @@
 
 <div class="container">
 	<div class="row">
-		<div class="span12" style="padding-top: 20px;">
-			<h2> Report: @Html.DisplayFor(m => Model.LastName, new { placeholder = @Model.LastName}), @Html.DisplayFor(m => Model.FirstName, new { placeholder = @Model.FirstName})
+		<div class="span12">
+			<h2>@Html.DisplayFor(m => Model.LastName, new { placeholder = @Model.LastName}), @Html.DisplayFor(m => Model.FirstName, new { placeholder = @Model.FirstName})
 				<a class="btn btn-primary btn-small"
 				href="#addReport" data-toggle="modal" style="margin-top: 20px; float:right;">
 				<i class="icon-plus-sign"></i>
@@ -172,8 +172,13 @@
 				<i class="icon-file"></i>
 				</a> 
 			</h2>
-			<h2><a href="@Url.Action("View", "Patient", new { id=Model.ID })"
-					class="btn btn-primary">Profile</a></h2>
+			<h2>
+			<div class="btn-group">
+					<a href="@Url.Action("View", "Patient", new { id=Model.ID })"
+						class="btn btn-primary">Profile</a>
+					<a href="#" class="btn btn-primary disabled" id="show-report-btn">Report</a>
+			</div>
+			</h2>
 		</div>
 	</div>
 	<div class="row">

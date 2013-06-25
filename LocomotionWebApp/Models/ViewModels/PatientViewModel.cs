@@ -37,6 +37,10 @@ namespace LocomotionWebApp.Models.ViewModels
 
 		public DateTime Birthday { get; set; }
 
+		public string BirthdayString { get; set; }
+
+		public string BirthdayHtml { get; set; }
+
 		public string Gender { get; set; }
 
 		public double Height { get; set; }
@@ -44,6 +48,8 @@ namespace LocomotionWebApp.Models.ViewModels
 		public double Weight { get; set; }
 
 		public DateTime Start { get; set; } //When Therapists adds the patient
+
+		public string StartString { get; set; }
 
 		public string PhoneNumber { get; set; }
 
