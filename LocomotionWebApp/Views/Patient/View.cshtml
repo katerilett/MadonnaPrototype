@@ -254,12 +254,32 @@
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="PatientGender">
-						Gender
+						Sex
 					</label>
-					<div class="controls">	
-						<input type="text" id="PatientGender" name="PatientGender" 		
-							value="@Html.DisplayFor(m => Model.Gender, new { required ="true", @class = "Gender" })"  required />							
-					</div>
+					@if (Model.Gender == "Female") {
+						<div class="controls">	
+								<select id="PatientGender1" name="PatientGender" required>
+									<option selected>Female</option>
+									<option>Male</option>
+								</select>				
+						</div>
+					}
+					@if (Model.Gender == "Male") {
+						<div class="controls">	
+								<select id="PatientGender2" name="PatientGender" required>
+									<option>Female</option>
+									<option selected>Male</option>
+								</select>				
+						</div>
+					}
+					@if (Model.Gender != "Female" && Model.Gender != "Male") {
+						<div class="controls">	
+								<select id="PatientGender3" name="PatientGender" required>
+									<option>Female</option>
+									<option>Male</option>
+								</select>				
+						</div>
+					}
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="PatientHeight">
@@ -340,36 +360,113 @@
 					<label class="control-label" for="PatientArthritisType">
 						Arthritis Type
 					</label>
-					<div class="controls">
-						<select id="PatientArthritisType" name="PatientArthritisType" required>
-							<option>Unicompartmental</option>
-							<option>Bicompartmental</option>
-							<option>Patellofermoral</option>
-						</select>
-					</div>
+					<!-- There has to be a better way to do this -->
+					@if (Model.ArthritisType == "Unicompartmental") {
+						<div class="controls">
+							<select id="PatientArthritisType1" name="PatientArthritisType" required>
+								<option selected>Unicompartmental</option>
+								<option>Bicompartmental</option>
+								<option>Patellofermoral</option>
+							</select>
+						</div>
+					}
+					@if (Model.ArthritisType == "Bicompartmental") {
+						<div class="controls">
+							<select id="PatientArthritisType2" name="PatientArthritisType" required>
+								<option>Unicompartmental</option>
+								<option selected>Bicompartmental</option>
+								<option>Patellofermoral</option>
+							</select>
+						</div>
+					}
+					@if (Model.ArthritisType == "Patellofemoral") {
+						<div class="controls">
+							<select id="PatientArthritisType3" name="PatientArthritisType" required>
+								<option>Unicompartmental</option>
+								<option>Bicompartmental</option>
+								<option selected>Patellofermoral</option>
+							</select>
+						</div>
+					}
+					@if (Model.ArthritisType != "Patellofemoral" && Model.ArthritisType != "Bicompartmental" && Model.ArthritisType != "Unicompartmental") {
+						<div class="controls">
+							<select id="PatientArthritisType4" name="PatientArthritisType" required>
+								<option>Unicompartmental</option>
+								<option>Bicompartmental</option>
+								<option selected>Patellofermoral</option>
+							</select>
+						</div>
+					}
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="PatientAffectedExtremity">
 						Affected Extremity 
 					</label>
-					<div class="controls">	
-						<select id="PatientAffectedExtremity" name="PatientAffectedExtremity" required>
-							<option>Left</option>
-							<option>Right</option>
-							<option>Both</option>
+					@if (Model.AffectedExtremity == "Left") {
+						<div class="controls">	
+							<select id="PatientAffectedExtremity1" name="PatientAffectedExtremity" required>
+								<option selected>Left</option>
+								<option>Right</option>
+								<option>Both</option>
 						</select>							
 					</div>
+					}
+					@if (Model.AffectedExtremity == "Right") {
+						<div class="controls">	
+							<select id="PatientAffectedExtremity2" name="PatientAffectedExtremity" required>
+								<option>Left</option>
+								<option selected>Right</option>
+								<option>Both</option>
+						</select>							
+					</div>
+					}
+					@if (Model.AffectedExtremity == "Both") {
+						<div class="controls">	
+							<select id="PatientAffectedExtremity3" name="PatientAffectedExtremity" required>
+								<option>Left</option>
+								<option>Right</option>
+								<option selected>Both</option>
+						</select>							
+					</div>
+					}
+					@if (Model.AffectedExtremity != "Left" && Model.AffectedExtremity != "Right" && Model.AffectedExtremity != "Both") {
+						<div class="controls">	
+							<select id="PatientAffectedExtremity4" name="PatientAffectedExtremity" required>
+								<option>Left</option>
+								<option>Right</option>
+								<option>Both</option>
+						</select>							
+					</div>
+					}
 				</div>
 					<div class="control-group">
 					<label class="control-label" for="PatientDeformity">
 						Deformity 
 					</label>
-					<div class="controls">	
-							<select id="PatientDeformity" name="PatientDeformity" required>
-								<option>Valgus</option>
-								<option>Varus</option>
-							</select>				
-					</div>
+					@if (Model.Deformity == "Valgus") {
+						<div class="controls">	
+								<select id="PatientDeformity1" name="PatientDeformity" required>
+									<option selected>Valgus</option>
+									<option>Varus</option>
+								</select>				
+						</div>
+					}
+					@if (Model.Deformity == "Varus") {
+						<div class="controls">	
+								<select id="PatientDeformity2" name="PatientDeformity" required>
+									<option>Valgus</option>
+									<option selected>Varus</option>
+								</select>				
+						</div>
+					}
+					@if (Model.Deformity != "Varus" && Model.Deformity != "Valgus") {
+						<div class="controls">	
+								<select id="PatientDeformity3" name="PatientDeformity" required>
+									<option>Valgus</option>
+									<option>Varus</option>
+								</select>				
+						</div>
+					}
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="PatientID"></label>

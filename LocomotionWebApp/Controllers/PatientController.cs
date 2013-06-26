@@ -474,7 +474,10 @@ namespace LocomotionWebApp.Controllers
 		}
 
 		[Authorize]
-		public ActionResult CreateBlank(string PatientFirstName, string PatientLastName)
+		public ActionResult CreateBlank(string PatientFirstName, string PatientLastName, 
+			int PatientAge, DateTime PatientBirthday, string PatientGender, double PatientHeight,
+			double PatientWeight, string PatientArthritisType, string PatientAffectedExtremity,
+			string PatientDeformity, string PatientPhoneNumber)
 		{
 			var nvm = new PatientListViewModel();
 
@@ -510,17 +513,17 @@ namespace LocomotionWebApp.Controllers
 				patient.Therapist = UserDataEngine.getInstance().GetCurrentUser(c, HttpContext);
 				patient.LastUpdate = DateTime.Now;
 				patient.Start = DateTime.Now;
-				patient.Birthday = new DateTime(1900, 01, 01);
-				patient.Age = 0;
-				patient.Gender = "Not entered";
-				patient.Height = 0;
-				patient.Weight = 0;
-				patient.ArthritisType = "Not entered";
-				patient.AffectedExtremity = "Not entered";
-				patient.Deformity = "Not entered";
+				patient.Birthday = PatientBirthday;
+				patient.Age = PatientAge;
+				patient.Gender = PatientGender;
+				patient.Height = PatientHeight;
+				patient.Weight = PatientWeight;
+				patient.ArthritisType = PatientArthritisType;
+				patient.AffectedExtremity = PatientAffectedExtremity;
+				patient.Deformity = PatientDeformity;
 				patient.ShankLength = 0;
 				patient.ThighLength = 0;
-				patient.PhoneNumber = "Not entered";
+				patient.PhoneNumber = PatientPhoneNumber;
 				patient.Email = "Not entered";
 				patient.ContactName = "Not entered";
 				patient.ContactRelation = "Not entered";

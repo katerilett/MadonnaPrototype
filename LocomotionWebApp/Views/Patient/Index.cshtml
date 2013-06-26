@@ -140,7 +140,7 @@
 
 				<div class="control-group">
 					<label class="control-label" for="BlankPatientFirstName">
-						Patient's First Name
+						First Name
 						<a href="#" rel="tooltip" title="Tootlsef"><i class="icon-question-sign"></i></a>
 					</label>
 					<div class="controls">
@@ -148,10 +148,9 @@
 							placeholder="New patient first name" required />
 					</div>
 				</div>
-
 				<div class="control-group">
 					<label class="control-label" for="BlankPatientLastName">
-						Patient's Last Name
+						Last Name
 						<a href="#" rel="tooltip" title="Tootlsef"><i class="icon-question-sign"></i></a>
 					</label>
 					<div class="controls">
@@ -159,7 +158,101 @@
 							placeholder="New patient last name" required />
 					</div>
 				</div>
-
+				<div class="control-group">
+					<label class="control-label" for="BlankPatientAge">
+						Age
+					</label>
+					<div class="controls">
+						<input type="number" id="BlankPatientAge" name="PatientAge" required />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="BlankPatientBirthday">
+						Birthday
+					</label>
+					<div class="controls">
+						<input type="date" id="BlankPatientBirthday" name="PatientBirthday" required />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="BlankPatientGender">
+						Sex
+					</label>
+					<div class="controls">
+						<select id="BlankPatientGender" name="PatientGender" required>
+							<option>Female</option>
+							<option>Male</option>
+						</select>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="BlankPatientHeight">
+						Height (inches)
+					</label>
+					<div class="controls">
+						<input type="number" step="any" id="BlankPatientHeight" name="PatientHeight" required />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="BlankPatientWeight">
+						Weight (lbs)
+					</label>
+					<div class="controls">
+						<input type="number" step="any" id="BlankPatientWeight" name="PatientWeight" required />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="BlankPatientArthritisType">
+						Arthritis Type
+					</label>
+					<div class="controls">
+						<select id="BlankPatientArthritisType" name="PatientArthritisType" required>
+							<option>Unicompartmental</option>
+							<option>Bicompartmental</option>
+							<option>Patellofemoral</option>
+						</select>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="BlankPatientAffectedExtremity">
+						Affected Extremity
+					</label>
+					<div class="controls">
+						<select id="BlankPatientAffectedExtremity" name="PatientAffectedExtremity" required>
+							<option>Left</option>
+							<option>Right</option>
+							<option>Both</option>
+						</select>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="BlankPatientDeformity">
+						Deformity
+					</label>
+					<div class="controls">
+						<select id="BlankPatientDeformity" name="PatientDeformity" required>
+							<option>Valgus</option>
+							<option>Varus</option>
+						</select>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="BlankPatientPhoneNumber">
+						Phone Number
+					</label>
+					<div class="controls">
+						<input type="tel" id="BlankPatientPhoneNumber" name="PatientPhoneNumber" required />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="BlankPatientEmail">
+						Email
+					</label>
+					<div class="controls">
+						<input type="text" id="BlankPatientEmail" name="PatientEmail" 
+							value="Not entered" required />
+					</div>
+				</div>
 			</div>
 
 			@if(ViewBag.UploadAlert != null)
