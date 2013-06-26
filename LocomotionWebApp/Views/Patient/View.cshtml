@@ -161,11 +161,12 @@
 
 @section Header
 {
-@*	<div class="btn-group sidebar-group">
-	
-	<a href="@Url.Action("Report", "Patient", new { id=Model.ID })"
-					class="btn">Report</a>
+@*	<div class="btn-group">
+		<a href="#" class="btn btn-inverse disabled" id="show-profile-btn" >Profile</a>
+		<a href="@Url.Action("Report", "Patient", new { id=Model.ID })"
+			class="btn btn-inverse">Report</a>
 	</div>*@
+						
 	
 @*	<i class="icon-search icon-white" style="margin-left: 12px; margin-top: 5px;"></i>
 	<div class="btn-group">
@@ -286,7 +287,7 @@
 						Height (inches)
 					</label>
 					<div class="controls">	
-						<input type="text" id="PatientHeight" name="PatientHeight" 		
+						<input type="number" step="any" id="PatientHeight" name="PatientHeight" 		
 							value="@Html.DisplayFor(m => Model.Height, new { required ="true", @class = "Height" })" required />							
 					</div>
 				</div>
@@ -295,7 +296,7 @@
 						Weight (lbs)
 					</label>
 					<div class="controls">	
-						<input type="text" id="PatientWeight" name="PatientWeight" 		
+						<input type="number" step="any" id="PatientWeight" name="PatientWeight" 		
 							value="@Html.DisplayFor(m => Model.Weight, new { required ="true", @class = "Weight" })" required />							
 					</div>
 				</div>
@@ -630,16 +631,20 @@
 } *@
 
 <div class="container">
-	<div class="row">
-		<div class="span12" @*style="padding-top: 10px;"*@>
-			<h2>@Html.DisplayFor(m => Model.LastName, new { placeholder = @Model.LastName}), @Html.DisplayFor(m => Model.FirstName, new { placeholder = @Model.FirstName}) </h2>
-			<h2>	
-				<div class="btn-group">
-					<a href="#" class="btn btn-primary disabled" id="show-profile-btn" >Profile</a>
+	<div class="row-fluid">
+		<div class="span12">
+		<div class="well">
+			<div class="span6" style="font-size: 31.5px;">
+				<strong>@Html.DisplayFor(m => Model.LastName, new { placeholder = @Model.LastName}), @Html.DisplayFor(m => Model.FirstName, new { placeholder = @Model.FirstName})</strong>													
+			</div>			
+			<div class="span1 offset4">
+				<div class="btn-group"> 
+					<a href="#" class="btn btn-primary disabled" id="show-profile-btn" ><strong>Profile</strong></a>
 					<a href="@Url.Action("Report", "Patient", new { id=Model.ID })"
-					class="btn btn-primary">Report</a>
+						class="btn btn-primary"><strong>Report</strong></a>
 				</div>
-			</h2>					
+			</div>
+		</div>
 		</div>
 	</div>
 
@@ -691,9 +696,7 @@
 	</table>
 </div>
 
-<div class="span1"></div>
-
-<div class="span5" style="padding-top: 10px; padding-bottom: 5px;">
+<div class="span6 offset1" style="padding-top: 10px; padding-bottom: 5px;">
 	<h4>Medical Profile 
 		<a class="btn btn-primary btn-small"
 				href="#editMedicalModal" data-toggle="modal" style="float:right;">
@@ -703,15 +706,15 @@
 		<tbody>
 			<tr>
 				<td><strong>Arthritis Type:</strong></td>
-				<td>@Html.DisplayFor(m => Model.ArthritisType, new { placeholder = @Model.ArthritisType})</td>
+				<td><strong>@Html.DisplayFor(m => Model.ArthritisType, new { placeholder = @Model.ArthritisType})</strong></td>
 			</tr>
 			<tr>
 				<td><strong>Affected Extremity:</strong></td>
-				<td>@Html.DisplayFor(m => Model.AffectedExtremity, new { placeholder = @Model.AffectedExtremity})</td>
+				<td><strong>@Html.DisplayFor(m => Model.AffectedExtremity, new { placeholder = @Model.AffectedExtremity})</strong></td>
 			</tr>
 			<tr>
 				<td><strong>Deformity:</strong></td>
-				<td>@Html.DisplayFor(m => Model.Deformity, new { placeholder = @Model.Deformity})</td>
+				<td><strong>@Html.DisplayFor(m => Model.Deformity, new { placeholder = @Model.Deformity})</strong></td>
 			</tr>
 		</tbody>
 	</table>
@@ -727,20 +730,20 @@
 	<table class="table table-striped table-bordered table-condensed" border="1">
 		<tbody>
 			<tr>
-				<td>Contact Name:</td>
-				<td>@Html.DisplayFor(m => Model.ContactName, new { placeholder = @Model.ContactName})</td>
+				<td><strong>Contact Name:</strong></td>
+				<td><strong>@Html.DisplayFor(m => Model.ContactName, new { placeholder = @Model.ContactName})</strong></td>
 			</tr>
 			<tr>
-				<td>Relationship:</td>
-				<td>@Html.DisplayFor(m => Model.ContactRelation, new { placeholder = @Model.ContactRelation})</td>
+				<td><strong>Relationship:</strong></td>
+				<td><strong>@Html.DisplayFor(m => Model.ContactRelation, new { placeholder = @Model.ContactRelation})</strong></td>
 			</tr>
 			<tr>
-				<td>Phone Number:</td>
-				<td>@Html.DisplayFor(m => Model.ContactPhoneNumber, new { placeholder = @Model.ContactPhoneNumber})</td>
+				<td><strong>Phone Number:</strong></td>
+				<td><strong>@Html.DisplayFor(m => Model.ContactPhoneNumber, new { placeholder = @Model.ContactPhoneNumber})</strong></td>
 			</tr>
 			<tr>
-				<td>Email:</td>
-				<td>@Html.DisplayFor(m => Model.ContactEmail, new { placeholder = @Model.ContactEmail})</td>
+				<td><strong>Email:</strong></td>
+				<td><strong>@Html.DisplayFor(m => Model.ContactEmail, new { placeholder = @Model.ContactEmail})</strong></td>
 			</tr>
 		</tbody>
 	</table>

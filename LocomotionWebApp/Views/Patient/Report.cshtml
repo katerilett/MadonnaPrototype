@@ -8,11 +8,11 @@
 
 @section Header
 {
-	<div class="btn-group sidebar-group">
-	
-	@*<a href="@Url.Action("View", "Patient", new { id=Model.ID })"
-					class="btn">Profile</a>*@
-	</div> 
+@*	<div class="btn-group">
+		<a href="@Url.Action("View", "Patient", new { id=Model.ID })"
+			class="btn btn-warning">Profile</a>
+		<a href="#" class="btn btn-warning disabled" id="show-report-btn">Report</a>
+	</div>*@
 }
 
 @section Scripts
@@ -162,57 +162,63 @@
 }
 
 <div class="container">
-	<div class="row">
+	<div class="row-fluid">
 		<div class="span12">
-			<h2>@Html.DisplayFor(m => Model.LastName, new { placeholder = @Model.LastName}), @Html.DisplayFor(m => Model.FirstName, new { placeholder = @Model.FirstName})
-				<a class="btn btn-primary btn-small"
-				href="#addReport" data-toggle="modal" style="margin-top: 20px; float:right;">
-				<i class="icon-plus-sign"></i>
-				Upload File
-				<i class="icon-file"></i>
-				</a> 
-			</h2>
-			<h2>
-			<div class="btn-group">
-					<a href="@Url.Action("View", "Patient", new { id=Model.ID })"
-						class="btn btn-primary">Profile</a>
-					<a href="#" class="btn btn-primary disabled" id="show-report-btn">Report</a>
+		<div class="well">
+			<div class="span6" style="font-size: 31.5px;">
+				<strong>@Html.DisplayFor(m => Model.LastName, new { placeholder = @Model.LastName}), @Html.DisplayFor(m => Model.FirstName, new { placeholder = @Model.FirstName})</strong>
 			</div>
-			</h2>
+			<div class="span2 offset2">	
+				<a class="btn btn-primary"
+					href="#addReport" data-toggle="modal">
+					<i class="icon-plus-sign"></i>
+					<strong>Upload File</strong>
+					<i class="icon-file"></i>
+					</a> 
+			</div>
+			<div class="span1">
+				<div class="btn-group">
+					<a href="@Url.Action("View", "Patient", new { id=Model.ID })"
+						class="btn btn-primary"><strong>Profile</strong></a>
+					<a href="#" class="btn btn-primary disabled" id="show-report-btn"><strong>Report</strong></a>
+				</div>
+			</div>
+		</div>
 		</div>
 	</div>
+
 	<div class="row">
 	<div class="span4" style="padding-bottom: 5px;">
 		<h4>Gait Data</h4> 
 		<table class="table table-striped table-bordered table-condensed" border="1">
 			<tbody>
 				<tr>
-					<td>Average Gait Speed (meters/min)</td>
-					<td>@Html.DisplayFor(m => Model.Report.AverageGaitSpeed, new { placeholder = @Model.Report.AverageGaitSpeed})</td>
+					<td><strong>Average Gait Speed (meters/min)</strong></td>
+					<td><strong>@Html.DisplayFor(m => Model.Report.AverageGaitSpeed, new { placeholder = @Model.Report.AverageGaitSpeed})</strong></td>
 				</tr>
 				<tr>
-					<td>Left Stride Length (cm)</td>
-					<td>@Html.DisplayFor(m => Model.Report.LeftStrideLength, new { placeholder = @Model.Report.LeftStrideLength})</td>
+					<td><strong>Left Stride Length (cm)</strong></td>
+					<td><strong>@Html.DisplayFor(m => Model.Report.LeftStrideLength, new { placeholder = @Model.Report.LeftStrideLength})</strong></td>
 				</tr>
 				<tr>
-					<td>Right Stride Length (cm)</td>
-					<td>@Html.DisplayFor(m => Model.Report.RightStrideLength, new { placeholder = @Model.Report.RightStrideLength})</td>
+					<td><strong>Right Stride Length (cm)</strong></td>
+					<td><strong>@Html.DisplayFor(m => Model.Report.RightStrideLength, new { placeholder = @Model.Report.RightStrideLength})</strong></td>
 				</tr>
 				<tr>
-					<td>Stance (% of gait cycle)</td>
-					<td>@Html.DisplayFor(m => Model.Report.StancePercent, new { placeholder = @Model.Report.StancePercent })</td>
+					<td><strong>Stance (% of gait cycle)</strong></td>
+					<td><strong>@Html.DisplayFor(m => Model.Report.StancePercent, new { placeholder = @Model.Report.StancePercent })</strong></td>
 				</tr>
 				<tr>
-					<td>Swing (% of gait cycle)</td>
-					<td>@Html.DisplayFor(m => Model.Report.SwingPercent, new { placeholder = @Model.Report.SwingPercent})</td>
+					<td><strong>Swing (% of gait cycle)</strong></td>
+					<td><strong>@Html.DisplayFor(m => Model.Report.SwingPercent, new { placeholder = @Model.Report.SwingPercent})</strong></td>
 				</tr>
 				<tr>
-					<td>Single Limb Stance (% of gait cycle)</td>
-					<td>@Html.DisplayFor(m => Model.Report.SingleLimbStancePercent, new { placeholder = @Model.Report.SingleLimbStancePercent})</td>
+					<td><strong>Single Limb Stance (% of gait cycle)</strong></td>
+					<td><strong>@Html.DisplayFor(m => Model.Report.SingleLimbStancePercent, new { placeholder = @Model.Report.SingleLimbStancePercent})</strong></td>
 				</tr>
 				<tr>
-					<td>Candence (steps/min)</td>
-					<td>@Html.DisplayFor(m => Model.Report.Candence, new { placeholder = @Model.Report.Candence})</td>
+					<td><strong>Candence (steps/min)</strong></td>
+					<td><strong>@Html.DisplayFor(m => Model.Report.Candence, new { placeholder = @Model.Report.Candence})</strong></td>
 				</tr>
 			</tbody>
 		</table>
@@ -228,12 +234,12 @@
 		<table class="table table-striped table-bordered table-condensed" border="1">
 			<tbody>
 				<tr>
-					<td>Shank length (inches)</td>
-					<td>@Html.DisplayFor(m => Model.ShankLength, new { placeholder = @Model.ShankLength})</td>
+					<td><strong>Shank length (inches)</strong></td>
+					<td><strong>@Html.DisplayFor(m => Model.ShankLength, new { placeholder = @Model.ShankLength})</strong></td>
 				</tr>
 				<tr>
-					<td>Thigh length (inches)</td>
-					<td>@Html.DisplayFor(m => Model.ThighLength, new { placeholder = @Model.ThighLength})</td>
+					<td><strong>Thigh length (inches)</strong></td>
+					<td><strong>@Html.DisplayFor(m => Model.ThighLength, new { placeholder = @Model.ThighLength})</strong></td>
 				</tr>
 			</tbody>
 		</table>

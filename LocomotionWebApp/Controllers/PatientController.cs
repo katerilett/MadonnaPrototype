@@ -477,7 +477,7 @@ namespace LocomotionWebApp.Controllers
 		public ActionResult CreateBlank(string PatientFirstName, string PatientLastName, 
 			int PatientAge, DateTime PatientBirthday, string PatientGender, double PatientHeight,
 			double PatientWeight, string PatientArthritisType, string PatientAffectedExtremity,
-			string PatientDeformity, string PatientPhoneNumber)
+			string PatientDeformity, string PatientPhoneNumber, string PatientEmail)
 		{
 			var nvm = new PatientListViewModel();
 
@@ -524,7 +524,7 @@ namespace LocomotionWebApp.Controllers
 				patient.ShankLength = 0;
 				patient.ThighLength = 0;
 				patient.PhoneNumber = PatientPhoneNumber;
-				patient.Email = "Not entered";
+				patient.Email = PatientEmail;
 				patient.ContactName = "Not entered";
 				patient.ContactRelation = "Not entered";
 				patient.ContactPhoneNumber = "Not entered";
