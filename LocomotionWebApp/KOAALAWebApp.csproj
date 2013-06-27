@@ -133,14 +133,12 @@
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
-    <Compile Include="Controllers\ResultController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account\AccessModel.cs" />
     <Compile Include="Models\Account\LoginModel.cs" />
     <Compile Include="Models\Account\NameModel.cs" />
-    <Compile Include="Models\ViewModels\ResultViewModel.cs" />
     <Compile Include="Models\ViewModels\ReportViewModel.cs" />
     <Compile Include="Models\ViewModels\PatientListViewModel.cs" />
     <Compile Include="Models\ViewModels\HomeViewModel.cs" />
@@ -200,11 +198,6 @@
     <Content Include="Content\images\sort_both.png" />
     <Content Include="Content\images\sort_desc.png" />
     <Content Include="Content\images\sort_desc_disabled.png" />
-    <Content Include="Content\img\toplogo.png" />
-    <Content Include="Content\img\Union-Pacific-Railroad.jpg" />
-    <Content Include="Content\img\UP-2436-VBA-3-11-10.jpg" />
-    <Content Include="Content\img\up-248-kc-ks-1-14-90.jpg" />
-    <Content Include="Content\img\UP_logo.ico" />
     <Content Include="Content\js\adapters\mootools-adapter.js" />
     <Content Include="Content\js\adapters\mootools-adapter.src.js" />
     <Content Include="Content\js\adapters\prototype-adapter.js" />
@@ -301,7 +294,6 @@
     <None Include="Properties\PublishProfiles\locomotion - Web Deploy.pubxml" />
     <Content Include="Views\Account\Access.cshtml" />
     <Content Include="Views\Patient\PatientHistory.cshtml" />
-    <Content Include="Views\Result\Index.cshtml" />
     <Content Include="Views\Patient\Report.cshtml" />
   </ItemGroup>
   <ItemGroup>
