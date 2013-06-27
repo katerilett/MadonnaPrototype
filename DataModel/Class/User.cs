@@ -31,6 +31,5 @@ namespace DataModel.Class
 
 		public User() { }
 
-		//public UserAccessGroup AccessGroup { get; set; }
 	}
 }
