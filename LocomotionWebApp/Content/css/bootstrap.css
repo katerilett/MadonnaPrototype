@@ -3714,7 +3714,7 @@ input[type="submit"].btn.btn-mini {
 }
 .navbar .btn-navbar:active,
 .navbar .btn-navbar.active {
-  background-color: #640000 \9;
+  background-color: #640000;
 }
 .navbar .btn-navbar .icon-bar {
   display: block;
@@ -4457,7 +4457,7 @@ a.thumbnail:focus {
 }
 .hero-unit {
   /*padding: 60px;*/
-  margin-bottom: 30px;
+  /*margin-bottom: 30px;*/
   font-size: 18px;
   font-weight: 200;
   line-height: 30px;
@@ -4466,9 +4466,9 @@ a.thumbnail:focus {
   min-height: 630px;
   /*background-image: url(C:\Users\Kate\Documents\MadonnaPrototype\MadonnaPrototype\LocomotionWebApp\Content\img\knee_xray2.jpg);*/
   background-repeat: no-repeat;
-  /*-webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;*/
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
 }
 .hero-unit h1 {
   margin-bottom: 0;
