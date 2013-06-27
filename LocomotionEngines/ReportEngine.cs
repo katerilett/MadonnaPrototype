@@ -45,16 +45,71 @@ namespace LocomotionEngines
 			ExcelAnalyzer doc = new ExcelAnalyzer();
 
 			doc.excel_init(path);
-			string A1 = doc.excel_getValue("A1");
-			if (A1 != "")
+			string A2 = doc.excel_getValue("A2");
+			if (A2 != "")
 			{
-				report.AverageGaitSpeed = Convert.ToDouble(A1);
+				report.AverageGaitSpeed = Convert.ToDouble(A2);
 			}
 			else
 			{
 				report.AverageGaitSpeed = 0;
 			}
+			string B2 = doc.excel_getValue("B2");
+			if (B2 != "")
+			{
+				report.LeftStrideLength = Convert.ToDouble(B2);
+			}
+			else
+			{
+				report.LeftStrideLength = 0;
+			}
+			string C2 = doc.excel_getValue("C2");
+			if (C2 != "")
+			{
+				report.RightStrideLength = Convert.ToDouble(C2);
+			}
+			else
+			{
+				report.RightStrideLength = 0;
+			}
+			string D2 = doc.excel_getValue("D2");
+			if (D2 != "")
+			{
+				report.StancePercent = Convert.ToDouble(D2);
+			}
+			else
+			{
+				report.StancePercent = 0;
+			}
+			string E2 = doc.excel_getValue("E2");
+			if (E2 != "")
+			{
+				report.SwingPercent = Convert.ToDouble(E2);
+			}
+			else
+			{
+				report.SwingPercent = 0;
+			}
+			string F2 = doc.excel_getValue("F2");
+			if (F2 != "")
+			{
+				report.SingleLimbStancePercent = Convert.ToDouble(F2);
+			}
+			else
+			{
+				report.SingleLimbStancePercent = 0;
+			}
+			string G2 = doc.excel_getValue("G2");
+			if (G2 != "")
+			{
+				report.Candence = Convert.ToDouble(G2);
+			}
+			else
+			{
+				report.Candence = 0;
+			}
 
+			doc.excel_close();
 			return report;
 		}
 	}
