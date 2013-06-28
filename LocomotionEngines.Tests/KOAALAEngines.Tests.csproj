@@ -55,17 +55,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TestPatients\NewSampleInputs_orig.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="TestPatients\NewSampleInputs.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="TestPatients\new_example4.xml">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">
       <Project>{f04421a5-5402-448a-86f8-b394a8de1093}</Project>
       <Name>DataModel</Name>
@@ -74,6 +63,9 @@
       <Project>{e2674710-0981-46b1-b176-39e96be23ff0}</Project>
       <Name>KOAALAEngines</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TestPatients\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

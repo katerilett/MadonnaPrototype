@@ -56,7 +56,7 @@ namespace DataModel.Class
 
 		public string ContactEmail { get; set; }
 
-
+		//Constructor (probably unncessary)
 		public Patient() { }
 
 		/// <summary>
@@ -67,6 +67,7 @@ namespace DataModel.Class
 		/// <summary>
 		/// Clones this patient
 		/// Does NOT copy the ID
+		/// This method would be used if we need to do any temporary editing.
 		/// </summary>
 		public object Clone()
 		{

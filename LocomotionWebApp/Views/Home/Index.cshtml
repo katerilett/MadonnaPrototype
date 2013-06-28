@@ -8,33 +8,14 @@
 }
 
 @section Scripts
-{
-	
+{	
 	<script type="text/javascript">
 		$(function() {
-			@* if($(".network-data-table thead").size() > 0)
-			$(".network-data-table").dataTable({
-				"sDom": "<'row'r>t<'row'<'span6'i><'span6'p>>",
-				"aaSorting": [[ 2, "desc" ]],
-				"iDisplayLength": 5,
-				"aoColumns": [
-					null,
-					null,
-					null,
-					null,
-					{"asSorting": [] }
-					]
-			});
-			else
-				$(".network-data-table").empty().html('You have not edited any networks. Go to '
-					+ '<a href="@Url.Action("Index", "Network")">Networks</a> to upload, create,'
-					+ ' or edit networks.'); *@
 			$('#myCarousel').carousel({
 				interval: 7200
 			});
 		});
-	</script>
-		
+	</script>		
 }
 
 @section Header
@@ -77,8 +58,10 @@
 </div>
 </div>
 
-<div @*class="container"*@ style="background-color: black">
-		
+<div style="background-color: black">
+	
+	<!-- Original Content for Home Page -->	
+
 @*	<div class="row">
 		<div class="span12" style="padding-top: 20px;">				
 
@@ -107,8 +90,7 @@
 		</div>
 	</div>*@ 
 
-	<div @*class="row"*@ style="font-size: 9px; color: #999; text-align: center;">
-		@*<div class="span12"></div>*@
+	<div style="font-size: 9px; color: #999; text-align: center;">
 			<br />
 			The KOAALAClinic is a prototype; Madonna Rehabilitation Hospital takes no liability for use of this software
 			| <a href="email:katerilett@gmail.com">Contact Us</a>

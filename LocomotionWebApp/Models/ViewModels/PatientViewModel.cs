@@ -11,8 +11,6 @@ namespace LocomotionWebApp.Models.ViewModels
 	{
 		public long ID { get; set; }
 		
-		//public int Revision { get; set; }
-		
 		public String FirstName { get; set; }
 
 		public String LastName { get; set; }

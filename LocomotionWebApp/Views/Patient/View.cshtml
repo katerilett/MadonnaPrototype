@@ -37,41 +37,6 @@
 
 		$(function() {
 
-
-			$("#report-tab-btn").click(function () {
-				//loadLinkNetwork();
-			});
-
-			//$("#orders-tab-btn").click(openReport);
-
-			//$("#links-tab-btn").click(function () {
-			//loadLinkNetwork();
-			//});
-
-			$("#profile-tab-btn").click(function () {
-				//loadOrderNetwork();
-			});			
-
-			$(".netview-modal-btn").click(function (e) {
-				var target = $(e.target).attr("data-name");
-				if($(e.target).hasClass("set-links") && currentMode != LINKS)
-					//loadLinkNetwork();
-				if($(e.target).hasClass("set-orders") && currentMode != ORDERS)
-					//loadOrderNetwork();
-				activateForm(target);
-				return false;
-			});
-
-			$("#profile-tab-btn").click(function () {
-				viewingReport = false;
-			});
-
-			$("#report-tab-btn").click(function () {
-				viewingReport = true;
-			});
-			
-			resizePullover();
-			openTab();
 		});
 
 		function activateForm(target) {
@@ -118,21 +83,21 @@
 			}
 		}
 
-		function resizePullover() {
-			var headerHeight = $("#header").outerHeight();
-			var winHeight = $(window).height() - headerHeight;
-			$("#report-pullover").css("top", headerHeight);
-			$("#report-pullover").css("height", winHeight);
-		}
-		function showPullover() {
-			$("#report-pullover").slideDown();
-		}
-		function hidePullover() {
-			$("#report-pullover").slideUp();
-			$("#to-report-btn").removeClass("active");
+		//function resizePullover() {
+		//	var headerHeight = $("#header").outerHeight();
+		//	var winHeight = $(window).height() - headerHeight;
+		//	$("#report-pullover").css("top", headerHeight);
+		//	$("#report-pullover").css("height", winHeight);
+		//}
+		//function showPullover() {
+		//	$("#report-pullover").slideDown();
+		//}
+		//function hidePullover() {
+		//	$("#report-pullover").slideUp();
+		//	$("#to-report-btn").removeClass("active");
 		
-		}
-		$(window).resize(resizePullover);
+		//}
+		//$(window).resize(resizePullover);
 
 
 	</script>
@@ -140,50 +105,17 @@
 }
 
 
-@*@section NextToLogo
+@section NextToLogo
 {
-	<p class="nav navbar-text" style="color: #000;">
-		<em>@Html.Raw(Model.Name)</em>
-		@if(Model.Revision != 0)
-		{
-			<td><a href="#" onclick="popupModalUrl(
-				'@Html.Raw(Model.Name) History',
-				'@Url.Action("NetworkHistory", "Network", new { id = Model.ID })' )" class="">
-				(@Html.DisplayFor(net => Model.Revision) Previous Versions)
-			</a></td>
-		}
-		else
-		{ 
-			<td> @Html.DisplayFor(net => Model.Revision) Previous Versions </td>
-		}
-	</p>
-}*@ 
+	<!--Could be used to put Patient Name in top bar -->
+@*	<p class="nav navbar-text" style="color: #000;">
+		<em>@Html.Raw(Model.LastName)</em>
+	</p>*@
+} 
 
 @section Header
 {
-@*	<div class="btn-group">
-		<a href="#" class="btn btn-inverse disabled" id="show-profile-btn" >Profile</a>
-		<a href="@Url.Action("Report", "Patient", new { id=Model.ID })"
-			class="btn btn-inverse">Report</a>
-	</div>*@
-						
-	
-@*	<i class="icon-search icon-white" style="margin-left: 12px; margin-top: 5px;"></i>
-	<div class="btn-group">
-		<a href="#" class="btn" id="show-profile-btn" >Profile</a>
-		<a href="@Url.Action("Report", "Patient", new { id=Model.ID })" 
-					class="btn" aria-disabled="true">Report</a>
-	</div>*@
-
-	@*<div class="pull-right">
-		<a href="@Url.Action("SaveNetwork", "Network", new { ID = Model.ID })"
-			class="btn btn-primary">Save</a>
-		<a href="#" class="btn netview-modal-btn"
-			data-name="saveModal">Save As...</a>
-	</div>*@
 }
-
-
 
 @using(Html.BeginForm("SavePatientAs", "Patient", FormMethod.Post, new { enctype = "multipart/form-data" }))
 { 
@@ -568,67 +500,6 @@
 		</form>
 	</div>
 }
-
-@*
-@using(Html.BeginForm("editPatient", "Patient", FormMethod.Post, new { enctype = "multipart/form-data" , id = "editPatient"}))
-{ 
-	{
-<!-- Edit a Patient Modal -->
-<div id="editPatientModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	<h3 id="editPatientLabel">Edit Patient Information</h3>
-  </div>
-  <div class="modal-body">
-	  
-	  <div class="control-group">
-			<label class="control-label" for="PatientAge">Age</label>
-				<div class="controls">					
-						@Html.TextBoxFor(m => Model.Age, new { required ="true", @class = "Age" })
-					<span class="text-error">@Html.ValidationMessageFor(m => Model.Age)</span>	
-				</div>
-		</div>
-	  
-		<div class="control-group">
-			<label class="control-label" for="PatientGender">Gender</label>
-				<div class="controls">					
-						@Html.TextBoxFor(m => Model.Gender, new { required ="true", @class = "Gender" })
-					<span class="text-error">@Html.ValidationMessageFor(m => Model.Gender)</span>	
-				</div>
-		</div>
-				
-		<div class="control-group">
-			<label class="control-label" for="PatientHeight">Height (inches)</label>
-				<div class="controls">					
-						@Html.TextBoxFor(m => Model.Height, new { required ="true", @class = "Height" })
-					<span class="text-error">@Html.ValidationMessageFor(m => Model.Height)</span>	
-				</div>
-		</div>
-			
-		<div class="control-group">
-			<label class="control-label"for="PatientWeight">Weight (lbs)</label>
-				<div class="controls">					
-						@Html.TextBoxFor(m => Model.Weight, new { required ="true", @class = "Weight" })
-					<span class="text-error">@Html.ValidationMessageFor(m => Model.Weight)</span>	
-				</div>
-		</div>
-				
-		<div class="control-group">
-				<label class="control-label" for="PatientID"></label>
-				<div class="controls">
-						@Html.HiddenFor(m => Model.ID, new { placeholder = @Model.ID})	
-				</div>
-		</div>
-  </div>
-
-  <div class="modal-footer">
-	<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-	<button type="submit" class="btn btn-primary">Save Changes</button>
-  </div>
-</div>
-	
-}
-} *@
 
 <div class="container">
 	<div class="row-fluid">

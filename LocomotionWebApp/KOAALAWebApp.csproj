@@ -149,12 +149,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Content Include="App_Data\MexNewSampleInputs.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Data\NewSampleInputs.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\jquery.dataTables.css" />
@@ -293,13 +287,14 @@
     <None Include="Properties\PublishProfiles\locomotion - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\locomotion - Web Deploy.pubxml" />
     <Content Include="Views\Account\Access.cshtml" />
-    <Content Include="Views\Patient\PatientHistory.cshtml" />
     <Content Include="Views\Patient\Report.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

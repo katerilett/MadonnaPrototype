@@ -18,8 +18,6 @@ namespace LocomotionEngines
 
 		public DbSet<Patient> Patients { get; set; }
 
-		//public DbSet<Report> Optimizations { get; set; }
-
 		public DataModelContext() : base()
 		{ }
 

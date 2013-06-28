@@ -29,6 +29,7 @@ namespace DataModel.Class
 
 		public DateTime LastLogin { get; set; }
 
+		//Constructor (probably unnessary-added while trying to fix weird bug)
 		public User() { }
 
 	}

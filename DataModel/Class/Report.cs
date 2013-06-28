@@ -14,6 +14,7 @@ namespace DataModel.Class
 
 		public bool OutOfDate { get; set; }
 
+		//Gait Characteristis
 		public double AverageGaitSpeed { get; set; }
 		public double LeftStrideLength { get; set; }
 		public double RightStrideLength { get; set; }
@@ -22,6 +23,7 @@ namespace DataModel.Class
 		public double SingleLimbStancePercent { get; set; }
 		public double Candence { get; set; }
 
+		//Constructor
 		public Report() 
 		{
 			AverageGaitSpeed = 0;
@@ -35,6 +37,7 @@ namespace DataModel.Class
 		
 		/// <summary>
 		/// Note: does not clone Patient reference.
+		/// Not used currently. 
 		/// </summary>
 		public object Clone()
 		{

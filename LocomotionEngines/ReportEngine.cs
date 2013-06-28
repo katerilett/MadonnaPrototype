@@ -39,11 +39,11 @@ namespace LocomotionEngines
 
 		public Report GenerateReport(Patient pat, string path)
 		{
-			//Report optimal = net.ReportResult;
-
 			Report report = new Report();
+			//Use ExcelAnalyzer object to get the values.
 			ExcelAnalyzer doc = new ExcelAnalyzer();
 
+			//Open Excel
 			doc.excel_init(path);
 			string A2 = doc.excel_getValue("A2");
 			if (A2 != "")
