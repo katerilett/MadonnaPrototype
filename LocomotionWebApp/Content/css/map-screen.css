@@ -63,7 +63,8 @@
 #sidebar-contents
 {
 	overflow-x: hidden;
-	display: none;}
+	display: none;
+}
 #sidebar-contents > div
 {
 	cursor: auto;

@@ -15,23 +15,33 @@ namespace DataModel.Class
 		public bool OutOfDate { get; set; }
 
 		//Gait Characteristis
+		public double LStrideNumber { get; set; }
+		public double RStrideNumber { get; set; }
 		public double AverageGaitSpeed { get; set; }
 		public double LeftStrideLength { get; set; }
 		public double RightStrideLength { get; set; }
-		public double StancePercent { get; set; }
-		public double SwingPercent { get; set; }
-		public double SingleLimbStancePercent { get; set; }
+		public double RStancePercent { get; set; }
+		public double RSwingPercent { get; set; }
+		public double RSingleLimbStancePercent { get; set; }
+		public double LStancePercent { get; set; }
+		public double LSwingPercent { get; set; }
+		public double LSingleLimbStancePercent { get; set; }
 		public double Candence { get; set; }
 
 		//Constructor
 		public Report() 
 		{
+			LStrideNumber = 0;
+			RStrideNumber = 0;
 			AverageGaitSpeed = 0;
 			LeftStrideLength = 0;
 			RightStrideLength = 0;
-			StancePercent = 0;
-			SwingPercent = 0;
-			SingleLimbStancePercent = 0;
+			RStancePercent = 0;
+			RSwingPercent = 0;
+			RSingleLimbStancePercent = 0;
+			LStancePercent = 0;
+			LSwingPercent = 0;
+			LSingleLimbStancePercent = 0;
 			Candence = 0;		
 		}
 		

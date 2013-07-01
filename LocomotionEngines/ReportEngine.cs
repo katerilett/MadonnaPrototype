@@ -25,12 +25,17 @@ namespace LocomotionEngines
 		{
 			Report report = new Report();
 
+			report.LStrideNumber = 0;
+			report.RStrideNumber = 0;
 			report.AverageGaitSpeed = 0;
 			report.LeftStrideLength = 0;
 			report.RightStrideLength = 0;
-			report.StancePercent = 0;
-			report.SwingPercent = 0;
-			report.SingleLimbStancePercent = 0;
+			report.RStancePercent = 0;
+			report.RSwingPercent = 0;
+			report.RSingleLimbStancePercent = 0;
+			report.LStancePercent = 0;
+			report.LSwingPercent = 0;
+			report.LSingleLimbStancePercent = 0;
 			report.Candence = 0;
 
 			return report;
@@ -43,73 +48,123 @@ namespace LocomotionEngines
 			//Use ExcelAnalyzer object to get the values.
 			ExcelAnalyzer doc = new ExcelAnalyzer();
 
-			//Open Excel
+			//Open Excel file
 			doc.excel_init(path);
-			string A2 = doc.excel_getValue("A2");
-			if (A2 != "")
+
+			#region ExcelPull
+			string LStrideNumber = doc.excel_getValue("B5");
+			if (LStrideNumber != "")
 			{
-				report.AverageGaitSpeed = Convert.ToDouble(A2);
+				report.LStrideNumber = Math.Round(Convert.ToDouble(LStrideNumber), 2);
+			}
+			else
+			{
+				report.LStrideNumber = 0;
+			}
+			string LStancePercent = doc.excel_getValue("B6");
+			if (LStancePercent != "")
+			{
+				report.LStancePercent = Math.Round(Convert.ToDouble(LStancePercent), 2);
+			}
+			else
+			{
+				report.LStancePercent = 0;
+			}
+			string LSwingPercent = doc.excel_getValue("B7");
+			if (LSwingPercent != "")
+			{
+				report.LSwingPercent = Math.Round(Convert.ToDouble(LSwingPercent), 2);
+			}
+			else
+			{
+				report.LSwingPercent = 0;
+			}
+			string LSingleLimbStancePercent = doc.excel_getValue("B8");
+			if (LSingleLimbStancePercent != "")
+			{
+				report.LSingleLimbStancePercent = Math.Round(Convert.ToDouble(LSingleLimbStancePercent), 2);
+			}
+			else
+			{
+				report.LSingleLimbStancePercent = 0;
+			}
+			string RStrideNumber = doc.excel_getValue("B11");
+			if (RStrideNumber != "")
+			{
+				report.RStrideNumber = Math.Round(Convert.ToDouble(RStrideNumber), 2);
+			}
+			else
+			{
+				report.RStrideNumber = 0;
+			}
+			string RStancePercent = doc.excel_getValue("B12");
+			if (RStancePercent != "")
+			{
+				report.RStancePercent = Math.Round(Convert.ToDouble(RStancePercent), 2);
+			}
+			else
+			{
+				report.RStancePercent = 0;
+			}
+			string RSwingPercent = doc.excel_getValue("B13");
+			if (RSwingPercent != "")
+			{
+				report.RSwingPercent = Math.Round(Convert.ToDouble(RSwingPercent), 2);
+			}
+			else
+			{
+				report.RSwingPercent = 0;
+			}
+			string RSingleLimbStancePercent = doc.excel_getValue("B14");
+			if (RSingleLimbStancePercent != "")
+			{
+				report.RSingleLimbStancePercent = Math.Round(Convert.ToDouble(RSingleLimbStancePercent), 2);
+			}
+			else
+			{
+				report.RSingleLimbStancePercent = 0;
+			}
+			string AverageGaitSpeed = doc.excel_getValue("B15");
+			if (AverageGaitSpeed != "")
+			{
+				report.AverageGaitSpeed = Math.Round(Convert.ToDouble(AverageGaitSpeed), 2);
 			}
 			else
 			{
 				report.AverageGaitSpeed = 0;
 			}
-			string B2 = doc.excel_getValue("B2");
-			if (B2 != "")
+			string LeftStrideLength = doc.excel_getValue("B15");
+			if (LeftStrideLength != "")
 			{
-				report.LeftStrideLength = Convert.ToDouble(B2);
+				report.LeftStrideLength = Math.Round(Convert.ToDouble(LeftStrideLength), 2);
 			}
 			else
 			{
 				report.LeftStrideLength = 0;
 			}
-			string C2 = doc.excel_getValue("C2");
-			if (C2 != "")
+			string RightStrideLength = doc.excel_getValue("B15");
+			if (RightStrideLength != "")
 			{
-				report.RightStrideLength = Convert.ToDouble(C2);
+				report.RightStrideLength = Math.Round(Convert.ToDouble(RightStrideLength), 2);
 			}
 			else
 			{
 				report.RightStrideLength = 0;
 			}
-			string D2 = doc.excel_getValue("D2");
-			if (D2 != "")
+			string Candence = doc.excel_getValue("B15");
+			if (Candence != "")
 			{
-				report.StancePercent = Convert.ToDouble(D2);
-			}
-			else
-			{
-				report.StancePercent = 0;
-			}
-			string E2 = doc.excel_getValue("E2");
-			if (E2 != "")
-			{
-				report.SwingPercent = Convert.ToDouble(E2);
-			}
-			else
-			{
-				report.SwingPercent = 0;
-			}
-			string F2 = doc.excel_getValue("F2");
-			if (F2 != "")
-			{
-				report.SingleLimbStancePercent = Convert.ToDouble(F2);
-			}
-			else
-			{
-				report.SingleLimbStancePercent = 0;
-			}
-			string G2 = doc.excel_getValue("G2");
-			if (G2 != "")
-			{
-				report.Candence = Convert.ToDouble(G2);
+				report.Candence = Math.Round(Convert.ToDouble(Candence), 2);
 			}
 			else
 			{
 				report.Candence = 0;
 			}
+			#endregion 
 
+			//Close Excel
 			doc.excel_close();
+
 			return report;
 		}
 	}
