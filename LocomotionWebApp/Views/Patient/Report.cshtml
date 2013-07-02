@@ -8,6 +8,14 @@
 
 @section Header
 {
+	<div class="nav pull-right">
+		<a class="btn"
+			href="#addReport" data-toggle="modal">
+			@*<i class="icon-plus-sign"></i>*@
+			Upload File
+			<i class="icon-file"></i>
+		</a>
+	</div> 
 }
 
 @section Scripts
@@ -162,20 +170,23 @@
 		<div class="well">
 			<div class="span6" style="font-size: 31.5px;">
 				<strong>@Html.DisplayFor(m => Model.LastName, new { placeholder = @Model.LastName}), @Html.DisplayFor(m => Model.FirstName, new { placeholder = @Model.FirstName})</strong>
+			@*</div>*@
+			@*<div class="span3">*@
+				<div class="btn-group" style="margin-left: 20px;">
+					<button class="btn btn-small">d</button>
+					<button class="btn btn-small">wk</button>
+					<button class="btn btn-small">mo</button>
+					<button class="btn btn-small">3mo</button>
+					<button class="btn btn-small">6mo</button>
+					<button class="btn btn-small">yr</button>
+				</div>
 			</div>
-			<div class="span2 offset2">	
-				<a class="btn btn-primary"
-					href="#addReport" data-toggle="modal">
-					<i class="icon-plus-sign"></i>
-					<strong>Upload File</strong>
-					<i class="icon-file"></i>
-					</a> 
-			</div>
-			<div class="span1">
+
+			<div class="span1 offset4">
 				<div class="btn-group">
 					<a href="@Url.Action("View", "Patient", new { id=Model.ID })"
 						class="btn btn-primary"><strong>Profile</strong></a>
-					<a href="#" class="btn btn-primary disabled" id="show-report-btn"><strong>Report</strong></a>
+					<a href="#" class="btn btn-primary disabled" id="show-report-btn"><strong>Records</strong></a>
 				</div>
 			</div>
 		</div>
