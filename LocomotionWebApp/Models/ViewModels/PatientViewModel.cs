@@ -63,5 +63,7 @@ namespace LocomotionWebApp.Models.ViewModels
 
 		public Report Report { get; set; }
 
+		public MedProfile MedProfile { get; set; }
+
 	}
 }

@@ -63,6 +63,7 @@ namespace DataModel.Class
 		/// If a summary has been calculated, it is referenced here.
 		/// </summary>
 		public virtual Report ReportResult { get; set; }
+		public virtual MedProfile MedProfile { get; set; }
 
 		/// <summary>
 		/// Clones this patient

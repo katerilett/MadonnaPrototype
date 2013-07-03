@@ -74,6 +74,7 @@ namespace LocomotionWebApp.Controllers
 				nvm.ContactEmail = patient.ContactEmail;
 
 				nvm.Report = patient.ReportResult;
+				nvm.MedProfile = patient.MedProfile;
 
 				DateTime dateOnly = nvm.Birthday.Date;
 				nvm.BirthdayString = dateOnly.ToString("d");
@@ -131,14 +132,7 @@ namespace LocomotionWebApp.Controllers
 				nvm.ShankLength = patient.ShankLength;
 				nvm.ThighLength = patient.ThighLength;
 				nvm.Report = patient.ReportResult;
-
-				//nvm.Report.AverageGaitSpeed = patient.ReportResult.AverageGaitSpeed;
-				//nvm.ReportResult.LeftStrideLength = patient.ReportResult.LeftStrideLength;
-				//nvm.ReportResult.RightStrideLength = patient.ReportResult.RightStrideLength;
-				//nvm.ReportResult.StancePercent = patient.ReportResult.StancePercent;
-				//nvm.ReportResult.SwingPercent = patient.ReportResult.SwingPercent;
-				//nvm.ReportResult.SingleLimbStancePercent = patient.ReportResult.SingleLimbStancePercent;
-				//nvm.ReportResult.Candence = patient.ReportResult.Candence;
+				nvm.MedProfile = patient.MedProfile;
 
 			}
 			return View("Report", nvm);
@@ -439,6 +433,32 @@ namespace LocomotionWebApp.Controllers
 				patient.ArthritisType = PatientArthritisType;
 				patient.AffectedExtremity = PatientAffectedExtremity;
 				patient.Deformity = PatientDeformity;
+
+				c.SaveChanges();
+
+			}
+
+			ViewBag.Alert = "Profile update successful";
+			ViewBag.AlertClass = "alert-success";
+			//return View("View", pvm);
+			return RedirectToAction("View", new { id = patientID });
+		}
+
+		[Authorize]
+		public ActionResult EditMedicalProfile(PatientViewModel model)
+		{
+			var pvm = new PatientViewModel();
+			long patientID = 0;
+
+			using (var c = new DataModelContext())
+			{
+				var patient = c.Patients.Find(model.ID);
+				patientID = patient.ID;
+
+
+				//patient.ArthritisType = PatientArthritisType;
+				//patient.AffectedExtremity = PatientAffectedExtremity;
+				//patient.Deformity = PatientDeformity;
 
 				c.SaveChanges();
 

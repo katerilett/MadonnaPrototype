@@ -502,6 +502,67 @@
 	</div>
 }
 
+@using(Html.BeginForm("EditMedicalProfile", "Patient", FormMethod.Post, new {
+	enctype = "multipart/form-data", @class = "form-horizontal"
+}))
+{ 
+	<div id="editMedicalProfileModal"
+		class="modal hide @Html.Raw(ViewBag.UploadAlert == null ? "fade" : "")"
+		tabindex="-1" role="dialog"
+		aria-labelledby="newPatientLabel" aria-hidden="true" >
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="editMedicalprofileLabel">Edit Medical Profile</h3>
+		</div>
+		<form class="form-horizontal" method="post" enctype="multipart/form-data">
+			<div class="modal-body">
+				<div class="control-group">
+					<label class="control-label" for="PatientArthritisType">
+						Heart Disease
+					</label>
+					<label>
+						<input type="checkbox" value="Never" id="Never" />
+						<input type="checkbox" value="Current" id="Current" />
+						<input type="checkbox" value="Past" id="Past" />
+					</label>					
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="PatientAffectedExtremity">
+						Diabetes
+					</label>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="PatientDeformity">
+						Cancer 
+					</label>
+					
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="PatientID"></label>
+					<div class="controls">
+						@Html.HiddenFor(m => Model.ID, new { placeholder = @Model.ID})	
+					</div>
+				</div>
+
+			</div>
+
+			@if(ViewBag.UploadAlert != null)
+			{ 
+				<div class="alert fade in">
+					<button type="button" class="close" data-dismiss="alert">x</button>
+					@Html.Raw(ViewBag.UploadAlert)
+				</div>
+			}
+			<div class="modal-footer">
+				<span class="spinner" style="display: none;"><img src="/Content/img/ajax-loader.gif" /></span>
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				<button type="submit" class="btn btn-primary">Save Changes</button>
+			</div>
+		</form>
+	</div>
+}
+
+
 <div class="container">
 	<div class="row-fluid">
 		<div class="span12">
@@ -661,15 +722,14 @@
 		</div>
 		<div id="collapseTwo" class="accordion-body collapse">
 			<div class="accordion-inner">
-				<h4>Medical Profile
+				<h4>Current Medications
 					<a class="btn btn-primary btn-small"
-					href="#editMedicalModal" data-toggle="modal" style="float:right;">
+					href="#editMedicalProfileModal" data-toggle="modal" style="float:right;">
 					Edit </a>
 				</h4> <br />
-				<h5>Current Medications</h5> <br />
-				<h5>Medications Which Have Caused an Allergic Reaction</h5><br />
-				<h5>Current Conditions</h5><br />
-				<h5>Past Conditions</h5> <br />
+				<h4>Medications Which Have Caused an Allergic Reaction</h4><br />
+				<h4>Current Conditions</h4><br />
+				<h4>Past Conditions</h4> <br />
 			</div>
 		</div>
 	</div>
