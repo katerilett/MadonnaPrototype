@@ -10,33 +10,32 @@
 }
 
 @section Scripts{
-	
 
-	@if(ViewBag.UploadAlert != null)
-	{
-	<script type="text/javascript">
-		//var isFormValid = ;
-		$(function() {
-			$('#addPatient').modal('show');
-		});
-	</script>
+
+	@if (ViewBag.UploadAlert != null)
+ {
+		<script type="text/javascript">
+			//var isFormValid = ;
+			$(function () {
+				$('#addPatient').modal('show');
+			});
+		</script>
 	}
 
-	@if(ViewBag.UrlUploadAlert != null)
-	{
-	<script type="text/javascript">
-		//var isFormValid = ;
-		$(function() {
-			$('#addPatientUrl').modal('show');
-		});
-	</script>
+	@if (ViewBag.UrlUploadAlert != null)
+ {
+		<script type="text/javascript">
+			//var isFormValid = ;
+			$(function () {
+				$('#addPatientUrl').modal('show');
+			});
+		</script>
 	}
 
 	<script type="text/javascript">
-		$(function() {
+		$(function () {
 			$("#createNetBtn").add("#createNetUrlBtn")
-				.click(function(e)
-				{
+				.click(function (e) {
 					$(this).closest(".modal-footer").find(".spinner").show();
 					$(this).parent().find("button").addClass("disabled");
 					$(this).attr("type", "button");
@@ -48,20 +47,20 @@
 	</script>
 
 	<script type="text/javascript">
-		$(function() {
-			if($(".patient-data-table thead").size() > 0)
-			$(".patient-data-table").dataTable({
-				"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
-				"aoColumns": [
-					null,
-					null,
-					null,
-					null,
-					null,
-					null,
-					{ "asSorting": [] }
-				]
-			});
+		$(function () {
+			if ($(".patient-data-table thead").size() > 0)
+				$(".patient-data-table").dataTable({
+					"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+					"aoColumns": [
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						{ "asSorting": [] }
+					]
+				});
 		});
 	</script>
 }
@@ -236,21 +235,22 @@
 						Email
 					</label>
 					<div class="controls">
-						<input type="text" id="BlankPatientEmail" name="PatientEmail" 
+						<input type="text" id="BlankPatientEmail" name="PatientEmail"
 							value="Not entered" required />
 					</div>
 				</div>
 			</div>
 
-			@if(ViewBag.UploadAlert != null)
-			{ 
+			@if (ViewBag.UploadAlert != null)
+   { 
 				<div class="alert fade in">
 					<button type="button" class="close" data-dismiss="alert">x</button>
 					@Html.Raw(ViewBag.UploadAlert)
 				</div>
 			}
 			<div class="modal-footer">
-				<span class="spinner" style="display: none;"><img src="/Content/img/ajax-loader.gif" /></span>
+				<span class="spinner" style="display: none;">
+					<img src="/Content/img/ajax-loader.gif" /></span>
 				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 				<button type="submit" id="createBlankNetBtn" class="btn btn-primary">Create Patient</button>
 			</div>

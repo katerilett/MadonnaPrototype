@@ -278,7 +278,7 @@
     <Content Include="Views\Help\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Report\View.cshtml" />
+    <Content Include="Views\Example html\HighCharts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\manual_master_linear.pdf" />

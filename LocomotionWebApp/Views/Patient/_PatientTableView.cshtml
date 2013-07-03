@@ -5,7 +5,6 @@
 
 @if(Model.Patients.Count > 0)
 { 
-
 	<thead>
 		<tr>
 			<th>Patient Name</th>
@@ -33,11 +32,9 @@
 				<a href="@Url.Action("Report", "Patient", new { id = patient.ID })"
 					class="btn btn-small">Report</a>
 				<a href="@Url.Action("Delete", "Patient", new { id = patient.ID })"
-					class="btn btn-small btn-danger delete-net-btn"><i class="icon-trash"></i> </a>
-				
+					class="btn btn-small btn-danger delete-net-btn"><i class="icon-trash"></i> </a>				
 			</td>
 		</tr>
-
 	}
 
 	<script type="text/javascript">
