@@ -54,6 +54,7 @@ namespace LocomotionWebApp.Controllers
 				nvm.FirstName = patient.FirstName;
 				nvm.LastName = patient.LastName;
 				nvm.Therapist = patient.Therapist;
+				nvm.Doctor = patient.Doctor;
 				nvm.LastUpdate = patient.LastUpdate;
 				nvm.Start = patient.Start;
 				nvm.Age = patient.Age;
@@ -125,6 +126,7 @@ namespace LocomotionWebApp.Controllers
 				nvm.FirstName = patient.FirstName;
 				nvm.LastName = patient.LastName;
 				nvm.Therapist = patient.Therapist;
+				nvm.Doctor = patient.Doctor;
 				nvm.LastUpdate = patient.LastUpdate;
 				nvm.ArthritisType = patient.ArthritisType;
 				nvm.AffectedExtremity = patient.AffectedExtremity;
@@ -531,6 +533,7 @@ namespace LocomotionWebApp.Controllers
 				patient.FirstName = PatientFirstName;
 				patient.LastName = PatientLastName;
 				patient.Therapist = UserDataEngine.getInstance().GetCurrentUser(c, HttpContext);
+				patient.Doctor = "Not entered";
 				patient.LastUpdate = DateTime.Now;
 				patient.Start = DateTime.Now;
 				patient.Birthday = PatientBirthday;

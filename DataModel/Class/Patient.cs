@@ -20,6 +20,8 @@ namespace DataModel.Class
 
 		public virtual User Therapist { get; set; }
 
+		public string Doctor { get; set; }
+
 		public DateTime LastUpdate { get; set; } //Currently being treated as Start
 
 		public string ArthritisType { get; set; }
