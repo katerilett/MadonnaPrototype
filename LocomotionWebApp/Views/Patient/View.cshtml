@@ -9,36 +9,7 @@
 
 @section Scripts
 { 
-	<script type="text/javascript">
-		function openTab() {
-			var tab;
-
-			var searchString = window.location.search.substring(1),
-				i, val, params = searchString.split("&");
-
-			for (i = 0; i < params.length; i++) {
-				val = params[i].split("=");
-				if (val[0] == "tab") {
-					tab = val[1];
-				}
-			}
-
-			if (tab == "1") {
-				openEditBar();
-			}
-			else if (tab == "2") {
-				openReport();
-			}
-		};
-	</script>
-
-
 	<script type="text/javascript">	
-
-
-		$(function () {
-
-		});
 
 		function activateForm(target) {
 			var title = $("#"+target+" .modal-header h3").html();
@@ -83,24 +54,6 @@
 				});
 			}
 		}
-
-		//function resizePullover() {
-		//	var headerHeight = $("#header").outerHeight();
-		//	var winHeight = $(window).height() - headerHeight;
-		//	$("#report-pullover").css("top", headerHeight);
-		//	$("#report-pullover").css("height", winHeight);
-		//}
-		//function showPullover() {
-		//	$("#report-pullover").slideDown();
-		//}
-		//function hidePullover() {
-		//	$("#report-pullover").slideUp();
-		//	$("#to-report-btn").removeClass("active");
-		
-		//}
-		//$(window).resize(resizePullover);
-
-
 	</script>
 
 }
@@ -116,42 +69,6 @@
 
 @section Header
 {
-}
-
-@using(Html.BeginForm("SavePatientAs", "Patient", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{ 
-	{
-<!-- save network Modal -->
-@*<div id="saveModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	<h3 id="saveModalLabel">Save Network</h3>
-  </div>
-  <div class="modal-body">
-	<div class="control-group">				
-				<label class="control-label" for="name">Network Name</label>
-				<div class="controls">					
-						@Html.TextBoxFor(m => Model.Name, new { required ="true", placeholder = "Name" })
-					<span class="text-error">@Html.ValidationMessageFor(m => Model.Name)</span>	
-				</div>
-			</div>
-			
-			<div class="control-group">
-				<label class="control-label" for="NetworkID"></label>
-				<div class="controls">
-						@Html.HiddenFor(m => Model.ID, new { placeholder = @Model.ID})
-				</div>
-			</div>
-
-
-  </div>
-
-  <div class="modal-footer" data-ajax="false">
-	<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-	<button type="submit" class="btn btn-primary">Save changes</button>
-  </div>
-</div>*@
-}
 }
 
 @using(Html.BeginForm("EditPatient", "Patient", FormMethod.Post, new {
@@ -566,187 +483,167 @@
 <div class="container">
 	<div class="row-fluid">
 		<div class="span12">
-		<div class="well">
-			<div class="span6" style="font-size: 31.5px;">
-				<strong>@Html.DisplayFor(m => Model.LastName, new { placeholder = @Model.LastName}), @Html.DisplayFor(m => Model.FirstName, new { placeholder = @Model.FirstName})</strong>													
-			</div>			
-			<div class="span1 offset4">
-				<div class="btn-group"> 
-					<a href="#" class="btn disabled" id="show-profile-btn" ><strong>Profile</strong></a>
-					<a href="@Url.Action("Report", "Patient", new { id=Model.ID })"
+			<div class="well">
+				<div class="span6" style="font-size: 31.5px;">
+					<strong>@Html.DisplayFor(m => Model.LastName, new { placeholder = @Model.LastName }), @Html.DisplayFor(m => Model.FirstName, new { placeholder = @Model.FirstName })</strong>
+				</div>
+				<div class="span1 offset4">
+					<div class="btn-group">
+						<a href="#" class="btn disabled" id="show-profile-btn"><strong>Profile</strong></a>
+						<a href="@Url.Action("Report", "Patient", new { id = Model.ID })"
 						class="btn btn-primary"><strong>Report</strong></a>
+					</div>
 				</div>
 			</div>
 		</div>
-		</div>
 	</div>
-
-<div class="accordion" id="accordion2">
-	<div class="accordion-group">
-	<div class="accordion-heading">
-		<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseOne">
-			Basic Profile
-		</a>
-	</div>
-	<div id="collapseOne" class="accordion-body collapse in">
-	<div class="accordion-inner">
-<div class="row">
-<div class="span2" style="padding-bottom: 5px;">
-	<h4>Patient Photo</h4>
-
-	<div class="fileupload fileupload-new" data-provides="fileupload" style="padding-right: 20px;">
-		<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" /></div>
-@*		<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
-		<div>
-			<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" /></span>
-				<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
-		</div>*@
-		<div>
-			<span class="btn btn-file">Add Image</span>
-		</div>
-
-
-	</div>
-		
-</div>
-
-<div class="span4 offset1">
-			
-	<h4>General Information 
-		<a class="btn btn-primary btn-small"
-			href="#editPatientModal" data-toggle="modal" style="float:right;">
-			Edit
-		</a>
-	</h4> 
-	<table class="table table-striped table-bordered table-condensed" border="1">
-		<tbody>
-			<tr>
-				<td><strong>Started KOAALA:</strong></td>
-				<td><strong>@Html.DisplayFor(m => Model.StartString, new { placeholder = @Model.StartString})</strong></td>
-			</tr>
-			<tr>
-				<td><strong>Age:</strong></td>
-				<td><strong>@Html.DisplayFor(m => Model.Age, new { placeholder = @Model.Age})</strong></td>
-			</tr>
-			<tr>
-				<td><strong>Birthday:</strong></td>
-				<td><strong>@Html.DisplayFor(m => Model.BirthdayString, new { placeholder = @Model.BirthdayString })</strong></td>
-			</tr>
-			<tr>
-				<td><strong>Sex:</strong></td>
-				<td><strong>@Html.DisplayFor(m => Model.Gender, new { placeholder = @Model.Gender})</strong></td>
-			</tr>
-			<tr>
-				<td><strong>Height (inches):</strong></td>
-				<td><strong>@Html.DisplayFor(m => Model.Height, new { placeholder = @Model.Height})</strong></td>
-			</tr>
-			<tr>
-				<td><strong>Weight (lbs):</strong></td>
-				<td><strong>@Html.DisplayFor(m => Model.Weight, new { placeholder = @Model.Weight})</strong></td>
-			</tr>
-			<tr>
-				<td><strong>Phone Number:</strong></td>
-				<td><strong>@Html.DisplayFor(m => Model.PhoneNumber, new { placeholder = @Model.PhoneNumber})</strong></td>
-			</tr>
-			<tr>
-				<td><strong>Email:</strong></td>
-				<td><strong>@Html.DisplayFor(m => Model.Email, new { placeholder = @Model.Email})</strong></td>
-			</tr>
-		</tbody>
-
-	</table>
-</div>
-
-<div class="span3 offset1" style="padding-bottom: 5px;">
-	<h4>Arthritis Information 
-		<a class="btn btn-primary btn-small"
-				href="#editMedicalModal" data-toggle="modal" style="float:right;">
-				Edit </a>
-	</h4>
-	<table class="table table-striped table-bordered table-condensed" border="1">
-		<tbody>
-			<tr>
-				<td><strong>Arthritis Type:</strong></td>
-				<td><strong>@Html.DisplayFor(m => Model.ArthritisType, new { placeholder = @Model.ArthritisType})</strong></td>
-			</tr>
-			<tr>
-				<td><strong>Affected Extremity:</strong></td>
-				<td><strong>@Html.DisplayFor(m => Model.AffectedExtremity, new { placeholder = @Model.AffectedExtremity})</strong></td>
-			</tr>
-			<tr>
-				<td><strong>Deformity:</strong></td>
-				<td><strong>@Html.DisplayFor(m => Model.Deformity, new { placeholder = @Model.Deformity})</strong></td>
-			</tr>
-		</tbody>
-	</table>
-
-	<br />
-		
-	<h4>Emergency Contact <a class="btn btn-primary btn-small"
-				href="#editContactModal" data-toggle="modal" style="float:right;">
-				Edit
-		</a></h4> 
-	<table class="table table-striped table-bordered table-condensed" border="1">
-		<tbody>
-			<tr>
-				<td><strong>Contact Name:</strong></td>
-				<td><strong>@Html.DisplayFor(m => Model.ContactName, new { placeholder = @Model.ContactName})</strong></td>
-			</tr>
-			<tr>
-				<td><strong>Relationship:</strong></td>
-				<td><strong>@Html.DisplayFor(m => Model.ContactRelation, new { placeholder = @Model.ContactRelation})</strong></td>
-			</tr>
-			<tr>
-				<td><strong>Phone Number:</strong></td>
-				<td><strong>@Html.DisplayFor(m => Model.ContactPhoneNumber, new { placeholder = @Model.ContactPhoneNumber})</strong></td>
-			</tr>
-			<tr>
-				<td><strong>Email:</strong></td>
-				<td><strong>@Html.DisplayFor(m => Model.ContactEmail, new { placeholder = @Model.ContactEmail})</strong></td>
-			</tr>
-		</tbody>
-	</table>
-
-</div>
-
-
-</div>
-
-</div>
-</div>
-	<div class="accordion-group">
-		<div class="accordion-heading">
-			<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseTwo">
-				Medical Profile
-			</a>
-		</div>
-		<div id="collapseTwo" class="accordion-body collapse">
-			<div class="accordion-inner">
-				<h4>Current Medications
-					<a class="btn btn-primary btn-small"
-					href="#editMedicalProfileModal" data-toggle="modal" style="float:right;">
-					Edit </a>
-				</h4> <br />
-				<h4>Medications Which Have Caused an Allergic Reaction</h4><br />
-				<h4>Current Conditions</h4><br />
-				<h4>Past Conditions</h4> <br />
+	<div class="accordion" id="accordion2">
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseOne">Basic Profile
+				</a>
 			</div>
+			<div id="collapseOne" class="accordion-body collapse in">
+				<div class="accordion-inner">
+					<div class="row">
+						<div class="span2" style="padding-bottom: 5px;">
+							<h4>Patient Photo</h4>
+
+							<div class="fileupload fileupload-new" data-provides="fileupload" style="padding-right: 20px;">
+								<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+									<img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" />
+								</div>
+								@*<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+								<div>
+									<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" /></span>
+									<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+								</div>*@
+							</div>
+						</div>
+						<div class="span3 offset1">
+							<h4>General Information 
+								<a class="btn btn-primary btn-small"
+									href="#editPatientModal" data-toggle="modal" style="float: right;">Edit
+								</a>
+							</h4>
+							<table class="table table-striped table-bordered table-condensed" border="1">
+								<tbody>
+									<tr>
+										<td><strong>Started KOAALA:</strong></td>
+										<td><strong>@Html.DisplayFor(m => Model.StartString, new { placeholder = @Model.StartString })</strong></td>
+									</tr>
+									<tr>
+										<td><strong>Age:</strong></td>
+										<td><strong>@Html.DisplayFor(m => Model.Age, new { placeholder = @Model.Age })</strong></td>
+									</tr>
+									<tr>
+										<td><strong>Birthday:</strong></td>
+										<td><strong>@Html.DisplayFor(m => Model.BirthdayString, new { placeholder = @Model.BirthdayString })</strong></td>
+									</tr>
+									<tr>
+										<td><strong>Sex:</strong></td>
+										<td><strong>@Html.DisplayFor(m => Model.Gender, new { placeholder = @Model.Gender })</strong></td>
+									</tr>
+									<tr>
+										<td><strong>Height (inches):</strong></td>
+										<td><strong>@Html.DisplayFor(m => Model.Height, new { placeholder = @Model.Height })</strong></td>
+									</tr>
+									<tr>
+										<td><strong>Weight (lbs):</strong></td>
+										<td><strong>@Html.DisplayFor(m => Model.Weight, new { placeholder = @Model.Weight })</strong></td>
+									</tr>
+									<tr>
+										<td><strong>Phone Number:</strong></td>
+										<td><strong>@Html.DisplayFor(m => Model.PhoneNumber, new { placeholder = @Model.PhoneNumber })</strong></td>
+									</tr>
+									<tr>
+										<td><strong>Email:</strong></td>
+										<td><strong>@Html.DisplayFor(m => Model.Email, new { placeholder = @Model.Email })</strong></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="span4 offset1" style="padding-bottom: 5px;">
+							<h4>Arthritis Information 
+								<a class="btn btn-primary btn-small"
+									href="#editMedicalModal" data-toggle="modal" style="float: right;">Edit </a>
+							</h4>
+							<table class="table table-striped table-bordered table-condensed" border="1">
+								<tbody>
+									<tr>
+										<td><strong>Arthritis Type:</strong></td>
+										<td><strong>@Html.DisplayFor(m => Model.ArthritisType, new { placeholder = @Model.ArthritisType })</strong></td>
+									</tr>
+									<tr>
+										<td><strong>Affected Extremity:</strong></td>
+										<td><strong>@Html.DisplayFor(m => Model.AffectedExtremity, new { placeholder = @Model.AffectedExtremity })</strong></td>
+									</tr>
+									<tr>
+										<td><strong>Deformity:</strong></td>
+										<td><strong>@Html.DisplayFor(m => Model.Deformity, new { placeholder = @Model.Deformity })</strong></td>
+									</tr>
+								</tbody>
+							</table><br />
+							<h4>Emergency Contact <a class="btn btn-primary btn-small"
+								href="#editContactModal" data-toggle="modal" style="float: right;">Edit
+							</a></h4>
+							<table class="table table-striped table-bordered table-condensed" border="1">
+								<tbody>
+									<tr>
+										<td><strong>Contact Name:</strong></td>
+										<td><strong>@Html.DisplayFor(m => Model.ContactName, new { placeholder = @Model.ContactName })</strong></td>
+									</tr>
+									<tr>
+										<td><strong>Relationship:</strong></td>
+										<td><strong>@Html.DisplayFor(m => Model.ContactRelation, new { placeholder = @Model.ContactRelation })</strong></td>
+									</tr>
+									<tr>
+										<td><strong>Phone Number:</strong></td>
+										<td><strong>@Html.DisplayFor(m => Model.ContactPhoneNumber, new { placeholder = @Model.ContactPhoneNumber })</strong></td>
+									</tr>
+									<tr>
+										<td><strong>Email:</strong></td>
+										<td><strong>@Html.DisplayFor(m => Model.ContactEmail, new { placeholder = @Model.ContactEmail })</strong></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-group">
+				<div class="accordion-heading">
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseTwo">Medical Profile
+					</a>
+				</div>
+				<div id="collapseTwo" class="accordion-body collapse">
+					<div class="accordion-inner">
+						<h4>Current Medications
+					<a class="btn btn-primary btn-small"
+						href="#editMedicalProfileModal" data-toggle="modal" style="float: right;">Edit </a>
+						</h4>
+						<br />
+						<h4>Medications Which Have Caused an Allergic Reaction</h4>
+						<br />
+						<h4>Current Conditions</h4>
+						<br />
+						<h4>Past Conditions</h4>
+						<br />
+					</div>
+				</div>
+			</div>
+
 		</div>
 	</div>
-
-</div>
-</div>
-
-<div class="row" style="font-size: 9px; color: #999; text-align: center;">
-	<div class="span12"></div>
-			<br />
-			The KOAALAClinic is a prototype system; Madonna Rehabilitation Hospital takes no liability for use of this software
+	<div class="row" style="font-size: 9px; color: #999; text-align: center;">
+		<div class="span12"></div>
+		<br />
+		The KOAALAClinic is a prototype system; Madonna Rehabilitation Hospital takes no liability for use of this software
 			| <a href="email:katerilett@gmail.com">Contact Us</a>
-			| © 2013 
+		| © 2013 
 	</div>
 </div>
 
 
 
 
-	
