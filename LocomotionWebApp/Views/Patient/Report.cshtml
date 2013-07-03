@@ -56,6 +56,7 @@
 	</script>
 
 	<script type="text/javascript">
+
 	$(function () {
 	$('#container').highcharts({
 	
@@ -428,11 +429,15 @@
 			<table class="table table-striped table-bordered table-condensed" border="1">
 			<tbody>
 					<tr>
-						<td><strong>Shank length (cm)</strong></td>
+						<td><strong>Shank length (cm)
+								<a href="#" rel="tooltip" title="How to measure shank length"><i class="icon-question-sign"></i></a>
+						    </strong></td>
 						<td><strong>@Html.DisplayFor(m => Model.ShankLength, new { placeholder = @Model.ShankLength})</strong></td>
 					</tr>
 					<tr>
-						<td><strong>Thigh length (cm)</strong></td>
+						<td><strong>Thigh length (cm)
+								<a href="#" rel="tooltip" title="How to measure shank length"><i class="icon-question-sign"></i></a>
+						    </strong></td>
 						<td><strong>@Html.DisplayFor(m => Model.ThighLength, new { placeholder = @Model.ThighLength})</strong></td>
 					</tr>
 				</tbody>
