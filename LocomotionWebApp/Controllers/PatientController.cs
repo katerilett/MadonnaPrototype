@@ -69,6 +69,7 @@ namespace LocomotionWebApp.Controllers
 				nvm.ThighLength = patient.ThighLength;
 				nvm.Email = patient.Email;
 				nvm.PhoneNumber = patient.PhoneNumber;
+				nvm.City = patient.City;
 				nvm.ContactName = patient.ContactName;
 				nvm.ContactRelation = patient.ContactRelation;
 				nvm.ContactPhoneNumber = patient.ContactPhoneNumber;
@@ -503,7 +504,7 @@ namespace LocomotionWebApp.Controllers
 
 		[Authorize]
 		public ActionResult CreateBlank(string PatientFirstName, string PatientLastName, 
-			DateTime PatientBirthday, string PatientGender, double PatientHeight,
+			DateTime PatientBirthday, string PatientGender, int PatientFeet, int PatientInches,
 			double PatientWeight, string PatientDoctor, string PatientArthritisType, 
 			string PatientAffectedExtremity, string PatientDeformity, string PatientPhoneNumber, 
 			string PatientEmail)
@@ -544,7 +545,7 @@ namespace LocomotionWebApp.Controllers
 				patient.Start = DateTime.Now;
 				patient.Birthday = PatientBirthday;
 				patient.Gender = PatientGender;
-				patient.Height = PatientHeight;
+				patient.Height = (PatientFeet * 12) + PatientInches;
 				patient.Weight = PatientWeight;
 				patient.Doctor = PatientDoctor;
 				patient.ArthritisType = PatientArthritisType;
@@ -554,6 +555,7 @@ namespace LocomotionWebApp.Controllers
 				patient.ThighLength = 0;
 				patient.PhoneNumber = PatientPhoneNumber;
 				patient.Email = PatientEmail;
+				patient.City = "Not entered";
 				patient.ContactName = "Not entered";
 				patient.ContactRelation = "Not entered";
 				patient.ContactPhoneNumber = "Not entered";
@@ -563,7 +565,6 @@ namespace LocomotionWebApp.Controllers
 				int age = today.Year - PatientBirthday.Year;
 				if (PatientBirthday > today.AddYears(-age)) age--;
 				patient.Age = age;
-
 
 				c.Patients.Add(patient);
 

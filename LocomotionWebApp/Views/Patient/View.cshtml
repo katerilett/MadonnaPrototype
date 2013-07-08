@@ -125,7 +125,7 @@
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="PatientHeight">
-						Height (inches)
+						Height
 					</label>
 					<div class="controls">	
 						<input type="number" step="any" id="PatientHeight" name="PatientHeight" 		
@@ -565,6 +565,10 @@
 									<tr>
 										<td><strong>Physician:</strong></td>
 										<td><strong>@Html.DisplayFor(m => Model.Doctor, new { placeholder = @Model.Doctor })</strong></td>
+									</tr>
+									<tr>
+										<td><strong>Current City:</strong></td>
+										<td><strong>@Html.DisplayFor(m => Model.City, new { placeholder = @Model.City })</strong></td>
 									</tr>
 									<tr>
 										<td><strong>Phone Number:</strong></td>
