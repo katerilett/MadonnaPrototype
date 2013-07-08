@@ -151,6 +151,15 @@
 					</div>
 				</div>
 				<div class="control-group">
+					<label class="control-label" for="PatientCity">
+						Current City
+					</label>
+					<div class="controls">	
+						<input type="text" id="PatientCity" name="PatientCity" 		
+							value="@Html.DisplayFor(m => Model.City, new { required ="true", @class = "City" })" required />							
+					</div>
+				</div>
+				<div class="control-group">
 					<label class="control-label" for="PatientEmail">
 						Email
 					</label>

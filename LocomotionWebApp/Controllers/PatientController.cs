@@ -368,7 +368,7 @@ namespace LocomotionWebApp.Controllers
 
 		[Authorize]
 		public ActionResult EditPatient (DateTime PatientBirthday, string PatientGender, double PatientHeight, 
-			double PatientWeight, string PatientDoctor,	string PatientEmail, string PatientPhoneNumber, 
+			double PatientWeight, string PatientDoctor,	string PatientCity, string PatientEmail, string PatientPhoneNumber, 
 			PatientViewModel model)
 		{
 			var pvm = new PatientViewModel();
@@ -384,6 +384,7 @@ namespace LocomotionWebApp.Controllers
 				patient.Height = PatientHeight;
 				patient.Weight = PatientWeight;
 				patient.Doctor = PatientDoctor;
+				patient.City = PatientCity;
 				patient.Email = PatientEmail;
 				patient.PhoneNumber = PatientPhoneNumber;
 
@@ -506,8 +507,8 @@ namespace LocomotionWebApp.Controllers
 		public ActionResult CreateBlank(string PatientFirstName, string PatientLastName, 
 			DateTime PatientBirthday, string PatientGender, int PatientFeet, int PatientInches,
 			double PatientWeight, string PatientDoctor, string PatientArthritisType, 
-			string PatientAffectedExtremity, string PatientDeformity, string PatientPhoneNumber, 
-			string PatientEmail)
+			string PatientAffectedExtremity, string PatientDeformity, string PatientCity,
+			string PatientPhoneNumber, string PatientEmail)
 		{
 			var nvm = new PatientListViewModel();
 
@@ -555,7 +556,7 @@ namespace LocomotionWebApp.Controllers
 				patient.ThighLength = 0;
 				patient.PhoneNumber = PatientPhoneNumber;
 				patient.Email = PatientEmail;
-				patient.City = "Not entered";
+				patient.City = PatientCity;
 				patient.ContactName = "Not entered";
 				patient.ContactRelation = "Not entered";
 				patient.ContactPhoneNumber = "Not entered";
