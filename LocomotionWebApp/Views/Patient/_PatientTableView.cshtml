@@ -8,23 +8,28 @@
 	<thead>
 		<tr>
 			<th>Patient Name</th>
-			<th>Date of Last Upload</th>
 			<th>Therapist</th>
-			<th>Type of Arthritis</th> 
-			<th>Deformity</th>
-			<th>Affected Extremity</th> 
+			<th>Physician</th> 
+			<th>Age</th>
+			<th>Sex</th> 
+			<th>Started KOAALA</th>
 			<th></th>
 		</tr>
 	</thead>
 	foreach(var patient in Model.Patients)
 	{ 
 		<tr>
-			<td>@Html.DisplayFor(net => patient.LastName) , @Html.DisplayFor(net => patient.FirstName)</td>
-			<td>@Html.DisplayFor(net => patient.LastUpdate)</td>
-			<td>@Html.DisplayFor(net => patient.Therapist.RealName)</td>
-			<td>@Html.DisplayFor(net => patient.ArthritisType)</td>
-			<td>@Html.DisplayFor(net => patient.Deformity)</td>
-			<td>@Html.DisplayFor(net => patient.AffectedExtremity)</td>
+			<td>
+				<a href="@Url.Action("View", "Patient", new { id= patient.ID })"
+					style="color: black;">@Html.DisplayFor(net => patient.LastName) , 
+					@Html.DisplayFor(net => patient.FirstName)</a>	
+			</td>
+						
+			<td style="text-align: center;">@Html.DisplayFor(net => patient.Therapist.RealName)</td>
+			<td style="text-align: center;">@Html.DisplayFor(net => patient.Doctor)</td>
+			<td style="text-align: center;">@Html.DisplayFor(net => patient.Age)</td>
+			<td style="text-align: center;">@Html.DisplayFor(net => patient.Gender)</td>
+			<td style="text-align: center;">@Html.DisplayFor(net => patient.Start)</td>
 
 			<td style="text-align: right;">
 				<a href="@Url.Action("View", "Patient", new { id= patient.ID })"
