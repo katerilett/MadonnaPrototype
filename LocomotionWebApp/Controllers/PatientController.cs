@@ -366,8 +366,9 @@ namespace LocomotionWebApp.Controllers
 		//}
 
 		[Authorize]
-		public ActionResult EditPatient (int PatientAge, DateTime PatientBirthday, string PatientGender, double PatientHeight, double PatientWeight, 
-			string PatientEmail, string PatientPhoneNumber, PatientViewModel model)
+		public ActionResult EditPatient (DateTime PatientBirthday, string PatientGender, double PatientHeight, 
+			double PatientWeight, string PatientDoctor,	string PatientEmail, string PatientPhoneNumber, 
+			PatientViewModel model)
 		{
 			var pvm = new PatientViewModel();
 			long patientID = 0;
@@ -377,13 +378,18 @@ namespace LocomotionWebApp.Controllers
 				var patient = c.Patients.Find(model.ID);
 				patientID = patient.ID;
 
-				patient.Age = PatientAge;
 				patient.Birthday = PatientBirthday;
 				patient.Gender = PatientGender;
 				patient.Height = PatientHeight;
 				patient.Weight = PatientWeight;
+				patient.Doctor = PatientDoctor;
 				patient.Email = PatientEmail;
 				patient.PhoneNumber = PatientPhoneNumber;
+
+				DateTime today = DateTime.Today;
+				int age = today.Year - PatientBirthday.Year;
+				if (PatientBirthday > today.AddYears(-age)) age--;
+				patient.Age = age;
 				
 				c.SaveChanges();
 				
@@ -497,7 +503,7 @@ namespace LocomotionWebApp.Controllers
 
 		[Authorize]
 		public ActionResult CreateBlank(string PatientFirstName, string PatientLastName, 
-			int PatientAge, DateTime PatientBirthday, string PatientGender, double PatientHeight,
+			DateTime PatientBirthday, string PatientGender, double PatientHeight,
 			double PatientWeight, string PatientDoctor, string PatientArthritisType, 
 			string PatientAffectedExtremity, string PatientDeformity, string PatientPhoneNumber, 
 			string PatientEmail)
@@ -537,7 +543,6 @@ namespace LocomotionWebApp.Controllers
 				patient.LastUpdate = DateTime.Now;
 				patient.Start = DateTime.Now;
 				patient.Birthday = PatientBirthday;
-				patient.Age = PatientAge;
 				patient.Gender = PatientGender;
 				patient.Height = PatientHeight;
 				patient.Weight = PatientWeight;
@@ -553,6 +558,12 @@ namespace LocomotionWebApp.Controllers
 				patient.ContactRelation = "Not entered";
 				patient.ContactPhoneNumber = "Not entered";
 				patient.ContactEmail = "Not entered";
+
+				DateTime today = DateTime.Today;
+				int age = today.Year - PatientBirthday.Year;
+				if (PatientBirthday > today.AddYears(-age)) age--;
+				patient.Age = age;
+
 
 				c.Patients.Add(patient);
 

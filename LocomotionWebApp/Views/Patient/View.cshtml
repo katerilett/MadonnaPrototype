@@ -86,15 +86,6 @@
 		<form class="form-horizontal" method="post" enctype="multipart/form-data">
 			<div class="modal-body">
 				<div class="control-group">
-					<label class="control-label" for="PatientAge">
-						Age
-					</label>
-					<div class="controls">	
-						<input type="text" id="PatientAge" name="PatientAge" 		
-							value="@Html.DisplayFor(m => Model.Age, new { required ="true", @class = "Age" })" required />					
-					</div>
-				</div>
-				<div class="control-group">
 					<label class="control-label" for="PatientBirthday">
 						Birthday
 					</label>
@@ -148,6 +139,15 @@
 					<div class="controls">	
 						<input type="number" step="any" id="PatientWeight" name="PatientWeight" 		
 							value="@Html.DisplayFor(m => Model.Weight, new { required ="true", @class = "Weight" })" required />							
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="PatientDoctor">
+						Physician
+					</label>
+					<div class="controls">	
+						<input type="text" id="PatientDoctor" name="PatientDoctor" 		
+							value="@Html.DisplayFor(m => Model.Doctor, new { required ="true", @class = "Doctor" })" required />							
 					</div>
 				</div>
 				<div class="control-group">
