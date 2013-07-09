@@ -473,34 +473,66 @@ namespace LocomotionWebApp.Controllers
 				{
 					patient.MedProfile.HeartDisease = true;
 				}
+				else
+				{
+					patient.MedProfile.HeartDisease = false;
+				}
 				if (PatientDiabetes == "Current")
 				{
 					patient.MedProfile.Diabetes = true;
+				}
+				else
+				{
+					patient.MedProfile.Diabetes = false;
 				}
 				if (PatientCancer == "Current")
 				{
 					patient.MedProfile.Cancer = true;
 				}
+				else
+				{
+					patient.MedProfile.Cancer = false;
+				}
 				if (PatientHighBloodPressure == "Current")
 				{
 					patient.MedProfile.HighBloodPressure = true;
+				}
+				else
+				{
+					patient.MedProfile.HighBloodPressure = false;
 				}
 				//Setting Past Conditions
 				if (PPatientHeartDisease == "Past")
 				{
 					patient.MedProfile.PHeartDisease = true;
 				}
+				else
+				{
+					patient.MedProfile.PHeartDisease = false;
+				}
 				if (PPatientDiabetes == "Past")
 				{
 					patient.MedProfile.PDiabetes = true;
+				}
+				else
+				{
+					patient.MedProfile.PDiabetes = false;
 				}
 				if (PPatientCancer == "Past")
 				{
 					patient.MedProfile.PCancer = true;
 				}
+				else
+				{
+					patient.MedProfile.PCancer = false;
+				}
 				if (PPatientHighBloodPressure == "Past")
 				{
 					patient.MedProfile.PHighBloodPressure = true;
+				}
+				else
+				{
+					patient.MedProfile.PHighBloodPressure = false;
 				}
 				
 				c.SaveChanges();

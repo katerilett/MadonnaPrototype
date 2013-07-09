@@ -56,6 +56,24 @@
 		}
 	</script>
 
+	<script type="text/javascript">
+		//document.getElementById("PatientHeartDisease").checked = true;
+		$('#PatientHeartDisease').attr('checked', 'checked');
+		
+	</script>
+
+@*	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#edit').click(function () {
+				console.log('hi');
+				var istrue = @Model.MedProfile.HeartDisease;
+				if (istrue) {
+					$('#PatientHeartDisease').attr('checked', 'checked');
+				}
+			});
+		});
+	</script>*@
+
 }
 
 
@@ -452,8 +470,8 @@
 						Heart Disease:
 					</label>
 					<div class="controls">
-						<input type="checkbox" class="span1"/>
-						<input type="checkbox" class="span2" name="PatientHeartDisease" value="Current" />
+						<input type="checkbox" class="span1" />
+						<input type="checkbox" class="span2" id="PatientHeartDisease" name="PatientHeartDisease" value="Current" />
 						<input type="checkbox" class="span1" name="PPatientHeartDisease" value="Past" />
 					</div>										
 				</div>
@@ -479,7 +497,7 @@
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="PatientHighBloodPressure, PPatientHighBloodPressure">
-						Cancer: 
+						High Blood Pressure: 
 					</label>
 					<div class="controls">
 						<input type="checkbox" class="span1" />
@@ -670,7 +688,7 @@
 				<div id="collapseTwo" class="accordion-body collapse">
 					<div class="accordion-inner">
 						<h4>Current Medications
-					<a class="btn btn-primary btn-small"
+					<a class="btn btn-primary btn-small" id="edit" 
 						href="#editMedicalProfileModal" data-toggle="modal" style="float: right;">Edit </a>
 						</h4>
 						<ul>
