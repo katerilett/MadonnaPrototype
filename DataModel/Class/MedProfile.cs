@@ -12,11 +12,16 @@ namespace DataModel.Class
 		[Key]
 		public long ID { get; set; }
 
-		//Past Conditions
+		//Current Conditions
 		public bool HeartDisease { get; set; }
 		public bool Diabetes { get; set; }
 		public bool Cancer { get; set; }
 		public bool HighBloodPressure { get; set; }
+		//PastConditions
+		public bool PHeartDisease { get; set; }
+		public bool PDiabetes { get; set; }
+		public bool PCancer { get; set; }
+		public bool PHighBloodPressure { get; set; }
 
 		//Constructor
 		public MedProfile() 
@@ -25,6 +30,10 @@ namespace DataModel.Class
 			Diabetes = false;
 			Cancer = false;
 			HighBloodPressure = false;
+			PHeartDisease = false;
+			PDiabetes = false;
+			PCancer = false;
+			PHighBloodPressure = false;
 		}
 		
 		/// <summary>

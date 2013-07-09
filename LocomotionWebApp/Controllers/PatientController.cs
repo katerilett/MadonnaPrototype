@@ -455,7 +455,10 @@ namespace LocomotionWebApp.Controllers
 		}
 
 		[Authorize]
-		public ActionResult EditMedicalProfile(PatientViewModel model)
+		public ActionResult EditMedicalProfile(string PatientHeartDisease, string PPatientHeartDisease,
+			string PatientDiabetes, string PPatientDiabetes, string PatientCancer, 
+			string PPatientCancer, string PatientHighBloodPressure, string PPatientHighBloodPressure,
+			PatientViewModel model)
 		{
 			var pvm = new PatientViewModel();
 			long patientID = 0;
@@ -465,11 +468,41 @@ namespace LocomotionWebApp.Controllers
 				var patient = c.Patients.Find(model.ID);
 				patientID = patient.ID;
 
-
-				//patient.ArthritisType = PatientArthritisType;
-				//patient.AffectedExtremity = PatientAffectedExtremity;
-				//patient.Deformity = PatientDeformity;
-
+				//Setting Current Conditions
+				if (PatientHeartDisease == "Current")
+				{
+					patient.MedProfile.HeartDisease = true;
+				}
+				if (PatientDiabetes == "Current")
+				{
+					patient.MedProfile.Diabetes = true;
+				}
+				if (PatientCancer == "Current")
+				{
+					patient.MedProfile.Cancer = true;
+				}
+				if (PatientHighBloodPressure == "Current")
+				{
+					patient.MedProfile.HighBloodPressure = true;
+				}
+				//Setting Past Conditions
+				if (PPatientHeartDisease == "Past")
+				{
+					patient.MedProfile.PHeartDisease = true;
+				}
+				if (PPatientDiabetes == "Past")
+				{
+					patient.MedProfile.PDiabetes = true;
+				}
+				if (PPatientCancer == "Past")
+				{
+					patient.MedProfile.PCancer = true;
+				}
+				if (PPatientHighBloodPressure == "Past")
+				{
+					patient.MedProfile.PHighBloodPressure = true;
+				}
+				
 				c.SaveChanges();
 
 			}
@@ -538,6 +571,7 @@ namespace LocomotionWebApp.Controllers
 			{
 				var patient = new Patient();
 				patient.ReportResult = ReportEngine.getInstance().GenerateReport(patient);
+				patient.MedProfile = new MedProfile();
 
 				patient.FirstName = PatientFirstName;
 				patient.LastName = PatientLastName;
