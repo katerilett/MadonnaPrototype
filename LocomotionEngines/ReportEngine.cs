@@ -64,7 +64,7 @@ namespace LocomotionEngines
 			string LStancePercent = doc.excel_getValue("B6");
 			if (LStancePercent != "")
 			{
-				report.LStancePercent = Math.Round(Convert.ToDouble(LStancePercent), 2);
+				report.LStancePercent = Math.Round(Convert.ToDouble(LStancePercent), 3) * 100;
 			}
 			else
 			{
@@ -73,7 +73,7 @@ namespace LocomotionEngines
 			string LSwingPercent = doc.excel_getValue("B7");
 			if (LSwingPercent != "")
 			{
-				report.LSwingPercent = Math.Round(Convert.ToDouble(LSwingPercent), 2);
+				report.LSwingPercent = Math.Round(Convert.ToDouble(LSwingPercent), 3) * 100;
 			}
 			else
 			{
@@ -82,7 +82,7 @@ namespace LocomotionEngines
 			string LSingleLimbStancePercent = doc.excel_getValue("B8");
 			if (LSingleLimbStancePercent != "")
 			{
-				report.LSingleLimbStancePercent = Math.Round(Convert.ToDouble(LSingleLimbStancePercent), 2);
+				report.LSingleLimbStancePercent = Math.Round(Convert.ToDouble(LSingleLimbStancePercent), 3) * 100;
 			}
 			else
 			{
@@ -100,7 +100,7 @@ namespace LocomotionEngines
 			string RStancePercent = doc.excel_getValue("B12");
 			if (RStancePercent != "")
 			{
-				report.RStancePercent = Math.Round(Convert.ToDouble(RStancePercent), 2);
+				report.RStancePercent = Math.Round(Convert.ToDouble(RStancePercent), 3) * 100;
 			}
 			else
 			{
@@ -109,7 +109,7 @@ namespace LocomotionEngines
 			string RSwingPercent = doc.excel_getValue("B13");
 			if (RSwingPercent != "")
 			{
-				report.RSwingPercent = Math.Round(Convert.ToDouble(RSwingPercent), 2);
+				report.RSwingPercent = Math.Round(Convert.ToDouble(RSwingPercent), 3) * 100;
 			}
 			else
 			{
@@ -118,7 +118,7 @@ namespace LocomotionEngines
 			string RSingleLimbStancePercent = doc.excel_getValue("B14");
 			if (RSingleLimbStancePercent != "")
 			{
-				report.RSingleLimbStancePercent = Math.Round(Convert.ToDouble(RSingleLimbStancePercent), 2);
+				report.RSingleLimbStancePercent = Math.Round(Convert.ToDouble(RSingleLimbStancePercent), 3) * 100;
 			}
 			else
 			{
@@ -127,7 +127,7 @@ namespace LocomotionEngines
 			string AverageGaitSpeed = doc.excel_getValue("B15");
 			if (AverageGaitSpeed != "")
 			{
-				report.AverageGaitSpeed = Math.Round(Convert.ToDouble(AverageGaitSpeed), 2);
+				report.AverageGaitSpeed = Math.Round(Convert.ToDouble(AverageGaitSpeed), 3) * 100;
 			}
 			else
 			{

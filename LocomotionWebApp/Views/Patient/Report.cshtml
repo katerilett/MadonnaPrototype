@@ -54,6 +54,7 @@
 		});
 	</script>
 
+	<!--Gauges-->
 	<script type="text/javascript">
 		$(function () {
 			$('#container').highcharts({
@@ -129,7 +130,7 @@
 					}, ],
 					pane: 0,
 					title: {
-						text: 'Stance<br/><span style="font-size:8px">Left</span>',
+						text: 'Left',
 						y: -40
 					}
 				}, {
@@ -174,7 +175,7 @@
 					}],
 					pane: 1,
 					title: {
-						text: 'Stance<br/><span style="font-size:8px">Right</span>',
+						text: 'Right',
 						y: -40
 					}
 				}],
@@ -195,6 +196,158 @@
 					yAxis: 0
 				}, {
 					data: [0.758],
+					yAxis: 1
+				}]
+			},
+
+			// Let the music play
+			function (chart) {
+
+			});
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(function () {
+			$('#container2').highcharts({
+				chart: {
+					type: 'gauge',
+					plotBorderWidth: 1,
+					plotBackgroundColor: {
+						linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+						stops: [
+							[0, '#f5f5f5'],
+							[0.3, '#FFFFFF'],
+							[1, '#f5f5f5']
+						]
+					},
+					plotBackgroundImage: null,
+					height: 200
+				},
+				title: {
+					text: 'Swing (% of GC)'
+				},
+				pane: [{
+					startAngle: -45,
+					endAngle: 45,
+					background: null,
+					center: ['25%', '145%'],
+					size: 300
+				}, {
+					startAngle: -45,
+					endAngle: 45,
+					background: null,
+					center: ['75%', '145%'],
+					size: 300
+				}],
+				yAxis: [{
+					min: 0,
+					max: 1,
+					minorTickPosition: 'outside',
+					tickPosition: 'outside',
+					labels: {
+						rotation: 'auto',
+						distance: 20
+					},
+					plotBands: [{
+						from: 0.36,
+						to: 0.44,
+						color: '#228b22',
+						innerRadius: '100%',
+						outerRadius: '105%'
+					}, {
+						from: 0.44,
+						to: 0.54,
+						color: '#ffd700',
+						innerRadius: '100%',
+						outerRadius: '105%'
+					}, {
+						from: 0.26,
+						to: 0.36,
+						color: '#ffd700',
+						innerRadius: '100%',
+						outerRadius: '105%'
+					}, {
+						from: 0.54,
+						to: 0.64,
+						color: '#C02316',
+						innerRadius: '100%',
+						outerRadius: '105%'
+					}, {
+						from: 0.16,
+						to: 0.26,
+						color: '#C02316',
+						innerRadius: '100%',
+						outerRadius: '105%'
+					}, ],
+					pane: 0,
+					title: {
+						text: 'Left',
+						y: -40
+					}
+				}, {
+					min: 0,
+					max: 1,
+					minorTickPosition: 'outside',
+					tickPosition: 'outside',
+					labels: {
+						rotation: 'auto',
+						distance: 20,
+					},
+					plotBands: [{
+						from: 0.36,
+						to: 0.44,
+						color: '#228b22',
+						innerRadius: '100%',
+						outerRadius: '105%'
+					}, {
+						from: 0.44,
+						to: 0.54,
+						color: '#ffd700',
+						innerRadius: '100%',
+						outerRadius: '105%'
+					}, {
+						from: 0.26,
+						to: 0.36,
+						color: '#ffd700',
+						innerRadius: '100%',
+						outerRadius: '105%'
+					}, {
+						from: 0.54,
+						to: 0.64,
+						color: '#C02316',
+						innerRadius: '100%',
+						outerRadius: '105%'
+					}, {
+						from: 0.16,
+						to: 0.26,
+						color: '#C02316',
+						innerRadius: '100%',
+						outerRadius: '105%'
+					}],
+					pane: 1,
+					title: {
+						text: 'Right',
+						y: -40
+					}
+				}],
+				plotOptions: {
+					gauge: {
+						dataLabels: {
+							enabled: true,
+							color: 'black',
+							style: { fontFamily: 'Helvetica Neue' }
+						},
+						dial: {
+							radius: '100%'
+						}
+					}
+				},
+				series: [{
+					data: [0.38],
+					yAxis: 0
+				}, {
+					data: [0.37],
 					yAxis: 1
 				}]
 			},
@@ -451,6 +604,11 @@
 							<script src="http://code.highcharts.com/highcharts-more.js"></script>
 							<script src="http://code.highcharts.com/modules/exporting.js"></script>
 						</div>
+						<div class="span6" id="container2" style="color: black; width: 550px; height: 300px; margin-left: 15px;">
+							<script src="http://code.highcharts.com/highcharts.js"></script>
+							<script src="http://code.highcharts.com/highcharts-more.js"></script>
+							<script src="http://code.highcharts.com/modules/exporting.js"></script>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -462,7 +620,9 @@
 			</div>
 			<div id="collapseThree" class="accordion-body collapse">
 				<div class="accordion-inner">
-					<h4>Functional Tests</h4>
+					<h4>Get Up and Go:</h4><br />
+					<h4>2 Minute Walk Test:</h4><br />
+					<h4>Stairs:</h4><br />
 				</div>
 			</div>
 		</div>

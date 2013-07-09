@@ -442,26 +442,40 @@
 		</div>
 		<form class="form-horizontal" method="post" enctype="multipart/form-data">
 			<div class="modal-body">
+				<div class="row">
+					<div class="span1" style="margin-left: 200px;">Never</div>
+					<div class="span1">Current</div>
+					<div class="span1" style="margin-left: 50px;">Past</div>
+				</div>				
 				<div class="control-group">
-					<label class="control-label" for="PatientArthritisType">
+					<label class="control-label" for="PatientHeartDisease">
 						Heart Disease
 					</label>
 					<label>
-						<input type="checkbox" value="Never" id="Never" />
-						<input type="checkbox" value="Current" id="Current" />
-						<input type="checkbox" value="Past" id="Past" />
+						<input type="checkbox" class="span1" value="Never" id="HDNever" />
+						<input type="checkbox" class="span2" value="Current" id="HDCurrent" />
+						<input type="checkbox" class="span1" value="Past" id="HDPast" />
 					</label>					
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="PatientAffectedExtremity">
+					<label class="control-label" for="PatientDiabetes">
 						Diabetes
+					</label>
+					<label>
+						<input type="checkbox" class="span1" value="Never" id="DNever" />
+						<input type="checkbox" class="span2" value="Current" id="DCurrent" />
+						<input type="checkbox" class="span1" value="Past" id="DPast" />
 					</label>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="PatientDeformity">
+					<label class="control-label" for="PatientCancer">
 						Cancer 
 					</label>
-					
+					<label>
+						<input type="checkbox" class="span1" value="Never" id="CNever" />
+						<input type="checkbox" class="span2" value="Current" id="CCurrent" />
+						<input type="checkbox" class="span1" value="Past" id="CPast" />
+					</label>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="PatientID"></label>
