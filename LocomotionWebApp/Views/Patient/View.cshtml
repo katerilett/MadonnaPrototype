@@ -3,8 +3,7 @@
 
 @section Title
 {
-	Patient
-	
+	Patient	
 }
 
 @section Scripts
@@ -57,10 +56,23 @@
 	</script>
 
 	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#accordion-toggle').on('shown', function () {
+				$("#icon-chevron-down").removeClass("icon-chevron-down").addClass("icon-chevron-up");
+			});
+
+			$('#accordion-toggle').on('hidden', function () {
+				$("#icon-chevron-up").removeClass("icon-chevron-up").addClass("icon-chevron-down");
+			});
+		});
+
+	</script>
+
+@*	<script type="text/javascript">
 		//document.getElementById("PatientHeartDisease").checked = true;
 		$('#PatientHeartDisease').attr('checked', 'checked');
 		
-	</script>
+	</script>*@
 
 @*	<script type="text/javascript">
 		$(document).ready(function () {
@@ -89,6 +101,7 @@
 {
 }
 
+<!-- Code for modals -->
 @using(Html.BeginForm("EditPatient", "Patient", FormMethod.Post, new {
 	enctype = "multipart/form-data", @class = "form-horizontal"
 }))
@@ -461,6 +474,26 @@
 		<form class="form-horizontal" method="post" enctype="multipart/form-data">
 			<div class="modal-body">
 				<div class="row">
+					<div class="control-group">
+						<label class="control-label" for="PatientCurrentMeds" style="margin-left: 30px;">
+							Current Medications:  
+						</label>
+						<div class="controls">
+							<textarea name="PatientCurrentMeds" style="margin-left: 30px;" rows="3"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="control-group">
+						<label class="control-label" for="PatientMedAllergies" style="margin-left: 30px;">
+							Medication Allergies:  
+						</label>
+						<div class="controls">
+							<textarea name="PatientMedAllergies" style="margin-left: 30px;" rows="3"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="row">
 					<div class="span1" style="margin-left: 220px;">Never</div>
 					<div class="span1">Current</div>
 					<div class="span1" style="margin-left: 50px;">Past</div>
@@ -530,7 +563,7 @@
 	</div>
 }
 
-
+<!--Code for profile -->
 <div class="container">
 	<div class="row-fluid">
 		<div class="span12">
@@ -551,7 +584,8 @@
 	<div class="accordion" id="accordion2">
 		<div class="accordion-group">
 			<div class="accordion-heading">
-				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseOne">Basic Profile
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseOne">
+					<i class="icon-chevron-up" id="icon-element"></i> Basic Profile
 				</a>
 			</div>
 			<div id="collapseOne" class="accordion-body collapse in">
@@ -682,7 +716,8 @@
 			</div>
 			<div class="accordion-group">
 				<div class="accordion-heading">
-					<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseTwo">Medical Profile
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseTwo">
+						<i class="icon-chevron-down"></i>  Medical Profile
 					</a>
 				</div>
 				<div id="collapseTwo" class="accordion-body collapse">

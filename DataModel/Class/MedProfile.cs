@@ -23,6 +23,9 @@ namespace DataModel.Class
 		public bool PCancer { get; set; }
 		public bool PHighBloodPressure { get; set; }
 
+		public List<string> CurrentMeds { get; set; }
+		public List<string> MedAllergies { get; set; }
+
 		//Constructor
 		public MedProfile() 
 		{
