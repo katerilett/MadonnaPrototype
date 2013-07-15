@@ -455,7 +455,7 @@ namespace LocomotionWebApp.Controllers
 		}
 
 		[Authorize]
-		public ActionResult EditMedicalProfile(string PatientHeartDisease, string PPatientHeartDisease,
+		public ActionResult EditMedicalProfile(string PatientCurrentMeds, string PatientHeartDisease, string PPatientHeartDisease,
 			string PatientDiabetes, string PPatientDiabetes, string PatientCancer, 
 			string PPatientCancer, string PatientHighBloodPressure, string PPatientHighBloodPressure,
 			PatientViewModel model)
@@ -467,6 +467,10 @@ namespace LocomotionWebApp.Controllers
 			{
 				var patient = c.Patients.Find(model.ID);
 				patientID = patient.ID;
+
+				patient.MedProfile.CurrentMeds = new List<string>(
+					PatientCurrentMeds.Split(new string[] { "\r\n" },
+					StringSplitOptions.RemoveEmptyEntries));
 
 				//Setting Current Conditions
 				if (PatientHeartDisease == "Current")

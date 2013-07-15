@@ -56,15 +56,37 @@
 	</script>
 
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#accordion-toggle').on('shown', function () {
-				$("#icon-chevron-down").removeClass("icon-chevron-down").addClass("icon-chevron-up");
+		//$(document).ready(function() {
+		//	$('#accordion-toggle').on('shown', function () {
+		//		$("#icon-chevron-down").removeClass("icon-chevron-down").addClass("icon-chevron-up");
+		//	});
+
+		//	$('#accordion-toggle').on('hidden', function () {
+		//		$("#icon-chevron-up").removeClass("icon-chevron-up").addClass("icon-chevron-down");
+		//	});
+		//});
+
+		$(document).ready(function () {
+			console.log('hi');
+			var icons = {
+				header: "icon-chevron-up",
+				activeHeader: "icon-chevron-down"
+			};
+			console.log(icons);
+			$('#accordion').accordion({
+				icons: icons
+			});
+			$("#accordion-toggle").onClick(function () {
+				console.log('hey sexy');
+				if ($('#accordion').accordion('option', 'icons')) {
+					$('#accordion').accordion('option', 'icons', null);
+				} else {
+					$('#accordion').accordion('option', 'icons', icons);
+				}
 			});
 
-			$('#accordion-toggle').on('hidden', function () {
-				$("#icon-chevron-up").removeClass("icon-chevron-up").addClass("icon-chevron-down");
-			});
 		});
+
 
 	</script>
 
@@ -243,7 +265,7 @@
 		aria-labelledby="newPatientLabel" aria-hidden="true" >
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h3 id="editMedicalLabel">Edit Medical Profile</h3>
+			<h3 id="editMedicalLabel">Edit Arthritis Information</h3>
 		</div>
 		<form class="form-horizontal" method="post" enctype="multipart/form-data">
 			<div class="modal-body">
@@ -584,7 +606,7 @@
 	<div class="accordion" id="accordion2">
 		<div class="accordion-group">
 			<div class="accordion-heading">
-				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseOne">
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseOne" onclick="changeIcon">
 					<i class="icon-chevron-up" id="icon-element"></i> Basic Profile
 				</a>
 			</div>
@@ -726,11 +748,9 @@
 					<a class="btn btn-primary btn-small" id="edit" 
 						href="#editMedicalProfileModal" data-toggle="modal" style="float: right;">Edit </a>
 						</h4>
-						<ul>
-							<li>Medication1</li>
-							<li>Medication2</li>
-							<li>Medication3</li>
-						</ul>
+						<p>							
+@*							@Html.DisplayFor(m => Model.MedProfile.CurrentMeds, new { placeholder = @Model.MedProfile.CurrentMeds[0] })*@
+						</p>
 						<br />
 						<h4>Medications Which Have Caused an Allergic Reaction</h4>
 						<ul>
