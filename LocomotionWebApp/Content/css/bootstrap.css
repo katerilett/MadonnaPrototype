@@ -5256,6 +5256,7 @@ button.close {
 }
 .collapse.in {
   height: auto;
+  overflow: visible;
 }
 @-ms-viewport {
   width: device-width;

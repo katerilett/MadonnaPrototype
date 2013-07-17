@@ -54,6 +54,30 @@
 		});
 	</script>
 
+	<script type="text/javascript">
+		$(document).ready(function () {
+
+			$('#collapseOne').on('hide', function () {
+				$(".gaitDataTables").removeClass("icon-chevron-up").addClass("icon-chevron-down");
+			})
+			$('#collapseOne').on('show', function () {
+				$(".gaitDataTables").removeClass("icon-chevron-down").addClass("icon-chevron-up");
+			})
+			$('#collapseTwo').on('hide', function () {
+				$(".trends").removeClass("icon-chevron-up").addClass("icon-chevron-down");
+			})
+			$('#collapseTwo').on('show', function () {
+				$(".trends").removeClass("icon-chevron-down").addClass("icon-chevron-up");
+			})
+			$('#collapseThree').on('hide', function () {
+				$(".functionalTests").removeClass("icon-chevron-up").addClass("icon-chevron-down");
+			})
+			$('#collapseThree').on('show', function () {
+				$(".functionalTests").removeClass("icon-chevron-down").addClass("icon-chevron-up");
+			})
+		});
+	</script>
+
 	<!--Gauges-->
 	<script type="text/javascript">
 		$(function () {
@@ -464,6 +488,7 @@
 	</div>
 }
 
+<!-- Html for Report -->
 <div class="container">
 	<div class="row-fluid">
 		<div class="span12">
@@ -493,7 +518,8 @@
 	<div class="accordion" id="accordion2">
 		<div class="accordion-group">
 			<div class="accordion-heading">
-				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseOne">Gait Data Tables
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseOne">
+					<i class="icon-chevron-up gaitDataTables" id="icon-element"></i> Gait Data Tables
 				</a>
 			</div>
 			<div id="collapseOne" class="accordion-body collapse in">
@@ -510,6 +536,14 @@
 									<tr>
 										<td><strong>Candence (steps/min)</strong></td>
 										<td><strong>@Html.DisplayFor(m => Model.Report.Candence, new { placeholder = @Model.Report.Candence })</strong></td>
+									</tr>
+									<tr>
+										<td><strong>Stride Time (sec)</strong></td>
+										<td><i class="icon-minus"></i></td>
+									</tr>
+									<tr>
+										<td><strong>Step Time (sec)</strong></td>
+										<td><i class="icon-minus"></i></td>
 									</tr>
 								</tbody>
 							</table>
@@ -592,15 +626,15 @@
 								<tbody>
 									<tr>
 										<td><strong>Total Time (min)</strong></td>
-										<td><strong></strong></td>
+										<td><i class="icon-minus"></i></td>
 									</tr>
 									<tr>
 										<td><strong>Active Mode</strong></td>
-										<td><strong>%</strong></td>
+										<td><i class="icon-minus"></i><strong>%</strong></td>
 									</tr>
 									<tr>
 										<td><strong>Sleep Mode</strong></td>
-										<td><strong>%</strong></td>
+										<td><i class="icon-minus"></i><strong>%</strong></td>
 									</tr>
 								</tbody>
 							</table>
@@ -627,7 +661,8 @@
 		</div>
 		<div class="accordion-group">
 			<div class="accordion-heading">
-				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseTwo">Trends
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseTwo">
+					<i class="icon-chevron-down trends"></i> Trends
 				</a>
 			</div>
 			<div id="collapseTwo" class="accordion-body collapse">
@@ -649,7 +684,8 @@
 		</div>
 		<div class="accordion-group">
 			<div class="accordion-heading">
-				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseThree">Functional Tests
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseThree">
+					<i class="icon-chevron-down functionalTests"></i> Functional Tests
 				</a>
 			</div>
 			<div id="collapseThree" class="accordion-body collapse">

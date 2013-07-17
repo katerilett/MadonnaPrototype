@@ -56,57 +56,28 @@
 	</script>
 
 	<script type="text/javascript">
-		//$(document).ready(function() {
-		//	$('#accordion-toggle').on('shown', function () {
-		//		$("#icon-chevron-down").removeClass("icon-chevron-down").addClass("icon-chevron-up");
-		//	});
-
-		//	$('#accordion-toggle').on('hidden', function () {
-		//		$("#icon-chevron-up").removeClass("icon-chevron-up").addClass("icon-chevron-down");
-		//	});
-		//});
 
 		$(document).ready(function () {
-			console.log('hi');
-			var icons = {
-				header: "icon-chevron-up",
-				activeHeader: "icon-chevron-down"
-			};
-			console.log(icons);
-			$('#accordion').accordion({
-				icons: icons
-			});
-			$("#accordion-toggle").onClick(function () {
-				console.log('hey sexy');
-				if ($('#accordion').accordion('option', 'icons')) {
-					$('#accordion').accordion('option', 'icons', null);
-				} else {
-					$('#accordion').accordion('option', 'icons', icons);
-				}
-			});
+			
+			$('#collapseOne').on('hide', function () {
+				$(".basicProfile").removeClass("icon-chevron-up").addClass("icon-chevron-down");
+			})
 
+			$('#collapseOne').on('show', function () {
+				$(".basicProfile").removeClass("icon-chevron-down").addClass("icon-chevron-up");
+			})
+
+			$('#collapseTwo').on('hide', function () {
+				$(".medicalProfile").removeClass("icon-chevron-up").addClass("icon-chevron-down");
+			})
+
+			$('#collapseTwo').on('show', function () {
+				$(".medicalProfile").removeClass("icon-chevron-down").addClass("icon-chevron-up");
+			})
 		});
 
 
 	</script>
-
-@*	<script type="text/javascript">
-		//document.getElementById("PatientHeartDisease").checked = true;
-		$('#PatientHeartDisease').attr('checked', 'checked');
-		
-	</script>*@
-
-@*	<script type="text/javascript">
-		$(document).ready(function () {
-			$('#edit').click(function () {
-				console.log('hi');
-				var istrue = @Model.MedProfile.HeartDisease;
-				if (istrue) {
-					$('#PatientHeartDisease').attr('checked', 'checked');
-				}
-			});
-		});
-	</script>*@
 
 }
 
@@ -585,7 +556,7 @@
 	</div>
 }
 
-<!--Code for profile -->
+<!-- Html for Profile -->
 <div class="container">
 	<div class="row-fluid">
 		<div class="span12">
@@ -606,8 +577,8 @@
 	<div class="accordion" id="accordion2">
 		<div class="accordion-group">
 			<div class="accordion-heading">
-				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseOne" onclick="changeIcon">
-					<i class="icon-chevron-up" id="icon-element"></i> Basic Profile
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseOne">
+					<i class="icon-chevron-up basicProfile" id="icon-element"></i> Basic Profile
 				</a>
 			</div>
 			<div id="collapseOne" class="accordion-body collapse in">
@@ -739,7 +710,7 @@
 			<div class="accordion-group">
 				<div class="accordion-heading">
 					<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseTwo">
-						<i class="icon-chevron-down"></i>  Medical Profile
+						<i class="icon-chevron-down medicalProfile"></i>  Medical Profile
 					</a>
 				</div>
 				<div id="collapseTwo" class="accordion-body collapse">
