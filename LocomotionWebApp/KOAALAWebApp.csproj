@@ -210,6 +210,8 @@
     <Content Include="Content\js\jquery.dataTables.min.js" />
     <Content Include="Content\js\map-sidebar.js" />
     <Content Include="Content\css\map-screen.css" />
+    <Content Include="Content\js\modules\annotations.js" />
+    <Content Include="Content\js\modules\annotations.src.js" />
     <Content Include="Content\js\modules\canvas-tools.js" />
     <Content Include="Content\js\modules\canvas-tools.src.js" />
     <Content Include="Content\js\modules\data.js" />
@@ -222,6 +224,8 @@
     <Content Include="Content\js\themes\dark-green.js" />
     <Content Include="Content\js\themes\gray.js" />
     <Content Include="Content\js\themes\grid.js" />
+    <Content Include="Content\js\highstock.js" />
+    <Content Include="Content\js\highstock.src.js" />
     <Content Include="Content\js\themes\skies.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
