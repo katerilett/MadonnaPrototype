@@ -75,6 +75,12 @@
 			$('#collapseThree').on('show', function () {
 				$(".functionalTests").removeClass("icon-chevron-down").addClass("icon-chevron-up");
 			})
+			$('#collapseFour').on('hide', function () {
+				$(".activityBreakdown").removeClass("icon-chevron-up").addClass("icon-chevron-down");
+			})
+			$('#collapseFour').on('show', function () {
+				$(".activityBreakdown").removeClass("icon-chevron-down").addClass("icon-chevron-up");
+			})
 		});
 	</script>
 
@@ -480,6 +486,76 @@
 			});
 		});
 	</script>
+
+	<script type="text/javascript">
+		$(function () {
+			var seriesOptions = [],
+				yAxisOptions = [],
+				seriesCounter = 0,
+				names = ['MSFT', 'AAPL', 'GOOG'],
+				colors = Highcharts.getOptions().colors;
+
+			$.each(names, function (i, name) {
+
+				$.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=' + name.toLowerCase() + '-c.json&callback=?', function (data) {
+
+					seriesOptions[i] = {
+						name: name,
+						data: data
+					};
+
+					// As we're loading the data asynchronously, we don't know what order it will arrive. So
+					// we keep a counter and create the chart when all the data is loaded.
+					seriesCounter++;
+
+					if (seriesCounter == names.length) {
+						createChart();
+					}
+				});
+			});
+
+			// create the chart when all data is loaded
+			function createChart() {
+
+				$('#container5').highcharts('StockChart', {
+					chart: {
+					},
+
+					rangeSelector: {
+						selected: 4
+					},
+
+					yAxis: {
+						labels: {
+							formatter: function () {
+								return (this.value > 0 ? '+' : '') + this.value + '%';
+							}
+						},
+						plotLines: [{
+							value: 0,
+							width: 2,
+							color: 'silver'
+						}]
+					},
+
+					plotOptions: {
+						series: {
+							compare: 'percent'
+						}
+					},
+
+					tooltip: {
+						pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+						valueDecimals: 2
+					},
+
+					series: seriesOptions
+				});
+			}
+
+		});
+	</script>
+
 }
 
 @using (Html.BeginForm("Upload", "Patient", FormMethod.Post, new
@@ -732,7 +808,7 @@
 			</div>
 			<div id="collapseThree" class="accordion-body collapse">
 				<div class="accordion-inner">
-					<div class="span4" style="padding-bottom: 5px;">
+					<div class="span3" style="padding-bottom: 5px;">
 							<h4>Gait Data</h4>
 							<table class="table table-striped table-bordered table-condensed" border="1">
 								<tbody>
@@ -792,8 +868,7 @@
 									</tr>
 								</tbody>
 							</table>
-						</div>
-						<div class="span3 offset1" style="padding-bottom: 5px;">
+							<br />
 								<h4>Required Inputs 
 								<a class="btn btn-primary btn-small"
 									href="#editRequiredModal" data-toggle="modal" style="float: right;">Edit
@@ -828,6 +903,22 @@
 								</tbody>
 							</table>
 						</div>
+						<div class="span8">
+							<h4>Stance, Swing, and Single Limb Stance Percentages</h4>
+							<div id="container5" style="height: 400px; min-width: 600px;"></div>
+						</div>
+				</div>
+			</div>
+		</div>
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseFour">
+					<i class="icon-chevron-down activityBreakdown"></i> Activity Breakdown
+				</a>
+			</div>
+			<div id="collapseFour" class="accordion-body collapse">
+				<div class="accordion-inner">
+					<h4>Activity Breakdown</h4>
 				</div>
 			</div>
 		</div>
