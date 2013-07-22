@@ -85,7 +85,7 @@
 	</script>
 
 	<!--Gauges-->
-	<script type="text/javascript">
+@*	<script type="text/javascript">
 		$(function () {
 			$('#container').highcharts({
 				chart: {
@@ -387,7 +387,7 @@
 
 			});
 		});
-	</script>
+	</script>*@
 
 	<script type="text/javascript">
 		$(function () {
@@ -399,9 +399,9 @@
 						selected: 1
 					},
 
-					title: {
-						text: 'Distance Walked'
-					},
+					//title: {
+					//	text: 'Distance Walked'
+					//},
 
 					yAxis: {
 						title: {
@@ -421,8 +421,30 @@
 					series: [{
 						name: 'Distance (miles)',
 						data: data,
+						id : 'dataseries',
 						tooltip: {
 							valueDecimals: 4
+						},
+					},
+						// the event marker flags
+					{
+						type : 'flags',
+						data: [{
+							x : Date.UTC(2011, 3, 25),
+							title : '!',
+							text: 'Fall: 11:23 am'
+						}, {
+							x : Date.UTC(2011, 1, 2),
+							title : '!',
+							text: 'Fall: 6:54 pm'
+						}],
+						onSeries : 'dataseries',
+						shape : 'circlepin',
+						width: 16,
+						color: '#DA4F49',
+						fillColor: '#DA4F49',
+						style: {//text style
+							color: 'white'
 						}
 					}]
 				});
@@ -444,9 +466,9 @@
 						selected: 1
 					},
 
-					title: {
-						text: 'Number of Steps'
-					},
+					//title: {
+					//	text: 'Number of Steps'
+					//},
 
 					yAxis: {
 						plotLines: [{
@@ -458,6 +480,39 @@
 								text: 'Goal'
 							}
 						}]
+					},
+
+					series: [{
+						type: 'column',
+						name: 'Number of Steps',
+						data: data,
+						dataGrouping: {
+							units: [[
+								'week', // unit name
+								[1] // allowed multiples
+							], [
+								'month',
+								[1, 2, 3, 4, 6]
+							]]
+						}
+					}]
+				});
+			});
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(function () {
+			$.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-v.json&callback=?', function (data) {
+
+				// create the chart
+				$('#container6').highcharts('StockChart', {
+					chart: {
+						alignTicks: false
+					},
+
+					rangeSelector: {
+						selected: 1
 					},
 
 					series: [{
@@ -684,12 +739,12 @@
 		<div class="accordion-group">
 			<div class="accordion-heading">
 				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseOne">
-					<i class="icon-chevron-up gaitDataTables" id="icon-element"></i> Overview
+					<i class="icon-chevron-up gaitDataTables" id="icon-element"></i> Activity Breakdown
 				</a>
 			</div>
 			<div id="collapseOne" class="accordion-body collapse in">
 				<div class="accordion-inner">
-					<div class="row">						
+					<div class="row">
 						<div class="span3" style="padding-bottom: 5px; margin-left: 60px;">
 							<h4>Brace Information</h4>
 							<table class="table table-striped table-bordered table-condensed" border="1">
@@ -700,83 +755,93 @@
 									</tr>
 									<tr class="error">
 										<td><strong>This Week's Usage Grade</strong></td>
-										<td ><strong>C+</strong></td>
+										<td><strong>C+</strong></td>
 									</tr>
 									<tr>
 								</tbody>
 							</table>
 							<br />
-							<h4>Time Worn: </h4>
-							<div style="height: 200px; overflow:auto;">
-							<table class="table table-striped table-bordered table-condensed" border="1">
-								<thead>
-									<tr>
-										<td><strong>Date</strong></td>
-										<td><strong>Hours Active</strong></td>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td><strong>7/15/2013</strong></td>
-										<td><strong>6.5</strong></td>
-									</tr>
-									<tr>
-										<td><strong>7/14/2013</strong></td>
-										<td><strong>6.1</strong></td>
-									</tr>
-									<tr>
-										<td><strong>7/13/2013</strong></td>
-										<td><strong>6.3</strong></td>
-									</tr>
-									<tr>
-										<td><strong>7/12/2013</strong></td>
-										<td><strong>1.4</strong></td>
-									</tr>
-									<tr>
-										<td><strong>7/11/2013</strong></td>
-										<td><strong>3.5</strong></td>
-									</tr>
-									<tr>
-										<td><strong>7/10/2013</strong></td>
-										<td><strong>5.5</strong></td>
-									</tr>
-									<tr>
-										<td><strong>7/9/2013</strong></td>
-										<td><strong>6.6</strong></td>
-									</tr>
-									<tr>
-										<td><strong>7/8/2013</strong></td>
-										<td><strong>6.6</strong></td>
-									</tr>
-									<tr>
-										<td><strong>7/7/2013</strong></td>
-										<td><strong>6.6</strong></td>
-									</tr>
-									<tr>
-										<td><strong>7/6/2013</strong></td>
-										<td><strong>6.6</strong></td>
-									</tr>
-									<tr>
-										<td><strong>7/5/2013</strong></td>
-										<td><strong>6.6</strong></td>
-									</tr>
-									<tr>
-										<td><strong>7/4/2013</strong></td>
-										<td><strong>6.6</strong></td>
-									</tr>
-								</tbody>
-							</table>
+							<h4>Time Worn </h4>
+							<div style="height: 200px; overflow: auto;">
+								<table class="table table-striped table-bordered table-condensed" border="1">
+									<thead>
+										<tr>
+											<td><strong>Date</strong></td>
+											<td><strong>Hours Active</strong></td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><strong>7/15/2013</strong></td>
+											<td><strong>6.5</strong></td>
+										</tr>
+										<tr>
+											<td><strong>7/14/2013</strong></td>
+											<td><strong>6.1</strong></td>
+										</tr>
+										<tr>
+											<td><strong>7/13/2013</strong></td>
+											<td><strong>6.3</strong></td>
+										</tr>
+										<tr>
+											<td><strong>7/12/2013</strong></td>
+											<td><strong>1.4</strong></td>
+										</tr>
+										<tr>
+											<td><strong>7/11/2013</strong></td>
+											<td><strong>3.5</strong></td>
+										</tr>
+										<tr>
+											<td><strong>7/10/2013</strong></td>
+											<td><strong>5.5</strong></td>
+										</tr>
+										<tr>
+											<td><strong>7/9/2013</strong></td>
+											<td><strong>6.6</strong></td>
+										</tr>
+										<tr>
+											<td><strong>7/8/2013</strong></td>
+											<td><strong>6.6</strong></td>
+										</tr>
+										<tr>
+											<td><strong>7/7/2013</strong></td>
+											<td><strong>6.6</strong></td>
+										</tr>
+										<tr>
+											<td><strong>7/6/2013</strong></td>
+											<td><strong>6.6</strong></td>
+										</tr>
+										<tr>
+											<td><strong>7/5/2013</strong></td>
+											<td><strong>6.6</strong></td>
+										</tr>
+										<tr>
+											<td><strong>7/4/2013</strong></td>
+											<td><strong>6.6</strong></td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
-						<div class="span8" id="container4" style="height: 450px; padding-bottom: 5px;"></div>
+						<div class="span8">
+							<h4 style="padding-left: 10px;">Number of Steps and Patient Pain</h4>
+							<div id="container4" style="height: 400px; padding-bottom: 5px;"></div>
+						</div>
 					</div>
-					<div class="row" style="margin-top: 20px;">						
-						<div class="span10" id="container3" style="height: 500px;"></div>
+					<div class="row" style="margin-top: 10px;">
+						<div class="span6">	
+							<h4 style="padding-left: 25px;">Distance Walked</h4>		
+							<div id="container3" style="height: 400px;"></div>
+						</div>
+						<div class="span5">
+							<h4 style="padding-left: 10px;">Number of Stair Steps</h4>
+							<div id="container6" style="height: 400px; width: 500px; padding-bottom: 5px;"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="accordion-group">
+@*		<div class="accordion-group">
 			<div class="accordion-heading">
 				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseTwo">
 					<i class="icon-chevron-down trends"></i> Gauges
@@ -787,10 +852,10 @@
 					<div class="row">
 						<div class="span6" id="container" style="float: left; color: black; width: 550px; height: 300px; margin-left: 15px;"></div>
 						<div class="span6" id="container2" style="color: black; width: 550px; height: 300px; margin-left: 15px;"></div>
-					</div>					
+					</div>				
 				</div>
 			</div>
-		</div>
+		</div>*@
 		<div class="accordion-group">
 			<div class="accordion-heading">
 				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseThree">
@@ -901,7 +966,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="accordion-group">
+		@*<div class="accordion-group">
 			<div class="accordion-heading">
 				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseFour">
 					<i class="icon-chevron-down activityBreakdown"></i> Activity Breakdown
@@ -912,7 +977,7 @@
 					<h4>Activity Breakdown</h4>
 				</div>
 			</div>
-		</div>
+		</div>*@
 	</div>
 	<div class="row" style="font-size: 9px; color: #999; text-align: center;">
 		<div class="span12"></div>
