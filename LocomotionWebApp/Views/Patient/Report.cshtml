@@ -408,20 +408,12 @@
 							text: 'Distance (miles)'
 						},
 						plotLines: [{
-							value: 0.6738,
-							color: 'red',
-							dashStyle: 'shortdash',
-							width: 2,
-							label: {
-								text: 'Distance minimum'
-							}
-						}, {
 							value: 0.7419,
 							color: 'green',
 							dashStyle: 'shortdash',
 							width: 2,
 							label: {
-								text: 'Distance goal'
+								text: 'Distance Goal'
 							}
 						}]
 					},
@@ -503,7 +495,6 @@
 						name: name,
 						data: data
 					};
-
 					// As we're loading the data asynchronously, we don't know what order it will arrive. So
 					// we keep a counter and create the chart when all the data is loaded.
 					seriesCounter++;
