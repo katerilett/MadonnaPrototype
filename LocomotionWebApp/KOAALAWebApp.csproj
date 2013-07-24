@@ -69,6 +69,9 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Json">
+      <HintPath>..\packages\System.Json.4.0.20126.16343\lib\net40\System.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -230,6 +233,8 @@
     <Content Include="Content\js\highstock.src.js" />
     <Content Include="Content\js\themes\skies.js" />
     <Content Include="Global.asax" />
+    <Content Include="Views\Patient\input.html" />
+    <Content Include="Views\Patient\JavaScript1.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -287,13 +292,14 @@
     <Content Include="Views\Example html\HighCharts.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\manual_master_linear.pdf" />
     <None Include="Properties\PublishProfiles\locomotion - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\locomotion - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\locomotion - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\locomotion - Web Deploy.pubxml" />
     <Content Include="Views\Account\Access.cshtml" />
     <Content Include="Views\Patient\Report.cshtml" />
+    <None Include="Views\Patient\StepNumbers.json" />
+    <Content Include="Views\Patient\steps.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

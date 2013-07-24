@@ -10,6 +10,7 @@ using System.Xml;
 using System.IO;
 using System.Xml.Linq;
 using System.Data.Entity.Validation;
+using System.Json;
 
 namespace LocomotionWebApp.Controllers
 {
@@ -813,6 +814,12 @@ namespace LocomotionWebApp.Controllers
 		//	return TempEdit(model.ID, 0);
 		//}
 
+		public ActionResult Called()
+		{
+			var data = System.IO.File.ReadAllText(@"C:\Users\Kate\Desktop\steps.txt");
+			
+			return Json(data);
+		}
 		
 	}
 }
