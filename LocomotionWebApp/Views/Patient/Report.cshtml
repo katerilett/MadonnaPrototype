@@ -96,7 +96,6 @@
 					rangeSelector: {
 						selected: 1
 					},
-
 					yAxis: {
 						title: {
 							text: 'Distance (miles)'
@@ -111,7 +110,6 @@
 							}
 						}]
 					},
-
 					series: [{
 						name: 'Distance (miles)',
 						data: data,
@@ -151,8 +149,12 @@
 		$(function () {
 			$.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-v.json&callback=?', function (data) {
 			//$.getJSON("/Patient/Called" , function (data) {
-			//$.getJSON('~/steps.cshtml' , function (data) {
-
+			////$.getJSON('~/steps.cshtml' , function (data) {
+			////$.getJSON('~/JavaScript1.js' , function (data) {
+			////$.getJSON('~/input.html' , function (data) {
+			//$.getJSON('~/StepNumbers.json' , function (data) {
+			////$.getJSON(url , function (data) {
+				console.log(data);
 				// create the chart
 				$('#container4').highcharts('StockChart', {
 					chart: {
@@ -188,6 +190,16 @@
 					}]
 				});
 			});
+
+			//$.ajax({
+			//	dataType: "json",
+			//	url: "/Patient/Called" ,
+			//	success: function (data) {
+			//		console.log(data);
+			//	}
+
+			//});
+
 		});
 	</script>
 
@@ -623,7 +635,7 @@
 				<div class="accordion-inner">		
 					<div class="row">			
 						<div class="span5">
-							<h4 style="padding-left: 10px;">Distance Travelled</h4>
+							<h4 style="padding-left: 10px;">Distance Traveled</h4>
 							<div id="container7" style="height: 400px; min-width: 500px"></div>
 						</div>
 						<div class="span6">
@@ -640,10 +652,22 @@
 				</div>
 			</div>
 		</div>
+	@*	<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseFour">
+					<i class="icon-chevron-down activityBreakdown"></i> Gait Data
+				</a>
+			</div>
+			<div id="collapseFour" class="accordion-body collapse">
+				<div class="accordion-inner">
+					<h4>Gait Data</h4>
+				</div>
+			</div>
+		</div>*@
 		<div class="accordion-group">
 			<div class="accordion-heading">
 				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseTwo">
-					<i class="icon-chevron-down trends"></i> Gait Data Tables
+					<i class="icon-chevron-down trends"></i> Gait Data
 				</a>
 			</div>
 			<div id="collapseTwo" class="accordion-body collapse">
@@ -757,19 +781,7 @@
 					</div>				
 				</div>
 			</div>
-		</div>
-		@*<div class="accordion-group">
-			<div class="accordion-heading">
-				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseFour">
-					<i class="icon-chevron-down activityBreakdown"></i> Activity Breakdown
-				</a>
-			</div>
-			<div id="collapseFour" class="accordion-body collapse">
-				<div class="accordion-inner">
-					<h4>Activity Breakdown</h4>
-				</div>
-			</div>
-		</div>*@
+		</div>	
 	</div>
 	<div class="row" style="font-size: 9px; color: #999; text-align: center;">
 		<div class="span12"></div>
