@@ -233,8 +233,7 @@
     <Content Include="Content\js\highstock.src.js" />
     <Content Include="Content\js\themes\skies.js" />
     <Content Include="Global.asax" />
-    <Content Include="Views\Patient\input.html" />
-    <Content Include="Views\Patient\JavaScript1.js" />
+    <Content Include="Views\Patient\data.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -298,8 +297,6 @@
     <None Include="Properties\PublishProfiles\locomotion - Web Deploy.pubxml" />
     <Content Include="Views\Account\Access.cshtml" />
     <Content Include="Views\Patient\Report.cshtml" />
-    <None Include="Views\Patient\StepNumbers.json" />
-    <Content Include="Views\Patient\steps.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

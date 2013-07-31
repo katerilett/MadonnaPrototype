@@ -144,17 +144,51 @@
 		});
 	</script>
 
-	<!-- Number of Steps Graph -->
+	<!-- Max Velocity -->
 	<script type="text/javascript">
 		$(function () {
-			$.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-v.json&callback=?', function (data) {
+			$.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=usdeur.json&callback=?', function (data) {
+				// Create the chart
+				$('#container9').highcharts('StockChart', {
+
+					rangeSelector: {
+						selected: 1
+					},
+					yAxis: {
+						title: {
+							text: 'Velocity (m/s)'
+						},
+					
+					},
+					series: [{
+						name: 'Velocity (m/s)',
+						data: data,
+						id: 'dataseries',
+						tooltip: {
+							valueDecimals: 4
+						},
+					},
+						
+				
+					]
+				});
+			});
+		});
+	</script>
+
+	<!-- Number of Steps Graph -->
+	<script type="text/javascript">
+
+		$(function () {
+			//$.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-v.json&callback=?', function (data) {
 			//$.getJSON("/Patient/Called" , function (data) {
-			////$.getJSON('~/steps.cshtml' , function (data) {
-			////$.getJSON('~/JavaScript1.js' , function (data) {
-			////$.getJSON('~/input.html' , function (data) {
-			//$.getJSON('~/StepNumbers.json' , function (data) {
-			////$.getJSON(url , function (data) {
-				console.log(data);
+			//$.getJSON('~/Data.html' , function (data) {
+			//$.getJSON('~/jsonp.php' , function (data) {
+			//$.getJSON(url , function (data) {
+			//$.getJSON("C:\\Users\\Kate\\Desktop\\jsonp.php" , function (data) {
+			$.getJSON('http://localhost:8000/data.php?filename=aapl-v.json&callback=?', function (data) {
+			console.log(data);
+
 				// create the chart
 				$('#container4').highcharts('StockChart', {
 					chart: {
@@ -537,10 +571,10 @@
 										<td><strong>Brace Working</strong></td>
 										<td><strong>Yes</strong></td>
 									</tr>
-									<tr class="error">
+									@*<tr class="error">
 										<td><strong>This Week's Usage Grade</strong></td>
 										<td><strong>C+</strong></td>
-									</tr>
+									</tr>*@
 									<tr>
 								</tbody>
 							</table>
@@ -644,7 +678,7 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="span6">
+						<div class="span11">
 							<h4 style="padding-left: 10px;">Stride and Step Times</h4>
 							<div id="container8" style="height: 400px; min-width: 600px;"></div>
 						</div>
@@ -681,7 +715,7 @@
 						<button class="btn btn-small">yr</button>
 					</div>					
 					<div class="row"> <br />
-						<div class="span4" style="padding-bottom: 5px;">
+						<div class="span3" style="padding-bottom: 5px;">
 							<h4>Gait Data</h4>
 							<table class="table table-striped table-bordered table-condensed" border="1">
 								<tbody>
@@ -742,8 +776,8 @@
 								</tbody>
 							</table>
 							<br />
-						</div>
-						<div class="span4 offset1">
+						@*</div>
+						<div class="span4 offset1">*@
 								<h4>Required Inputs 
 								<a class="btn btn-primary btn-small"
 									href="#editRequiredModal" data-toggle="modal" style="float: right;">Edit
@@ -777,6 +811,10 @@
 									</tr>
 								</tbody>
 							</table>
+						</div>
+						<div class="span8">
+							<h4 style="padding-left: 25px;">Max Velocity</h4>		
+							<div id="container9" style="height: 350px;"></div>
 						</div>
 					</div>				
 				</div>

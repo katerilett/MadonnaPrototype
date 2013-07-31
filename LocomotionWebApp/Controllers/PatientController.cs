@@ -814,11 +814,11 @@ namespace LocomotionWebApp.Controllers
 		//	return TempEdit(model.ID, 0);
 		//}
 
-		public string Called()
-		{
-			var data = System.IO.File.ReadAllText(@"C:\Users\Kate\Documents\MadonnaPrototype\MadonnaPrototype\LocomotionWebApp\Views\Patient\StepNumbers.json");
-			return data;
-		}
+		//public string Called()
+		//{
+		//	var data = System.IO.File.ReadAllText(@"C:\Users\Kate\Documents\MadonnaPrototype\MadonnaPrototype\LocomotionWebApp\Views\Patient\StepNumbers.json");
+		//	return data;
+		//}
 		
 	}
 }
