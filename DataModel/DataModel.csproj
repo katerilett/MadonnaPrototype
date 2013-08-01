@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Input.cs" />
     <Compile Include="Class\MedProfile.cs" />
     <Compile Include="Class\ExcelAnalyzer.cs" />
     <Compile Include="Class\Report.cs" />

@@ -181,48 +181,45 @@
 
 		$(function () {
 			//$.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-v.json&callback=?', function (data) {
-			//$.getJSON("/Patient/Called" , function (data) {
-			//$.getJSON('~/Data.html' , function (data) {
-			//$.getJSON('~/jsonp.php' , function (data) {
-			//$.getJSON(url , function (data) {
-			//$.getJSON("C:\\Users\\Kate\\Desktop\\jsonp.php" , function (data) {
-			$.getJSON('http://localhost:8000/data.php?filename=aapl-v.json&callback=?', function (data) {
+			$.getJSON("/Patient/FindData", function (data) {
+
 			console.log(data);
 
 				// create the chart
-				$('#container4').highcharts('StockChart', {
-					chart: {
-						alignTicks: false
-					},
-					rangeSelector: {
-						selected: 1
-					},
-					yAxis: {
-						plotLines: [{
-							value: 17000000,
-							color: 'green',
-							dashStyle: 'shortdash',
-							width: 2,
-							label: {
-								text: 'Goal'
-							}
-						}]
-					},
-					series: [{
-						type: 'column',
-						name: 'Number of Steps',
-						data: data,
-						dataGrouping: {
-							units: [[
-								'week', // unit name
-								[1] // allowed multiples
-							], [
-								'month',
-								[1, 2, 3, 4, 6]
-							]]
+			$('#container4').highcharts('StockChart', {
+				chart: {
+					alignTicks: false
+				},
+				rangeSelector: {
+					selected: 1
+				},
+				yAxis: {
+					plotLines: [{
+						value: 6000,
+						color: 'green',
+						dashStyle: 'shortdash',
+						width: 2,
+						label: {
+							text: 'Goal'
 						}
 					}]
-				});
+				},
+				series: [{
+					type: 'column',
+					name: 'Number of Steps',
+					data: data,
+					dataGrouping: {
+						units: [[
+							'week', // unit name
+							[1] // allowed multiples
+						], [
+							'month',
+							[1, 2, 3, 4, 6]
+						]]
+					}
+				}]
+			});
+			console.log("hello");
 			});
 
 			//$.ajax({
@@ -233,7 +230,6 @@
 			//	}
 
 			//});
-
 		});
 	</script>
 

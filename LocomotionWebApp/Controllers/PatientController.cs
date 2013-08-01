@@ -814,11 +814,44 @@ namespace LocomotionWebApp.Controllers
 		//	return TempEdit(model.ID, 0);
 		//}
 
-		//public string Called()
-		//{
-		//	var data = System.IO.File.ReadAllText(@"C:\Users\Kate\Documents\MadonnaPrototype\MadonnaPrototype\LocomotionWebApp\Views\Patient\StepNumbers.json");
-		//	return data;
-		//}
+		public JsonResult FindData()
+		{
+			//string data = System.IO.File.ReadAllText(@"C:\Users\Kate\Desktop\Data\steps.txt");
+			//StreamReader reader = new StreamReader("C:\\Users\\Kate\\Desktop\\Data\\steps4.txt");
+			//string line;
+			//char[] delimiterChars = {',', '[', ']' }; 
+			//List<Input> data = new List<Input>();
+
+			//while ((line = reader.ReadLine()) != null)
+			//{
+			//	string[] stringInput = line.Split(delimiterChars);
+			//	Input input = new Input();
+			//	DateTime v1 = DateTime.ParseExact(stringInput[1], "dd/MM/yyyy", null);
+			//	long v2 = (long)Convert.ToDouble(stringInput[2]);
+			//	input.date = v1;
+			//	input.value = v2; 
+			//	data.Add(input);
+			//}
+
+			List<long[]> data = new List<long[]>();
+			StreamReader reader = new StreamReader("C:\\Users\\Kate\\Desktop\\Data\\fakesteps.txt");
+			string line;
+			char[] delimiterChars = { ',', '[', ']' };
+
+			while ((line = reader.ReadLine()) != null)
+			{
+				string[] stringInput = line.Split(delimiterChars);
+				long[] array = new long[2];
+				array[0] = (long)Convert.ToDouble(stringInput[1]);
+				array[1] = (long)Convert.ToDouble(stringInput[2]);
+				data.Add(array);				
+			}
+
+			var jsonData = Json(data, JsonRequestBehavior.AllowGet);
+			return (jsonData);
+
+			
+		}
 		
 	}
 }
