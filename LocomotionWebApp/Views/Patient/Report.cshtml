@@ -89,19 +89,20 @@
 	<!-- Distance Walked -->
 	<script type="text/javascript">
 		$(function () {
-			$.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=usdeur.json&callback=?', function (data) {
+			//$.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=usdeur.json&callback=?', function (data) {
+			$.getJSON("/Patient/FindDistance", function (data) {
 				// Create the chart
 				$('#container3').highcharts('StockChart', {
 
 					rangeSelector: {
-						selected: 1
+						selected: 0
 					},
 					yAxis: {
 						title: {
 							text: 'Distance (miles)'
 						},
 						plotLines: [{
-							value: 0.7419,
+							value: 6.0000,
 							color: 'green',
 							dashStyle: 'shortdash',
 							width: 2,
@@ -113,7 +114,12 @@
 					series: [{
 						name: 'Distance (miles)',
 						data: data,
-						id : 'dataseries',
+						id: 'dataseries',
+						marker : {
+							enabled : true,
+							radius : 3
+						},
+						shadow : true,
 						tooltip: {
 							valueDecimals: 4
 						},
@@ -122,11 +128,11 @@
 					{
 						type : 'flags',
 						data: [{
-							x : Date.UTC(2011, 3, 25),
+							x : Date.UTC(2013, 3, 25),
 							title : '!',
 							text: 'Fall: 11:23 am'
 						}, {
-							x : Date.UTC(2011, 1, 2),
+							x : Date.UTC(2013, 1, 2),
 							title : '!',
 							text: 'Fall: 6:54 pm'
 						}],
@@ -152,7 +158,7 @@
 				$('#container9').highcharts('StockChart', {
 
 					rangeSelector: {
-						selected: 1
+						selected: 0
 					},
 					yAxis: {
 						title: {
@@ -163,6 +169,11 @@
 					series: [{
 						name: 'Velocity (m/s)',
 						data: data,
+						marker: {
+							enabled: true,
+							radius: 3
+						},
+						shadow: true,
 						id: 'dataseries',
 						tooltip: {
 							valueDecimals: 4
@@ -181,17 +192,15 @@
 
 		$(function () {
 			//$.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-v.json&callback=?', function (data) {
-			$.getJSON("/Patient/FindData", function (data) {
+			$.getJSON("/Patient/FindSteps", function (data) {
 
-			console.log(data);
-
-				// create the chart
+			// create the chart
 			$('#container4').highcharts('StockChart', {
 				chart: {
 					alignTicks: false
 				},
 				rangeSelector: {
-					selected: 1
+					selected: 0
 				},
 				yAxis: {
 					plotLines: [{
@@ -219,25 +228,16 @@
 					}
 				}]
 			});
-			console.log("hello");
+
 			});
-
-			//$.ajax({
-			//	dataType: "json",
-			//	url: "/Patient/Called" ,
-			//	success: function (data) {
-			//		console.log(data);
-			//	}
-
-			//});
 		});
 	</script>
 
 	<!-- Number of Stair Steps -->
 	<script type="text/javascript">
 		$(function () {
-			$.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-v.json&callback=?', function (data) {
-
+			//$.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-v.json&callback=?', function (data) {
+			$.getJSON("/Patient/FindStairSteps", function (data) {
 				// create the chart
 				$('#container6').highcharts('StockChart', {
 					chart: {
@@ -245,7 +245,7 @@
 					},
 
 					rangeSelector: {
-						selected: 1
+						selected: 0
 					},
 
 					series: [{
@@ -299,12 +299,12 @@
 					chart: {
 					},
 					rangeSelector: {
-						selected: 4
+						selected: 0
 					},
 					yAxis: {
 						labels: {
 							formatter: function () {
-								return (this.value > 0 ? '+' : '') + this.value + '%';
+								return this.value;
 							}
 						},
 						plotLines: [{
@@ -313,13 +313,13 @@
 							color: 'silver'
 						}]
 					},
-					plotOptions: {
-						series: {
-							compare: 'percent'
-						}
-					},
+					//plotOptions: {
+					//	series: {
+					//		compare: 'percent'
+					//	}
+					//},
 					tooltip: {
-						pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+						pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br/>',
 						valueDecimals: 2
 					},
 					series: seriesOptions
@@ -338,12 +338,17 @@
 
 
 					rangeSelector: {
-						selected: 1
+						selected: 0
 					},
 
 					series: [{
 						name: 'Distance (m)',
 						data: data,
+						marker: {
+							enabled: true,
+							radius: 3
+						},
+						shadow: true,
 						tooltip: {
 							valueDecimals: 2
 						}
@@ -390,7 +395,7 @@
 					},
 
 					rangeSelector: {
-						selected: 4
+						selected: 0
 					},
 
 					yAxis: {
@@ -638,7 +643,7 @@
 							</div>
 						</div>
 						<div class="span8">
-							<h4 style="padding-left: 10px;">Number of Steps and Patient Pain</h4>
+							<h4 style="padding-left: 10px;">Number of Steps</h4>
 							<div id="container4" style="height: 400px; padding-bottom: 5px;"></div>
 						</div>
 					</div>
