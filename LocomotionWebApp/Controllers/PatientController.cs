@@ -855,7 +855,6 @@ namespace LocomotionWebApp.Controllers
 			reader.Close();
 			var jsonData = Json(data, JsonRequestBehavior.AllowGet);
 			return (jsonData);
-
 		}
 
 		public JsonResult FindStairSteps()
@@ -877,8 +876,90 @@ namespace LocomotionWebApp.Controllers
 			reader.Close();
 			var jsonData = Json(data, JsonRequestBehavior.AllowGet);
 			return (jsonData);
-
 		}
-		
+
+		public JsonResult FindMaxVelocity()
+		{
+			List<float[]> data = new List<float[]>();
+			StreamReader reader = new StreamReader("C:\\Users\\Kate\\Desktop\\Data\\maxvelocity.txt");
+			string line;
+			char[] delimiterChars = { ',', '[', ']' };
+
+			while ((line = reader.ReadLine()) != null)
+			{
+				string[] stringInput = line.Split(delimiterChars);
+				float[] array = new float[2];
+				array[0] = (float)Convert.ToDouble(stringInput[1]);
+				array[1] = (float)Convert.ToDouble(stringInput[2]);
+				data.Add(array);
+			}
+
+			reader.Close();
+			var jsonData = Json(data, JsonRequestBehavior.AllowGet);
+			return (jsonData);
+		}
+
+		public JsonResult FindStancePercent()
+		{
+			List<float[]> data = new List<float[]>();
+			StreamReader reader = new StreamReader("C:\\Users\\Kate\\Desktop\\Data\\stancepercent.txt");
+			string line;
+			char[] delimiterChars = { ',', '[', ']' };
+
+			while ((line = reader.ReadLine()) != null)
+			{
+				string[] stringInput = line.Split(delimiterChars);
+				float[] array = new float[2];
+				array[0] = (float)Convert.ToDouble(stringInput[1]);
+				array[1] = (float)Convert.ToDouble(stringInput[2]);
+				data.Add(array);
+			}
+
+			reader.Close();
+			var jsonData = Json(data, JsonRequestBehavior.AllowGet);
+			return (jsonData);
+		}
+
+		public JsonResult FindSwingPercent()
+		{
+			List<float[]> data = new List<float[]>();
+			StreamReader reader = new StreamReader("C:\\Users\\Kate\\Desktop\\Data\\swingpercent.txt");
+			string line;
+			char[] delimiterChars = { ',', '[', ']' };
+
+			while ((line = reader.ReadLine()) != null)
+			{
+				string[] stringInput = line.Split(delimiterChars);
+				float[] array = new float[2];
+				array[0] = (float)Convert.ToDouble(stringInput[1]);
+				array[1] = (float)Convert.ToDouble(stringInput[2]);
+				data.Add(array);
+			}
+
+			reader.Close();
+			var jsonData = Json(data, JsonRequestBehavior.AllowGet);
+			return (jsonData);
+		}
+
+		public JsonResult FindSinglePercent()
+		{
+			List<float[]> data = new List<float[]>();
+			StreamReader reader = new StreamReader("C:\\Users\\Kate\\Desktop\\Data\\singlepercent.txt");
+			string line;
+			char[] delimiterChars = { ',', '[', ']' };
+
+			while ((line = reader.ReadLine()) != null)
+			{
+				string[] stringInput = line.Split(delimiterChars);
+				float[] array = new float[2];
+				array[0] = (float)Convert.ToDouble(stringInput[1]);
+				array[1] = (float)Convert.ToDouble(stringInput[2]);
+				data.Add(array);
+			}
+
+			reader.Close();
+			var jsonData = Json(data, JsonRequestBehavior.AllowGet);
+			return (jsonData);
+		}
 	}
 }
