@@ -57,7 +57,6 @@
 
 	<script type="text/javascript">
 		$(document).ready(function () {
-
 			$('#collapseOne').on('hide', function () {
 				$(".gaitDataTables").removeClass("icon-chevron-up").addClass("icon-chevron-down");
 			})
@@ -121,7 +120,7 @@
 						},
 						shadow : true,
 						tooltip: {
-							valueDecimals: 4
+							valueDecimals: 2
 						},
 					},
 						// the event marker flags
@@ -168,7 +167,7 @@
 					
 					},
 					series: [{
-						name: 'Velocity (mi/hr)',
+						name: 'Velocity',
 						data: data,
 						marker: {
 							enabled: true,
@@ -268,18 +267,14 @@
 		});
 	</script>
 
-	<!-- Stance, Swing, and Single Limb Stance Percentages -->
+	<!-- Stance, Swing, and Single Limb Stance (% of GC) -->
 	<script type="text/javascript">
 		$(function () {
 			var seriesOptions = [],
 				yAxisOptions = [],
 				seriesCounter = 0,
 				colors = Highcharts.getOptions().colors;
-
-
-			//$.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=msft-c.json&callback=?', function (data) {
 			$.getJSON("/Patient/FindStancePercent" , function (data) {
-
 				seriesOptions[0] = {
 					name: 'Stance',
 					data: data,
@@ -295,9 +290,7 @@
 					createChart();
 				}
 
-			});
-
-			//$.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?', function (data) {
+			});			
 			$.getJSON("/Patient/FindSwingPercent" , function (data) {
 
 				seriesOptions[1] = {
@@ -314,9 +307,7 @@
 				if (seriesCounter == 3) {
 					createChart();
 				}
-			});
-
-			//$.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=goog-c.json&callback=?', function (data) {
+			});			
 			$.getJSON("/Patient/FindSinglePercent" , function (data) {
 
 				seriesOptions[2] = {
@@ -333,19 +324,14 @@
 				if (seriesCounter == 3) {
 					createChart();
 				}
-
 			});
-
 			// create the chart when all data is loaded
 			function createChart() {
-
 				$('#container5').highcharts('StockChart', {
 					chart: {},
-
 					rangeSelector: {
 						selected: 0
 					},
-
 					yAxis: {
 						labels: {
 							formatter: function () {
@@ -358,32 +344,30 @@
 							color: 'silver'
 						}]
 					},
-
 					tooltip: {
-						pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br/>',
+						pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}%</b><br/>',
 						valueDecimals: 2
 					},
-
 					series: seriesOptions
 				});
 			}
-
 		});
 	</script>
 
 	<!-- Distance Travelled (2MWT) -->
 	<script type="text/javascript">
 		$(function () {
-
 			$.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?', function (data) {
 				// Create the chart
 				$('#container7').highcharts('StockChart', {
-
-
 					rangeSelector: {
 						selected: 0
 					},
-
+					yAxis: {
+						title: {
+							text: 'Distance (m)'
+						},
+					},
 					series: [{
 						name: 'Distance (m)',
 						data: data,
@@ -398,53 +382,61 @@
 					}]
 				});
 			});
-
 		});
-
 	</script>
 
-	<!-- Stride and Step Times -->
+	<!-- Stride and Step Length -->
 	<script type="text/javascript">
 		$(function () {
 			var seriesOptions = [],
 				yAxisOptions = [],
 				seriesCounter = 0,
-				names = ['MSFT', 'GOOG'],
 				colors = Highcharts.getOptions().colors;
+			$.getJSON("/Patient/FindStrideLength", function (data) {
+				seriesOptions[0] = {
+					name: 'Stride',
+					data: data,
+					marker: {
+						enabled: true,
+						radius: 3
+					},
+					shadow: true
+				};
+				seriesCounter++;
 
-			$.each(names, function (i, name) {
+				if (seriesCounter == 2) {
+					createChart();
+				}
 
-				$.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=' + name.toLowerCase() + '-c.json&callback=?', function (data) {
-
-					seriesOptions[i] = {
-						name: name,
-						data: data
-					};
-					// As we're loading the data asynchronously, we don't know what order it will arrive. So
-					// we keep a counter and create the chart when all the data is loaded.
-					seriesCounter++;
-
-					if (seriesCounter == names.length) {
-						createChart();
-					}
-				});
 			});
+			$.getJSON("/Patient/FindStepLength", function (data) {
 
+				seriesOptions[1] = {
+					name: 'Step',
+					data: data,
+					marker: {
+						enabled: true,
+						radius: 3
+					},
+					shadow: true
+				};
+				seriesCounter++;
+
+				if (seriesCounter == 2) {
+					createChart();
+				}
+			});
 			// create the chart when all data is loaded
 			function createChart() {
-
 				$('#container8').highcharts('StockChart', {
-					chart: {
-					},
-
+					chart: {},
 					rangeSelector: {
 						selected: 0
 					},
-
 					yAxis: {
 						labels: {
 							formatter: function () {
-								return (this.value > 0 ? '+' : '') + this.value + '%';
+								return this.value;
 							}
 						},
 						plotLines: [{
@@ -453,25 +445,15 @@
 							color: 'silver'
 						}]
 					},
-
-					plotOptions: {
-						series: {
-							compare: 'percent'
-						}
-					},
-
 					tooltip: {
-						pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+						pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}cm</b><br/>',
 						valueDecimals: 2
 					},
-
 					series: seriesOptions
 				});
 			}
-
 		});
 	</script>
-
 }
 
 @using (Html.BeginForm("Upload", "Patient", FormMethod.Post, new
@@ -615,11 +597,6 @@
 										<td><strong>Brace Working</strong></td>
 										<td><strong>Yes</strong></td>
 									</tr>
-									@*<tr class="error">
-										<td><strong>This Week's Usage Grade</strong></td>
-										<td><strong>C+</strong></td>
-									</tr>*@
-									<tr>
 								</tbody>
 							</table>
 							<br />
@@ -663,23 +640,23 @@
 										</tr>
 										<tr>
 											<td><strong>7/8/2013</strong></td>
-											<td><strong>6.6</strong></td>
+											<td><strong>5.6</strong></td>
 										</tr>
 										<tr>
 											<td><strong>7/7/2013</strong></td>
-											<td><strong>6.6</strong></td>
+											<td><strong>6.2</strong></td>
 										</tr>
 										<tr>
 											<td><strong>7/6/2013</strong></td>
-											<td><strong>6.6</strong></td>
+											<td><strong>5.9</strong></td>
 										</tr>
 										<tr>
 											<td><strong>7/5/2013</strong></td>
-											<td><strong>6.6</strong></td>
+											<td><strong>6.7</strong></td>
 										</tr>
 										<tr>
 											<td><strong>7/4/2013</strong></td>
-											<td><strong>6.6</strong></td>
+											<td><strong>2.8</strong></td>
 										</tr>
 									</tbody>
 								</table>
@@ -712,36 +689,24 @@
 			<div id="collapseThree" class="accordion-body collapse">
 				<div class="accordion-inner">		
 					<div class="row">			
-						<div class="span5">
-							<h4 style="padding-left: 10px;">Distance Traveled</h4>
-							<div id="container7" style="height: 400px; min-width: 500px"></div>
-						</div>
 						<div class="span6">
-							<h4 style="padding-left: 10px;">Stance, Swing, and Single Limb Stance (% of GC)</h4>
-							<div id="container5" style="height: 400px; min-width: 600px;"></div>
+							<h4 style="padding-left: 10px;">Distance Traveled</h4>
+							<div id="container7" style="height: 400px; min-width: 600px"></div>
+						</div>
+						<div class="span5">
+							<h4 style="padding-left: 10px;">Stride and Step Lengths</h4>
+							<div id="container8" style="height: 400px; min-width: 500px;"></div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="span11">
-							<h4 style="padding-left: 10px;">Stride and Step Times</h4>
-							<div id="container8" style="height: 400px; min-width: 600px;"></div>
+							<h4 style="padding-left: 10px;">Stance, Swing, and Single Limb Stance (% of GC)</h4>
+							<div id="container5" style="height: 400px; min-width: 600px;"></div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	@*	<div class="accordion-group">
-			<div class="accordion-heading">
-				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseFour">
-					<i class="icon-chevron-down activityBreakdown"></i> Gait Data
-				</a>
-			</div>
-			<div id="collapseFour" class="accordion-body collapse">
-				<div class="accordion-inner">
-					<h4>Gait Data</h4>
-				</div>
-			</div>
-		</div>*@
 		<div class="accordion-group">
 			<div class="accordion-heading">
 				<a class="accordion-toggle" data-toggle="collapse" data-parent="accordion2" href="#collapseTwo">
@@ -772,11 +737,11 @@
 										<td><strong>@Html.DisplayFor(m => Model.Report.Candence, new { placeholder = @Model.Report.Candence })</strong></td>
 									</tr>
 									<tr>
-										<td><strong>Stride Time (sec)</strong></td>
+										<td><strong>Stride Length (cm)</strong></td>
 										<td><i class="icon-minus"></i></td>
 									</tr>
 									<tr>
-										<td><strong>Step Time (sec)</strong></td>
+										<td><strong>Step Length (cm)</strong></td>
 										<td><i class="icon-minus"></i></td>
 									</tr>
 								</tbody>
@@ -820,8 +785,6 @@
 								</tbody>
 							</table>
 							<br />
-						@*</div>
-						<div class="span4 offset1">*@
 								<h4>Required Inputs 
 								<a class="btn btn-primary btn-small"
 									href="#editRequiredModal" data-toggle="modal" style="float: right;">Edit

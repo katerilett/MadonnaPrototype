@@ -961,5 +961,48 @@ namespace LocomotionWebApp.Controllers
 			var jsonData = Json(data, JsonRequestBehavior.AllowGet);
 			return (jsonData);
 		}
+
+		public JsonResult FindStrideLength()
+		{
+			List<float[]> data = new List<float[]>();
+			StreamReader reader = new StreamReader("C:\\Users\\Kate\\Desktop\\Data\\stridelength.txt");
+			string line;
+			char[] delimiterChars = { ',', '[', ']' };
+
+			while ((line = reader.ReadLine()) != null)
+			{
+				string[] stringInput = line.Split(delimiterChars);
+				float[] array = new float[2];
+				array[0] = (float)Convert.ToDouble(stringInput[1]);
+				array[1] = (float)Convert.ToDouble(stringInput[2]);
+				data.Add(array);
+			}
+
+			reader.Close();
+			var jsonData = Json(data, JsonRequestBehavior.AllowGet);
+			return (jsonData);
+		}
+
+		public JsonResult FindStepLength()
+		{
+			List<float[]> data = new List<float[]>();
+			StreamReader reader = new StreamReader("C:\\Users\\Kate\\Desktop\\Data\\steplength.txt");
+			string line;
+			char[] delimiterChars = { ',', '[', ']' };
+
+			while ((line = reader.ReadLine()) != null)
+			{
+				string[] stringInput = line.Split(delimiterChars);
+				float[] array = new float[2];
+				array[0] = (float)Convert.ToDouble(stringInput[1]);
+				array[1] = (float)Convert.ToDouble(stringInput[2]);
+				data.Add(array);
+			}
+
+			reader.Close();
+			var jsonData = Json(data, JsonRequestBehavior.AllowGet);
+			return (jsonData);
+		}
+
 	}
 }
