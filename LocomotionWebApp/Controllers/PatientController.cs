@@ -857,6 +857,27 @@ namespace LocomotionWebApp.Controllers
 			return (jsonData);
 		}
 
+		public JsonResult FindWalkTestDistance()
+		{
+			List<float[]> data = new List<float[]>();
+			StreamReader reader = new StreamReader("C:\\Users\\Kate\\Desktop\\Data\\distance2.txt");
+			string line;
+			char[] delimiterChars = { ',', '[', ']' };
+
+			while ((line = reader.ReadLine()) != null)
+			{
+				string[] stringInput = line.Split(delimiterChars);
+				float[] array = new float[2];
+				array[0] = (float)Convert.ToDouble(stringInput[1]);
+				array[1] = (float)Convert.ToDouble(stringInput[2]);
+				data.Add(array);
+			}
+
+			reader.Close();
+			var jsonData = Json(data, JsonRequestBehavior.AllowGet);
+			return (jsonData);
+		}
+
 		public JsonResult FindStairSteps()
 		{
 			List<long[]> data = new List<long[]>();
@@ -882,6 +903,27 @@ namespace LocomotionWebApp.Controllers
 		{
 			List<float[]> data = new List<float[]>();
 			StreamReader reader = new StreamReader("C:\\Users\\Kate\\Desktop\\Data\\maxvelocity.txt");
+			string line;
+			char[] delimiterChars = { ',', '[', ']' };
+
+			while ((line = reader.ReadLine()) != null)
+			{
+				string[] stringInput = line.Split(delimiterChars);
+				float[] array = new float[2];
+				array[0] = (float)Convert.ToDouble(stringInput[1]);
+				array[1] = (float)Convert.ToDouble(stringInput[2]);
+				data.Add(array);
+			}
+
+			reader.Close();
+			var jsonData = Json(data, JsonRequestBehavior.AllowGet);
+			return (jsonData);
+		}
+
+		public JsonResult FindAverageVelocity()
+		{
+			List<float[]> data = new List<float[]>();
+			StreamReader reader = new StreamReader("C:\\Users\\Kate\\Desktop\\Data\\avgvelocity.txt");
 			string line;
 			char[] delimiterChars = { ',', '[', ']' };
 
